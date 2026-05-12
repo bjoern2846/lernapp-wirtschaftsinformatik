@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Wirtschaftsinformatik I</title>
+<title>Wirtschaftsinformatik I & II</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -587,7 +587,7 @@ padding:26px;text-align:center;display:none;animation:fadeUp 0.3s}
 <body>
 
 <div id="topbar">
-  <div class="logo">WI<br><small>Wirtschaftsinformatik I · Uni Trier</small></div>
+  <div class="logo">WI<br><small>Wirtschaftsinformatik I & II · Uni Trier</small></div>
   <div class="pills">
     <span class="pill streak" id="spStreak">🔥 0</span>
     <span class="pill xp" id="spXP">0 XP</span>
@@ -602,7 +602,7 @@ padding:26px;text-align:center;display:none;animation:fadeUp 0.3s}
   <div class="pad">
     <div class="hero-card">
       <div class="hero-greeting">Willkommen zurück 👋</div>
-      <div class="hero-h">Wirtschaftsinformatik<br><span>I</span> meistern</div>
+      <div class="hero-h">Wirtschaftsinformatik<br><span>I & II</span> meistern</div>
       <div class="pbar-wrap"><div class="pbar main" id="overallBar" style="width:0%"></div></div>
       <div class="pct-label" id="overallPct">0% Gesamtfortschritt</div>
     </div>
@@ -624,8 +624,8 @@ padding:26px;text-align:center;display:none;animation:fadeUp 0.3s}
 <!-- KURS -->
 <div class="screen" id="s-kurs">
   <div class="kurs-header">
-    <h2>Wirtschaftsinformatik I</h2>
-    <p>8 Module · 30 Lektionen · entlang der PDF-Unterlagen</p>
+    <h2>Wirtschaftsinformatik I & II</h2>
+    <p>13 Module · 49 Lektionen · entlang der PDF-Unterlagen</p>
     <div class="pbar-wrap"><div class="pbar" style="background:linear-gradient(90deg,var(--violet),var(--pink))" id="courseBar"></div></div>
   </div>
   <div class="mod-list" id="modList"></div>
@@ -788,6 +788,32 @@ const TOPICS=[
     "id": "operative",
     "name": "Operative & Führungssysteme",
     "color": "#06b6d4"
+  }
+,
+  {
+    "id": "wi2_intro",
+    "name": "WI II Überblick",
+    "color": "#14b8a6"
+  },
+  {
+    "id": "modellierung",
+    "name": "Modellierung & IS",
+    "color": "#8b5cf6"
+  },
+  {
+    "id": "requirements1",
+    "name": "Requirements Engineering I",
+    "color": "#f59e0b"
+  },
+  {
+    "id": "requirements2",
+    "name": "Requirements Engineering II",
+    "color": "#ef4444"
+  },
+  {
+    "id": "organisation_it",
+    "name": "Organisation & ITIL",
+    "color": "#22c55e"
   }
 ];
 
@@ -3194,6 +3220,1657 @@ const MODULES=[
       }
     ]
   }
+,
+  {
+    "id": "m_wi2_intro",
+    "title": "WI II: Methoden der Wirtschaftsinformatik",
+    "color": "#14b8a6",
+    "icon": "🧩",
+    "desc": "Überblick, Gliederung, Prüfungs- und Übungsrahmen",
+    "lessons": [
+      {
+        "id": "l_wi2_1",
+        "title": "Gegenstand & Einordnung von WI II",
+        "icon": "🧩",
+        "topic": "wi2_intro",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🧩",
+            "title": "Wirtschaftsinformatik II",
+            "sub": "Teil II erweitert die Grundlagen um Methoden: Software konzipieren, planen, modellieren und umsetzen."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Gegenstand der WI",
+            "html": "<p>Wirtschaftsinformatik umfasst die <strong>Konzeption komplexer DV-Projekte</strong>, Projektmanagement, Planung und Umsetzung von Informationssystemen in Wirtschaft und Verwaltung, die Gestaltung des Dialogs zwischen EDV-Anwendern und Informatikern sowie die Modellierung betriebswirtschaftlicher Anwendungen und Systeme.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Mensch",
+                "body": "Benutzbarkeit: Systeme müssen von Menschen verstanden und verwendet werden können.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Aufgabe",
+                "body": "Bewältigung: IT muss konkrete betriebliche Aufgaben unterstützen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "IT",
+                "body": "Funktionalität: Technik muss die notwendige Funktion bereitstellen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was steht in WI II besonders im Mittelpunkt?",
+            "opts": [
+              "Nur Betriebssysteme installieren",
+              "Software konzipieren und umsetzen: Modellierung, Requirements, Organisation und IT",
+              "Nur Tabellen formatieren",
+              "Ausschließlich Hardwarepreise"
+            ],
+            "correct": 1,
+            "exp": "Teil II behandelt die methodische Konzeption und Umsetzung von Informationssystemen."
+          }
+        ]
+      },
+      {
+        "id": "l_wi2_2",
+        "title": "Warum WI, warum KI, warum digitale Werkzeuge?",
+        "icon": "🚀",
+        "topic": "wi2_intro",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🚀",
+            "title": "Warum Wirtschaftsinformatik?",
+            "sub": "WI ist die Brücke zwischen Business und IT."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Business & IT verbinden",
+                "body": "WI übersetzt betriebswirtschaftliche Prozesse in technische Lösungen und gleicht Machbares mit Sinnvollem ab.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Arbeitsmarkt",
+                "body": "Unternehmen suchen Fachkräfte mit wirtschaftlichen und IT-Kompetenzen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Digitalisierung gestalten",
+                "body": "WI befähigt dazu, digitale Transformation aktiv mitzugestalten.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Berufsmöglichkeiten",
+                "body": "IT-Consulting, Projektmanagement, Datenanalyse, Produktentwicklung und KI-nahe Rollen.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Praxisnähe",
+                "body": "Die Vorlesung verbindet Theorie mit konkreten Unternehmensproblemen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "callout",
+            "kind": "satz",
+            "label": "Warum KI?",
+            "html": "<p>KI wird als Zukunftstechnologie mit Wachstum, Automatisierungs- und Effizienzpotenzial, neuen Berufsfeldern, interdisziplinärer Anwendung und Innovationskraft für Unternehmen dargestellt.</p>"
+          },
+          {
+            "type": "mcq",
+            "q": "Welche Rolle spielt KI laut Gliederungsfolien?",
+            "opts": [
+              "Keine Rolle",
+              "Zukunftstechnologie, Automatisierungswerkzeug und Innovationsmotor",
+              "Nur Spielerei für Bilder",
+              "Nur ein Datenbanktyp"
+            ],
+            "correct": 1,
+            "exp": "KI wird als zentrale Zukunftstechnologie mit vielen Anwendungsfeldern beschrieben."
+          }
+        ]
+      },
+      {
+        "id": "l_wi2_3",
+        "title": "Aufbau, Inhalte und Übungen",
+        "icon": "📚",
+        "topic": "wi2_intro",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "📚",
+            "title": "Aufbau von WI I & II",
+            "sub": "Die App umfasst Grundlagen und Methoden der Wirtschaftsinformatik."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Teil I: Grundlagen",
+                "body": "Computer, Daten, Netze, Internet, KI, Betriebssysteme, Cloud, Kommunikation, Text/Grafik, Multimedia, Tabellenkalkulation, Datenbanken, betriebliche Systeme.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Teil II: Methoden",
+                "body": "Modellierung und Planung von Informationssystemen, Requirements Engineering, Organisation und IT-Organisation, ARIS/TOGAF, eEPK/BPMN, Datenmodellierung, MVC, Interface Design, Pseudocode, Coding/Werkzeuge/Grenzen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Übungen Teil II",
+                "body": "Requirements Engineering, eEPK/BPMN, Datenbanken, Algorithmen/Pseudocode, Vibe-Coding und GitHub.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Prüfungsrahmen",
+                "body": "Die Inhalte beider Teile und ausgewählte Online-Übungen sind klausurrelevant; der Kurs umfasst 10 ECTS und eine 90-minütige Klausur nach beiden Teilen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welche Themen gehören laut Gliederung zu Teil II?",
+            "opts": [
+              "Nur Word und Excel",
+              "Requirements Engineering, Modellierung, Organisation, Datenmodellierung, Pseudocode und Coding",
+              "Nur Netzwerkkabel",
+              "Nur Bildbearbeitung"
+            ],
+            "correct": 1,
+            "exp": "Teil II ist der Methodenblock: Software konzipieren und umsetzen."
+          },
+          {
+            "type": "complete",
+            "title": "✅ WI-II-Überblick abgeschlossen",
+            "sub": "Du kennst Gegenstand, Motivation und Aufbau von Teil II."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m_modellierung",
+    "title": "Modellierung von Prozessen und Informationssystemen",
+    "color": "#8b5cf6",
+    "icon": "🧱",
+    "desc": "Informationssysteme, Anwendungssysteme, Workflows und Modelle",
+    "lessons": [
+      {
+        "id": "l_mod_1",
+        "title": "WI als Vermittler & Informationssysteme",
+        "icon": "🧱",
+        "topic": "modellierung",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🧱",
+            "title": "WI als Vermittler",
+            "sub": "Wirtschaftsinformatiker verbinden Fachverfahren und Workflows mit Konzeption, Konfiguration, Entwicklung und Basistechnik."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Informationssystem",
+            "html": "<p>Ein Informationssystem verarbeitet Informationen: Es <strong>erfasst</strong>, <strong>überträgt</strong>, <strong>transformiert</strong>, <strong>speichert</strong> und <strong>stellt</strong> Informationen bereit. Betriebliche Informationssysteme sind sozio-technische Systeme mit menschlichen und maschinellen Aufgabenträgern.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Weite Sicht",
+                "body": "IS umfassen Menschen, Aufgaben, Informationen, Kommunikation und Technik.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Einsatzfelder",
+                "body": "Wirtschaft, Verwaltung, Industrie, Handel, Dienstleistungen, öffentliche Betriebe, eCommerce, Smart Home und Bildung.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Vermittlungsrolle",
+                "body": "WI gleicht das technisch Machbare mit dem betriebswirtschaftlich Notwendigen und Sinnvollen ab.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was verarbeitet ein Informationssystem?",
+            "opts": [
+              "Nur Strom",
+              "Informationen durch Erfassen, Übertragen, Transformieren, Speichern und Bereitstellen",
+              "Nur Videos",
+              "Nur Passwörter"
+            ],
+            "correct": 1,
+            "exp": "Die Folien definieren IS über die Verarbeitung von Informationen."
+          }
+        ]
+      },
+      {
+        "id": "l_mod_2",
+        "title": "Komponenten: Aufgaben, Träger und Kommunikation",
+        "icon": "🔀",
+        "topic": "modellierung",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🔀",
+            "title": "Komponenten eines Informationssystems",
+            "sub": "Aufgaben, Aufgabenträger, Informationsbeziehungen und Kommunikationskanäle bilden zusammen ein Kommunikationssystem."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Aufgaben",
+                "body": "Durchführungsaufgaben zur Dienstleistungserbringung und Lenkungsaufgaben wie Planung, Steuerung und Kontrolle.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Personelle Aufgabenträger",
+                "body": "Sachbearbeiter, Manager und andere Personen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Maschinelle Aufgabenträger",
+                "body": "Rechner, Programme und Anwendungssysteme.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Kommunikation",
+                "body": "Computer-Computer-, Mensch-Computer- und Mensch-Mensch-Kommunikation verbinden Aufgaben und Aufgabenträger.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "callout",
+            "kind": "info",
+            "label": "Anwendungssystem",
+            "html": "<p>Im engeren Sinne: Anwendungssoftware und zugehörige Daten für ein konkretes betriebliches Anwendungsgebiet. Im weiteren Sinne zusätzlich Hardware, Systemsoftware und Kommunikationseinrichtungen. Synonyme: IV-, IT- oder DV-System.</p>"
+          },
+          {
+            "type": "mcq",
+            "q": "Was gehört im weiteren Sinne zu einem Anwendungssystem?",
+            "opts": [
+              "Nur der Programmcode",
+              "Anwendungssoftware, Daten, Hardware, Systemsoftware und Kommunikationseinrichtungen",
+              "Nur ein Benutzerhandbuch",
+              "Nur ein Browserlogo"
+            ],
+            "correct": 1,
+            "exp": "Die weitere Sicht ergänzt Software/Daten um technische und kommunikative Infrastruktur."
+          }
+        ]
+      },
+      {
+        "id": "l_mod_3",
+        "title": "Workflow-Beispiele: Video und Demogleitschirm",
+        "icon": "🎬",
+        "topic": "modellierung",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🎬",
+            "title": "Workflows modellieren",
+            "sub": "Workflows machen sichtbar, welche Aufgabe von welchem Träger mit welchem System/Funktion erledigt wird."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Videoproduktion: Streaming",
+                "body": "Szene mit Hintergründen und Effekten einrichten, Medienquellen hinzufügen, streamen oder aufnehmen; Beispiel OBS-Studio.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Videoproduktion: Schnitt",
+                "body": "Medienquellen aufnehmen, Bild/Ton/Effekte/Hintergründe in Schnittsoftware montieren, Video in gewünschter Qualität ausgeben; Beispiele Corel Video Studio/Adobe Premiere.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Video verteilen",
+                "body": "Video verfügbar machen, in Lernumgebung einbinden, Videos anschauen und Inhalte lernen; Träger: wissenschaftliche Hilfskraft/Studierende; Systeme: Streaming-Server, E-Learning-System, Browser.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Demogleitschirm-Verleih",
+                "body": "Registrieren, Kunden prüfen, Schirm auswählen, Verfügbarkeit prüfen, Verleihschein erstellen/unterzeichnen, Schirm ausgeben, fliegen, Schirm zurücknehmen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was zeigt ein Workflow in den Folien typischerweise?",
+            "opts": [
+              "Nur Farben",
+              "Aufgabe, Träger und System bzw. Funktion",
+              "Nur Kostenstellen",
+              "Nur Dateiendungen"
+            ],
+            "correct": 1,
+            "exp": "Die Workflow-Darstellungen ordnen Aufgaben den Trägern und Systemen/Funktionen zu."
+          }
+        ]
+      },
+      {
+        "id": "l_mod_4",
+        "title": "Komplexität und Klassifikation von IS",
+        "icon": "🧭",
+        "topic": "modellierung",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🧭",
+            "title": "Komplexität betrieblicher IS",
+            "sub": "Betriebliche Informationssysteme werden durch Vielfalt und Integration immer komplexer."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Komponenten betrachten",
+                "body": "IS-Komponenten isolieren, untersuchen, beschreiben, entwerfen und integrieren.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Sichten",
+                "body": "Funktion, Daten, Objekte, technische Schnittstellen und Mensch-Maschine-Schnittstellen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Klassifikation",
+                "body": "Nach Unternehmen/Gruppe/Person, Branche oder Verwendungszweck.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Verwendungszweck",
+                "body": "Operative Systeme, Führungssysteme und Querschnittssysteme; darunter branchenspezifisch/neutral, Führungsinformationssysteme, Planungssysteme, Bürosysteme, Intranet/Extranet.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welche Sichten helfen bei der Komplexitätsreduktion von IS?",
+            "opts": [
+              "Nur Farben",
+              "Funktion, Daten, Objekte und Schnittstellen",
+              "Nur Kalenderwochen",
+              "Nur Preise"
+            ],
+            "correct": 1,
+            "exp": "Die Folien nennen diese Sichten explizit."
+          }
+        ]
+      },
+      {
+        "id": "l_mod_5",
+        "title": "Modelle, Produkt- und Prozessmodellierung",
+        "icon": "📐",
+        "topic": "modellierung",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "📐",
+            "title": "Modelle und Modellieren",
+            "sub": "Modelle sind vereinfachte Darstellungen, mit denen man Eigenschaften eines Vorbilds untersuchen kann."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Modell in der Softwaretechnik",
+            "html": "<p>Ein Modell ist eine idealisierte, vereinfachte und in bestimmter Hinsicht ähnliche Darstellung eines Gegenstands, Systems oder Weltausschnitts, um Eigenschaften des Vorbilds besser studieren zu können.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Modellfragen",
+                "body": "Was wird dargestellt, was wird weggelassen, welche Eigenschaften werden nachgebildet, wie formal wird modelliert und wer soll das Modell verstehen?",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Produktmodellierung",
+                "body": "Funktionen, Daten, Komponenten und Informationsflüsse eines Informationssystems.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Prozessmodellierung",
+                "body": "Abläufe im Unternehmen und Vorgehensweisen zur Erstellung oder Weiterentwicklung von IS.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Praxisunterschied",
+                "body": "Prozessmodellierung fragt: Was braucht der Benutzer? IS-Modellierung fragt: Wie muss das System gebaut sein?",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was ist der Unterschied zwischen Prozess- und IS-Modellierung?",
+            "opts": [
+              "Es gibt keinen",
+              "Prozessmodellierung fragt nach Benutzerbedarf im Ablauf; IS-Modellierung fragt nach technischer/logischer Umsetzung",
+              "Prozessmodellierung ist nur Hardware",
+              "IS-Modellierung ist nur Marketing"
+            ],
+            "correct": 1,
+            "exp": "Genau so wird der Praxisunterschied in den Folien formuliert."
+          },
+          {
+            "type": "complete",
+            "title": "✅ Modellierung abgeschlossen",
+            "sub": "Du kennst IS-Komponenten, Workflows, Komplexität, Modelle und den Unterschied zwischen Prozess- und Produktmodellierung."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m_req1",
+    "title": "Requirements Engineering I",
+    "color": "#f59e0b",
+    "icon": "📝",
+    "desc": "Motivation, Definition, Arten, Qualität, Erhebung, Priorisierung und Dokumente",
+    "lessons": [
+      {
+        "id": "l_req1_1",
+        "title": "Warum Requirements Engineering?",
+        "icon": "📝",
+        "topic": "requirements1",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "📝",
+            "title": "Warum Anforderungen wichtig sind",
+            "sub": "Gut definierte Anforderungen verhindern Missverständnisse und Projektprobleme."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Notwendigkeit",
+                "body": "Gut definierte Anforderungen sind nötig, um Produkte und Dienstleistungen beschreiben und auswählen zu können.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Folgen schlechter Anforderungen",
+                "body": "Verständnisprobleme, Verzögerungen, unnötige Nachfragen, zusätzliche Kosten, unklare Ziele und Scheitern von Projekten.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Schlüsselaufgabe",
+                "body": "Anforderungsanalyse beeinflusst Nutzen, wirtschaftlichen Erfolg, Entwicklungskosten und Entwicklungszeit.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Späte Fehler",
+                "body": "Fehlerbehebung wird teurer, je später im Projekt sie erfolgt.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Warum ist frühe Anforderungsanalyse wichtig?",
+            "opts": [
+              "Weil Fehler später billiger werden",
+              "Weil frühe Klärung Verständnis, Kosten, Zeit und Projekterfolg beeinflusst",
+              "Weil man dann keine Stakeholder braucht",
+              "Weil Anforderungen nie geändert werden"
+            ],
+            "correct": 1,
+            "exp": "Die Folien betonen die Kosten- und Erfolgswirkung früher Anforderungsanalyse."
+          }
+        ]
+      },
+      {
+        "id": "l_req1_2",
+        "title": "Definition und Aufgaben von Anforderungen",
+        "icon": "📌",
+        "topic": "requirements1",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "📌",
+            "title": "Was ist eine Anforderung?",
+            "sub": "Anforderungen beschreiben Bedingungen, Fähigkeiten, Eigenschaften oder Leistungen."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Definitionen",
+            "html": "<p>IEEE beschreibt Anforderungen als Bedingungen oder Fähigkeiten zur Problemlösung/Zielerreichung, als Bedingungen/Fähigkeiten, die Software zur Erfüllung formeller Vorgaben besitzen muss, sowie als dokumentierte Repräsentation davon. Die SOPHISTen definieren eine Anforderung als Aussage über eine Eigenschaft oder Leistung eines Produktes, Prozesses oder beteiligter Personen.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Kommunikation",
+                "body": "Grundlage für Auftraggeber und Auftragnehmer.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Vertrag",
+                "body": "Rechtliche Grundlage für Vertragsgestaltung.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Softwarelebenszyklus",
+                "body": "Basis für Integration, Wartung und Pflege.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Wirtschaftlichkeit",
+                "body": "Bestimmung von Rationalisierungspotenzialen.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Kundensicht",
+                "body": "Festlegung des Kundennutzens und Messung der Benutzerzufriedenheit.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welche Aufgabe haben Anforderungen NICHT?",
+            "opts": [
+              "Kommunikationsgrundlage",
+              "Rechtliche Grundlage",
+              "Basis für Integration und Wartung",
+              "Den Programmcode automatisch fehlerfrei erzeugen"
+            ],
+            "correct": 3,
+            "exp": "Anforderungen helfen, ersetzen aber nicht Entwicklung und Prüfung."
+          }
+        ]
+      },
+      {
+        "id": "l_req1_3",
+        "title": "Funktionale und nichtfunktionale Anforderungen",
+        "icon": "⚙️",
+        "topic": "requirements1",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "⚙️",
+            "title": "Arten von Anforderungen",
+            "sub": "Funktionale Anforderungen beschreiben Systemverhalten; nichtfunktionale Anforderungen beschreiben Qualität, Rahmenbedingungen und Nebenleistungen."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Funktional",
+                "body": "Vom System selbst ausgeführte Aktionen oder Interaktion zwischen Nutzer und System, z.B. Login oder Warenkorb.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Benutzungsschnittstellen",
+                "body": "Qualität der Mensch-Maschine-Schnittstelle und Schnittstellen zu angrenzenden Systemen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Qualität",
+                "body": "Zuverlässigkeit, Performance, Effizienz, Änderbarkeit und Übertragbarkeit.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Lieferbestandteile",
+                "body": "System ist nicht nur kompilierter Code: Handbuch, Dokumentation usw.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Tätigkeiten & Recht",
+                "body": "Vorgehensweise, Standards, Besprechungen, Abnahmetests, Termine, Zahlungsbedingungen, Vertragsstrafen und Eskalationspfade.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was ist eine funktionale Anforderung?",
+            "opts": [
+              "Antwortzeit maximal 2 Sekunden",
+              "Login und Warenkorb als Systemfunktionen",
+              "Handbuch liefern",
+              "Zahlungsbedingungen"
+            ],
+            "correct": 1,
+            "exp": "Login und Warenkorb sind Beispiele für Systemfunktionen."
+          }
+        ]
+      },
+      {
+        "id": "l_req1_4",
+        "title": "Qualitätskriterien und Zeitpunkt der Erhebung",
+        "icon": "✅",
+        "topic": "requirements1",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "✅",
+            "title": "Qualität von Anforderungen",
+            "sub": "IEEE nennt acht Qualitätskriterien für Anforderungen."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Acht Kriterien",
+                "body": "Korrektheit, Eindeutigkeit, Vollständigkeit, Konsistenz, Bewertbarkeit/Gewichtbarkeit, Prüfbarkeit, Modifizierbarkeit und Verfolgbarkeit.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Akquise",
+                "body": "Basis für Angebotserstellung; unter Zeitdruck, fehlerträchtig und oft ungenau, weil Projekte gewonnen werden sollen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Vorbereitung",
+                "body": "Ausarbeitung im Rahmen der Pflichtenhefterstellung; häufig Korrektur von Angeboten.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Durchführung",
+                "body": "Überführung in Anforderungs- bzw. Change-Management; Änderungen sollen möglichst kontrolliert werden; Folgeprojekte können entstehen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welches ist ein Qualitätskriterium für Anforderungen?",
+            "opts": [
+              "Möglichst lang",
+              "Eindeutigkeit",
+              "Geheimhaltung vor Stakeholdern",
+              "Keine Prüfbarkeit"
+            ],
+            "correct": 1,
+            "exp": "Eindeutigkeit gehört zu den IEEE-Kriterien."
+          }
+        ]
+      },
+      {
+        "id": "l_req1_5",
+        "title": "Requirements Engineering: Erheben, Priorisieren, Dokumentieren",
+        "icon": "🧰",
+        "topic": "requirements1",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🧰",
+            "title": "Wie Anforderungen erhoben werden",
+            "sub": "Requirements Engineering umfasst Ermitteln/Verhandeln, Dokumentieren, Prüfen und Verwalten."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Stakeholder",
+                "body": "Zu befragen sind u.a. Nutzer, Marketing, Qualitätsmanager, DB-Experten, Domänenexperten, Übersetzer, Projektleiter, Medienexperten, SW-Architekten, Programmierer, Texter, Modellierer, Designer und Tester.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Kreativität",
+                "body": "Brainstorming und Methode 6-3-5: sechs Teilnehmer, drei Ideen, fünf Durchläufe.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Beobachtung",
+                "body": "Fachanwender beobachten oder mitarbeiten; kann verunsichern bzw. zeitintensiv sein.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Befragung",
+                "body": "Interviews ermöglichen Nachfragen, Fragebögen erreichen viele Stakeholder günstig, spontane Interaktion hilft durch Erzählenlassen und Verständnisfragen.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Meeting",
+                "body": "Klassisch: Anforderungen gemeinsam besprechen, auch telefonisch oder per Videokonferenz.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "callout",
+            "kind": "satz",
+            "label": "Priorisierung",
+            "html": "<p><strong>Muss</strong>: nicht verhandelbare Abnahmebedingung. <strong>Soll</strong>: soll implementiert werden, außer Zeit/Budget verhindern es. <strong>Kann</strong>: vorgesehen, solange Muss- oder Soll-Ziele nicht gefährdet werden.</p>"
+          },
+          {
+            "type": "callout",
+            "kind": "info",
+            "label": "Dokumente",
+            "html": "<p><strong>Lastenheft</strong>: vom Auftraggeber, Gesamtheit der Forderungen an Lieferungen und Leistungen, Basis für das Angebot. <strong>Pflichtenheft</strong>: vom Auftragnehmer, Realisierungsvorgaben und Umsetzung des Lastenhefts, Basis für die Umsetzung. <strong>Angebot</strong>: Willenserklärung zur Leistungserfüllung, Lösungsskizze und Vertragsbasis.</p>"
+          },
+          {
+            "type": "mcq",
+            "q": "Wer erstellt typischerweise das Lastenheft?",
+            "opts": [
+              "Auftraggeber",
+              "Auftragnehmer",
+              "Nur der Tester",
+              "Der Kunde nie"
+            ],
+            "correct": 0,
+            "exp": "Das Lastenheft kommt vom Auftraggeber."
+          },
+          {
+            "type": "complete",
+            "title": "✅ Requirements Engineering I abgeschlossen",
+            "sub": "Du kennst Motivation, Arten, Qualität, Erhebung, Priorisierung und Dokumente."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m_req2",
+    "title": "Requirements Engineering II",
+    "color": "#ef4444",
+    "icon": "🔍",
+    "desc": "Formulieren, sprachliche Defekte, Abnahmekriterien, Mockups und Übung",
+    "lessons": [
+      {
+        "id": "l_req2_1",
+        "title": "Dokumentationsmethode & natürliche Sprache",
+        "icon": "🗣️",
+        "topic": "requirements2",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🗣️",
+            "title": "Anforderungen formulieren",
+            "sub": "Die Dokumentationsmethode hängt von Akzeptanz, Methodenkenntnissen und Komplexität ab."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Natürliche Sprache",
+                "body": "Für die meisten Anwender unumgänglich; Anforderungen werden zunächst natürlichsprachlich aufgenommen.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Diagramme/Modelle",
+                "body": "Wo sinnvoll, werden Anforderungen in Modelle überführt.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Drei Perspektiven",
+                "body": "Struktur: Daten, Datentypen, Attribute, Beziehungen. Funktion: Methoden zur Datenveränderung. Verhalten: Zustände, Zustandsänderungen oder erlaubte Ausgaben.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Qualität",
+                "body": "Zusätzlich sind Qualitätsaspekte zu berücksichtigen; Perspektiven sollten nicht vermischt werden.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welche drei Perspektiven nennt die Folie für natürlichsprachliche Anforderungen?",
+            "opts": [
+              "Preis, Farbe, Marke",
+              "Struktur, Funktion, Verhalten",
+              "Akquise, Werbung, Verkauf",
+              "Server, Kabel, Monitor"
+            ],
+            "correct": 1,
+            "exp": "Struktur, Funktion und Verhalten sind die drei Perspektiven."
+          }
+        ]
+      },
+      {
+        "id": "l_req2_2",
+        "title": "Regeln für Anforderungen in natürlicher Sprache",
+        "icon": "✍️",
+        "topic": "requirements2",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "✍️",
+            "title": "Regeln guter Formulierung",
+            "sub": "Anforderungen sollen klein, strukturiert, prüfbar und verständlich sein."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Kleine Einheiten",
+                "body": "Einzelanforderungen in kleinen Einheiten fassen und Anforderungen strukturieren.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Redundanz",
+                "body": "Nur dort, wo sie für leichtes Verständnis notwendig ist.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Resultat, Funktion, Eingabedaten",
+                "body": "Zu jedem geforderten Resultat Funktion und Eingabedaten spezifizieren.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Ausnahmen & Annahmen",
+                "body": "Ausnahmesituationen spezifizieren und gemeinsames Verständnis prüfen.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Risiko & Qualität",
+                "body": "Detaillierungsgrad am Risiko orientieren; Leistungs- und Qualitätsanforderungen explizit formulieren; Randbedingungen dokumentieren.",
+                "done": false
+              },
+              {
+                "num": "6",
+                "title": "Aktiv formulieren",
+                "body": "Ausführende/durchführende Person nennen: besser „Der Kunde muss den Login-Namen ... eingeben“ statt Passivformulierung.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welche Formulierung ist besser?",
+            "opts": [
+              "Der Login-Name soll eingegeben werden.",
+              "Der Kunde muss den Login-Namen und das Benutzerkennwort auf der Website eingeben.",
+              "Irgendwas mit Login.",
+              "Login irgendwann."
+            ],
+            "correct": 1,
+            "exp": "Die bessere Formulierung ist aktiv und nennt den Akteur."
+          }
+        ]
+      },
+      {
+        "id": "l_req2_3",
+        "title": "Sprachliche Defekte erkennen",
+        "icon": "⚠️",
+        "topic": "requirements2",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "⚠️",
+            "title": "Sprachliche Defekte",
+            "sub": "Tilgung, Verzerrung und Generalisierung machen Anforderungen ungenau."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Tilgung",
+                "body": "Informationen fehlen: einfache Tilgung, unspezifisches Verb, Vergleichstilgung, fehlender Referenzindex und Nominalisierung.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Verzerrung",
+                "body": "Realität wird verändert: Ursache-Wirkung, umgekehrte Ursache/Wirkung, Gedankenlesen, komplexe Äquivalenz/Bedeutungszuordnung und Vorannahmen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Generalisierung",
+                "body": "Einzelerfahrung wird zur allgemeinen Regel: Universalquantoren, generalisierter Referenzindex, Modaloperatoren und verlorener Performativ.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Beispiel klären",
+                "body": "„Das System soll dem registrierten Benutzer eine Sicherung seiner Daten ermöglichen“ wirft Fragen auf: jeder registrierte Benutzer? aktuelle/historische Daten? jederzeit? mehrfach? wohin?",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was ist eine Vergleichstilgung?",
+            "opts": [
+              "Das Vergleichsobjekt fehlt, z.B. „Das Produkt ist viel zu teuer“",
+              "Ein Tippfehler",
+              "Eine Datenbankrelation",
+              "Ein Testfall"
+            ],
+            "correct": 0,
+            "exp": "Beim Vergleich fehlt der Bezugspunkt."
+          }
+        ]
+      },
+      {
+        "id": "l_req2_4",
+        "title": "Abnahmekriterien und Testfälle",
+        "icon": "🧪",
+        "topic": "requirements2",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🧪",
+            "title": "Anforderungen validieren",
+            "sub": "Ein Abnahmekriterium ist eine Anweisung für den Test einer Anforderung."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Eigenschaften",
+                "body": "Testbar = durchführbar, messbar und reproduzierbar; vollständig bezüglich der Anforderung; möglichst minimal.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Darstellung",
+                "body": "Abnahmekriterien können in Prosa oder formalisiert beschrieben werden.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Wohnungsbeispiel: leise",
+                "body": "Testfall: Schallmessung tags < 40 dB(A), nachts < 35 dB(A).",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Wohnungsbeispiel: Fläche",
+                "body": "Testfall: Summe aus Länge × Breite aller Räume berechnen und mit Angebot vergleichen.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Wohnungsbeispiel: Internet",
+                "body": "Testfall: Speedtest; Wohnung nur bei mindestens 100 Mb/s Upload und 50 Mb/s Download.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was muss ein Abnahmekriterium leisten?",
+            "opts": [
+              "Unmessbar sein",
+              "Testbar, vollständig bezüglich der Anforderung und möglichst minimal sein",
+              "Nur schön klingen",
+              "Immer aus einem Bild bestehen"
+            ],
+            "correct": 1,
+            "exp": "Das sind die genannten Eigenschaften."
+          }
+        ]
+      },
+      {
+        "id": "l_req2_5",
+        "title": "IKIWISI, Mockups und Kontaktformular",
+        "icon": "🖼️",
+        "topic": "requirements2",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🖼️",
+            "title": "Vom Text zum konkreten Bild",
+            "sub": "Das IKIWISI-Problem: Nutzer verstehen ein System oft erst, wenn sie es sehen oder ausprobieren."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Problem im RE",
+                "body": "Kunden lesen und verstehen Anforderungsdokumente oft weniger gern; Prototypen helfen beim Diskutieren von Webanwendungen.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Kontaktformular offen",
+                "body": "Zu klären sind Felder, Buttonverhalten, Pflichtfelder, E-Mail-Validierung, Fehlerreaktion, Spam-Schutz, Absender/Empfänger/CC, Kopie und Mailformat.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Korrekte Beschreibung",
+                "body": "Felder Name, E-Mail, Straße, PLZ, Ort, Nachricht; Pflichtfelder Name, Mail, Nachricht; E-Mail-Prüfung; fehlerhafte Felder rot; Spam-Schutz mit Code; Versand an kontakt@xy-team.de und Kundenadresse; Textmail; OK sendet, Abbrechen führt zur Startseite.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Testfall Fehler",
+                "body": "Formular mit Pflichtfeldern und falscher Mailadresse ausfüllen → System zeigt Fehlermeldung.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Testfall Erfolg",
+                "body": "Formular korrekt ausfüllen → Bestätigungsseite anzeigen und beide Mails versenden.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "callout",
+            "kind": "warn",
+            "label": "Merksatz",
+            "html": "<p>Nie ohne Anforderungen und Konzept starten. Anforderungen verständlich und einfach formulieren, lösungsorientiert denken, Zielgruppe beachten, visualisieren und früh Testfälle ergänzen.</p>"
+          },
+          {
+            "type": "mcq",
+            "q": "Was beschreibt das IKIWISI-Problem?",
+            "opts": [
+              "Nutzer verstehen ein System oft erst, wenn sie es gesehen/verwendet haben",
+              "Ein Datenbankindex",
+              "Ein Betriebssystemfehler",
+              "Eine Tabellenformel"
+            ],
+            "correct": 0,
+            "exp": "IKIWISI steht sinngemäß für „I know it when I see it“."
+          }
+        ]
+      },
+      {
+        "id": "l_req2_6",
+        "title": "Übung: CONNECT-IT Onlineshop",
+        "icon": "🛒",
+        "topic": "requirements2",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🛒",
+            "title": "Übung 1: Anforderungsanalyse",
+            "sub": "CONNECT-IT plant einen Onlineshop; unpräzise Anforderungen sollen durch Fragen geklärt werden."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Aufgabe 1",
+                "body": "Zu den Anforderungen eine Liste offener Fragen erstellen; mindestens fünf sinnvolle Fragen für das Meeting mit der Geschäftsleitung.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Aufgabe 2",
+                "body": "Unterschied zwischen Prozess- und Informationssystem-Modellierung erklären.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Aufgabe 3",
+                "body": "Fünf Aufgaben von Anforderungen nennen.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Aufgabe 4",
+                "body": "Funktionale und nichtfunktionale Anforderungen unterscheiden und nichtfunktionale Anforderungen aus dem Brief in funktionale umwandeln.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Aufgabe 5",
+                "body": "Sprachliche Defekte in der E-Mail zeigen.",
+                "done": false
+              },
+              {
+                "num": "6",
+                "title": "Briefinhalte",
+                "body": "Produkte aus Warenwirtschaftssystem, Produktbilder/Informationen, Warenkorb, Kasse, Bezahlen, Bezahlmethode, Zusammenfassung, „immer online“, Launch vorher testen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was soll in der CONNECT-IT-Übung erstellt werden?",
+            "opts": [
+              "Ein Fragenkatalog zur Präzisierung der Anforderungen",
+              "Ein fertiges ERP-System",
+              "Nur ein Logo",
+              "Eine Cloudrechnung"
+            ],
+            "correct": 0,
+            "exp": "Die Übung verlangt einen Fragenkatalog und theoretische Aufgaben zu Anforderungen."
+          },
+          {
+            "type": "complete",
+            "title": "✅ Requirements Engineering II abgeschlossen",
+            "sub": "Du kennst Formulierungsregeln, Defekte, Testfälle, Mockups und die CONNECT-IT-Übung."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m_org_it",
+    "title": "Betriebliche Organisation und Organisation der IT",
+    "color": "#22c55e",
+    "icon": "🏢",
+    "desc": "Aufbauorganisation, Ablauforganisation, ITIL und IT-Service-Prozesse",
+    "lessons": [
+      {
+        "id": "l_org_1",
+        "title": "Organisation: Mikro- und Makro-Sicht",
+        "icon": "🏢",
+        "topic": "organisation_it",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🏢",
+            "title": "Organisation verstehen",
+            "sub": "Software wird in Organisationen von verschiedenen Personen in komplexen Arbeitsprozessen eingesetzt."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Mikro-Sicht",
+                "body": "Requirements Engineering betrachtet vor allem eine Anwendung und ihre Funktionen.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Makro-Sicht",
+                "body": "In Organisationen laufen komplexe Arbeitsprozesse mit mehreren Personen, Stellen und IT-Systemen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Drei Bedeutungen",
+                "body": "Organisation als Tätigkeit der Gestaltung, als Wirkung von Prozessen/Strukturen und als Existenz von Prozessen/Strukturen.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Warum organisieren?",
+                "body": "Arbeitsteilung steigert Produktivität, erzeugt aber auch Komplexität und Abhängigkeiten; daher braucht es Hierarchie und Prozesskoordination.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Warum muss man organisieren?",
+            "opts": [
+              "Weil Arbeitsteilung Produktivität steigert, aber Koordination benötigt",
+              "Weil Software sonst nicht bunt ist",
+              "Weil alle Stellen gleich sein müssen",
+              "Nur wegen gesetzlicher Formulare"
+            ],
+            "correct": 0,
+            "exp": "Arbeitsteilung bringt Nutzen und Koordinationsbedarf."
+          }
+        ]
+      },
+      {
+        "id": "l_org_2",
+        "title": "Aufbauorganisation: Aufgaben, Stellen, Verantwortung",
+        "icon": "🧬",
+        "topic": "organisation_it",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🧬",
+            "title": "Aufbauorganisation",
+            "sub": "Sie beschreibt die Struktur: Aufgaben, Stellen, Abteilungen und Verbindungswege."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Aufgabe",
+                "body": "Alle Aktivitäten, die nötig sind, um eine bestimmte Leistung zu erbringen.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Stelle",
+                "body": "Bündelt verschiedene Teilaufgaben; ausführende Stellen, leitende Stellen und Stabsstellen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Verbindungswege",
+                "body": "Transport-, Informations- bzw. Kommunikationswege zwischen Stellen.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Kompetenzen",
+                "body": "Befugnisse, die zur Aufgabenerfüllung nötig sind, z.B. Zeichnungs- oder Weisungsbefugnisse.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Verantwortung",
+                "body": "Pflicht, für die Aufgabenerfüllung persönlich Rechenschaft abzulegen, z.B. Budget- oder Ergebnisverantwortung.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "callout",
+            "kind": "info",
+            "label": "Analyse-Synthese-Konzept",
+            "html": "<p>Gesamtaufgabe des Unternehmens → Teilaufgaben → Stellen → Abteilungen → Gesamtstruktur. Aufgabenanalyse und Aufgabensynthese führen zur Stellen- und Abteilungszusammenfassung.</p>"
+          },
+          {
+            "type": "mcq",
+            "q": "Was ist eine Stelle?",
+            "opts": [
+              "Ein Bildschirmbereich",
+              "Eine organisatorische Einheit, die Teilaufgaben gebündelt übernimmt",
+              "Eine Tabellenzelle",
+              "Ein Router"
+            ],
+            "correct": 1,
+            "exp": "Stellen übernehmen gebündelte Teilaufgaben."
+          }
+        ]
+      },
+      {
+        "id": "l_org_3",
+        "title": "Kontrollspanne, Instrumente und Ablauforganisation",
+        "icon": "🗂️",
+        "topic": "organisation_it",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🗂️",
+            "title": "Von Struktur zu Ablauf",
+            "sub": "Aufbauorganisation ordnet Stellen; Ablauforganisation ordnet Arbeitsprozesse."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Kontrollspanne",
+                "body": "Anzahl der einem Vorgesetzten unterstellten Mitarbeiter. Große Spanne → flache Hierarchie; kleine Spanne → steile Hierarchie.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Einflussfaktoren",
+                "body": "Häufigkeit/Intensität der Beziehungen, Führungsstil, Art/Kontrollierbarkeit der Aufgaben, Verfügbarkeit und Kosten von Führungskräften.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Darstellungsinstrumente",
+                "body": "Organigramm, Stellenbeschreibung und Funktionendiagramm.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Ablauforganisation",
+                "body": "Ermittlung und Definition von Arbeitsprozessen unter Berücksichtigung von Raum, Zeit, Sachmitteln und Personen.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Ziele",
+                "body": "Kapazitätsauslastung maximieren, Durchlauf-/Warte-/Leerzeiten verringern, Kosten reduzieren, Qualität und Arbeitsbedingungen steigern, Arbeitsplatzanordnung optimieren, Termintreue erhöhen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was bedeutet eine große Kontrollspanne?",
+            "opts": [
+              "Flache Hierarchie",
+              "Steile Hierarchie",
+              "Keine Vorgesetzten",
+              "Nur Stabsstellen"
+            ],
+            "correct": 0,
+            "exp": "Viele direkt unterstellte Mitarbeiter führen eher zu flacher Hierarchie."
+          }
+        ]
+      },
+      {
+        "id": "l_org_4",
+        "title": "IT-Systeme in Organisationen und ITIL",
+        "icon": "🛠️",
+        "topic": "organisation_it",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🛠️",
+            "title": "IT-Systeme in der Organisation",
+            "sub": "IT unterstützt Aufgaben, vermeidet Medienbrüche, koordiniert Workflows und automatisiert manuelle Tätigkeiten."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Fragen an IT-Systeme",
+                "body": "Welche Aufgaben werden durch welche IT-Funktionen und Systeme unterstützt? Wie vermeidet man Medienbrüche? Wie werden Aufgaben koordiniert? Wie automatisiert man? Welche Modellierungsmethoden helfen? Wie kann KI vereinfachen?",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "ITIL",
+                "body": "Methoden zur Gestaltung der IT-Organisation als Dienstleister/Service Provider für das Unternehmen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Ziel",
+                "body": "Optimale Unterstützung des Unternehmens mit definierten und vereinbarten IT-Services.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Best Practices",
+                "body": "Methodische Gestaltung der IT-Prozesse, geschäftsmäßige Beziehung zur Kundenseite und bessere Kommunikation zwischen IT-Kunden, Anwendern und IT-Organisation.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Nutzen",
+                "body": "Standardisierte Prozesse, höhere Servicequalität, Kosteneffizienz, besseres Risikomanagement und Ausrichtung an Geschäftszielen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Wofür steht ITIL in der Vorlesung?",
+            "opts": [
+              "Für ein Grafikformat",
+              "Für Best Practices und Methoden des IT-Service-Managements",
+              "Für eine Tabellenformel",
+              "Für einen Routerstandard"
+            ],
+            "correct": 1,
+            "exp": "ITIL strukturiert die IT-Organisation als Service Provider."
+          }
+        ]
+      },
+      {
+        "id": "l_org_5",
+        "title": "Plan–Build–Run und Service Desk",
+        "icon": "☎️",
+        "topic": "organisation_it",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "☎️",
+            "title": "Plan–Build–Run",
+            "sub": "Die IT-Abteilung wird über Planung, Projekte und Betrieb betrachtet."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Plan",
+                "body": "Strategische IT-Planung: Anforderungen aus betrieblichen Gegebenheiten, IT-Strategie, Budget, technische Neuerungen, Review und Feedback.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Build",
+                "body": "Projekte: Veränderungen und Erweiterungen, z.B. Integration neuer Anwendungen oder zusätzliche Arbeitsplätze.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Run",
+                "body": "Betrieb: proaktives Monitoring, Help-Desk, Störungsbearbeitung und Benutzermanagement.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Service Desk",
+                "body": "First Line of Defense: ein- und ausgehende Kommunikation mit Anwendern; löst je nach Qualifikation selbst oder leitet weiter.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Qualifikationsstufen",
+                "body": "Call Logger bzw. Bots leiten weiter; technische Service-Mitarbeiter haben Know-how und Werkzeuge zur Lösung.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was gehört zu Run?",
+            "opts": [
+              "Strategische Budgetermittlung",
+              "Laufendes Monitoring, Help-Desk, Störungsbearbeitung und Benutzermanagement",
+              "Nur Angebotsformulierung",
+              "Nur Design eines Mockups"
+            ],
+            "correct": 1,
+            "exp": "Run umfasst den laufenden Betrieb."
+          }
+        ]
+      },
+      {
+        "id": "l_org_6",
+        "title": "Incident-, Problem- und Change-Management",
+        "icon": "🚨",
+        "topic": "organisation_it",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🚨",
+            "title": "IT-Service-Prozesse",
+            "sub": "Incident, Problem und Change hängen eng zusammen."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Incident Management",
+                "body": "Minimiert Auswirkungen von Störungen durch schnellstmögliche Wiederherstellung der Services in definierter Qualität; Incident = Ereignis außerhalb der Standardoperation mit möglicher Unterbrechung/Beeinträchtigung.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Problem Management",
+                "body": "Stabilisiert IT-Services und vermeidet Incidents durch Ursachenanalyse, Lösungswege und proaktive Optimierung; pflegt Known Error Database mit Workarounds.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Zusammenhang",
+                "body": "Incident = Abweichung des Betriebszustands. Problem = Suche nach unbekannter Ursache. Known Error = Ursache erkannt. Change = Implementierung der Lösung.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Change Management",
+                "body": "Änderungen effizient, autorisiert und mit möglichst geringen negativen Auswirkungen durchführen; kontrolliert alle Änderungen an der IT-Infrastruktur.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Post Implementation Review",
+                "body": "Nach Fehlerbeseitigung wird der Erfolg der Umsetzung überprüft.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was ist ein Incident?",
+            "opts": [
+              "Ein Ereignis außerhalb der Standardoperation mit möglicher Serviceunterbrechung oder Beeinträchtigung",
+              "Ein fertig gelöstes Problem",
+              "Ein Pflichtenheft",
+              "Ein Organigramm"
+            ],
+            "correct": 0,
+            "exp": "Die Folie definiert Incident als störendes Ereignis mit Servicequalitätsverlust."
+          }
+        ]
+      },
+      {
+        "id": "l_org_7",
+        "title": "Tickets, Release und Configuration Management",
+        "icon": "🎫",
+        "topic": "organisation_it",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🎫",
+            "title": "Supportprozess und Ticketinformationen",
+            "sub": "Tickets laufen über Service Desk, Bearbeitung, Qualitätssicherung und Abschluss."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Beispiel-Support",
+                "body": "Tickets über Service Desk; Supportzeiten Mo–Fr 8–17 Uhr; Bearbeitung innerhalb von zwei Werktagen; Einreichung per Telefon, E-Mail oder Formular.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Ticketfluss",
+                "body": "Ticketeingang, Ticketerfassung, Ticketzuordnung, Information an Kunden, Bearbeitung, Lösung einspielen, Kunde informieren, Ergebnis prüfen, abrechnen/schließen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Basisinformationen",
+                "body": "Ansprechpartner, Titel und Beschreibung, Reaktions- und Lösungsplanzeiten, Problemlöser, URL/interne Serveradresse/Kundenserver-URL.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Kategorien & Priorität",
+                "body": "Bug, New Feature, Improvement, Incident, Task, Question, Service Request; Priorität Trivial, Minor, Major, Critical, Blocker.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Release Management",
+                "body": "Schützt Produktivumgebung und Servicequalität durch korrekte, autorisierte und abgestimmte Hard-/Software; Release Policy, Installationsplanung, DSL und DHS.",
+                "done": false
+              },
+              {
+                "num": "6",
+                "title": "Configuration Management",
+                "body": "CMDB als logisches Modell der IT-Infrastruktur; Komponenten, Attribute und Beziehungen identifizieren, pflegen, überwachen, verifizieren; Reports und Auditing.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was ist eine CMDB?",
+            "opts": [
+              "Eine Meta-Datenbank als logisches Modell der IT-Infrastruktur",
+              "Ein Videocodec",
+              "Ein Lastenheft",
+              "Ein Textverarbeitungsformat"
+            ],
+            "correct": 0,
+            "exp": "Configuration Management nutzt eine CMDB."
+          },
+          {
+            "type": "complete",
+            "title": "✅ Organisation & ITIL abgeschlossen",
+            "sub": "Du kennst Aufbau-/Ablauforganisation, ITIL, Plan–Build–Run und zentrale IT-Service-Prozesse."
+          }
+        ]
+      }
+    ]
+  }
 ];
 
 // ═══════════════════════════════════════════════
@@ -3354,6 +5031,102 @@ const CARDS=[
     "t": "operative",
     "q": "Was sind Querschnittssysteme?",
     "a": "Systeme, die Dispositionssysteme verbinden, z.B. Büro-, Multimedia- oder Workflow-Systeme."
+  }
+,
+  {
+    "t": "wi2_intro",
+    "q": "Was ist der Schwerpunkt von WI II?",
+    "a": "Software konzipieren und umsetzen: Modellierung, Requirements Engineering, Organisation, Architekturen, Datenmodellierung, Pseudocode und Coding."
+  },
+  {
+    "t": "wi2_intro",
+    "q": "Was verbindet WI im Mensch-Aufgabe-IT-Dreieck?",
+    "a": "Bewältigung der Aufgabe, Benutzbarkeit für Menschen und Funktionalität der IT."
+  },
+  {
+    "t": "modellierung",
+    "q": "Was ist ein Informationssystem?",
+    "a": "Ein System, das Informationen erfasst, überträgt, transformiert, speichert und bereitstellt."
+  },
+  {
+    "t": "modellierung",
+    "q": "Welche vier Elemente zeigt ein Workflow typischerweise?",
+    "a": "Aufgaben, Träger/Aufgabenträger, Systeme/Funktionen und Informationsbeziehungen bzw. Abfolge."
+  },
+  {
+    "t": "modellierung",
+    "q": "Was fragt Prozessmodellierung?",
+    "a": "Was braucht der Benutzer im betrieblichen Ablauf?"
+  },
+  {
+    "t": "modellierung",
+    "q": "Was fragt Informationssystem-Modellierung?",
+    "a": "Wie muss das System technisch und logisch gebaut sein, damit es unterstützen kann?"
+  },
+  {
+    "t": "requirements1",
+    "q": "Nenne Folgen schlecht definierter Anforderungen.",
+    "a": "Verständnisprobleme, Verzögerungen, Nachfragen, zusätzliche Kosten, unklare Ziele und Projektscheitern."
+  },
+  {
+    "t": "requirements1",
+    "q": "Was ist eine funktionale Anforderung?",
+    "a": "Eine vom System ausgeführte Aktion oder Interaktion zwischen Nutzer und System, z.B. Login oder Warenkorb."
+  },
+  {
+    "t": "requirements1",
+    "q": "Was ist ein Lastenheft?",
+    "a": "Vom Auftraggeber erstellte Gesamtheit der Forderungen an Lieferungen und Leistungen; Basis für Angebote."
+  },
+  {
+    "t": "requirements1",
+    "q": "Was ist ein Pflichtenheft?",
+    "a": "Vom Auftragnehmer erarbeitete Realisierungsvorgaben und Umsetzung des Lastenhefts; Basis der Umsetzung."
+  },
+  {
+    "t": "requirements2",
+    "q": "Welche drei Perspektiven gibt es bei natürlichsprachlichen Anforderungen?",
+    "a": "Struktur, Funktion und Verhalten."
+  },
+  {
+    "t": "requirements2",
+    "q": "Nenne drei sprachliche Defekte.",
+    "a": "Tilgung, Verzerrung und Generalisierung."
+  },
+  {
+    "t": "requirements2",
+    "q": "Was ist ein Abnahmekriterium?",
+    "a": "Eine Anweisung für den Test einer Anforderung; testbar, vollständig und möglichst minimal."
+  },
+  {
+    "t": "requirements2",
+    "q": "Was bedeutet IKIWISI?",
+    "a": "Nutzer verstehen ein System oft erst, wenn sie es sehen oder verwenden können."
+  },
+  {
+    "t": "organisation_it",
+    "q": "Was ist Aufbauorganisation?",
+    "a": "Strukturierung von Aufgaben, Stellen, Abteilungen und Verbindungswegen."
+  },
+  {
+    "t": "organisation_it",
+    "q": "Was ist Ablauforganisation?",
+    "a": "Definition von Arbeitsprozessen unter Berücksichtigung von Raum, Zeit, Sachmitteln und Personen."
+  },
+  {
+    "t": "organisation_it",
+    "q": "Was ist ITIL?",
+    "a": "Best Practices und Methoden zur Gestaltung der IT-Organisation als IT-Service-Provider."
+  },
+  {
+    "t": "organisation_it",
+    "q": "Was ist ein Incident?",
+    "a": "Ein Ereignis außerhalb der Standardoperationen, das Services unterbrechen oder beeinträchtigen kann."
+  },
+  {
+    "t": "organisation_it",
+    "q": "Was ist eine CMDB?",
+    "a": "Eine Meta-Datenbank, die ein logisches Modell der IT-Infrastruktur abbildet."
   }
 ];
 
@@ -3782,6 +5555,150 @@ const SR_POOL=[
     ],
     "correct": 0,
     "exp": "Führungssysteme aggregieren operative Daten."
+  }
+,
+  {
+    "q": "Welche Themen gehören zu WI II?",
+    "opts": [
+      "Nur Hardware",
+      "Modellierung, Requirements Engineering, Organisation und Umsetzungsmethoden",
+      "Nur Textverarbeitung",
+      "Nur Statistik"
+    ],
+    "correct": 1,
+    "exp": "Teil II fokussiert Methoden zur Konzeption und Umsetzung."
+  },
+  {
+    "q": "Was ist ein betriebliches Informationssystem?",
+    "opts": [
+      "Ein sozio-technisches System zur Informationsverarbeitung",
+      "Nur ein Bildschirm",
+      "Nur ein Kursplan",
+      "Eine einzelne Tabellenzelle"
+    ],
+    "correct": 0,
+    "exp": "IS umfassen menschliche und maschinelle Komponenten."
+  },
+  {
+    "q": "Was gehört zur Produktmodellierung?",
+    "opts": [
+      "Ablauf eines Meetings",
+      "Funktionen, Daten, Komponenten und Informationsflüsse eines IS",
+      "Nur Personalplanung",
+      "Nur Vertragsrecht"
+    ],
+    "correct": 1,
+    "exp": "Produktmodellierung betrifft das Informationssystem selbst."
+  },
+  {
+    "q": "Was ist eine nichtfunktionale Anforderung?",
+    "opts": [
+      "Warenkorb hinzufügen",
+      "Antwortzeitverhalten, Zuverlässigkeit oder Dokumentation",
+      "Login durchführen",
+      "Artikel löschen"
+    ],
+    "correct": 1,
+    "exp": "Nichtfunktionale Anforderungen umfassen Qualität und Randbedingungen."
+  },
+  {
+    "q": "Was bedeutet „Muss“ bei der Priorisierung?",
+    "opts": [
+      "Nicht verhandelbare Bedingung für die Abnahme",
+      "Optional wenn Zeit übrig ist",
+      "Nur Designwunsch",
+      "Verbot der Umsetzung"
+    ],
+    "correct": 0,
+    "exp": "Muss-Anforderungen sind nicht verhandelbar."
+  },
+  {
+    "q": "Was ist Tilgung?",
+    "opts": [
+      "Es fehlen Informationen in einer Aussage",
+      "Eine Datenbank wird gelöscht",
+      "Ein Test wird bestanden",
+      "Ein Release wird installiert"
+    ],
+    "correct": 0,
+    "exp": "Tilgung reduziert Aussagen so, dass relevante Infos fehlen."
+  },
+  {
+    "q": "Was ist ein guter Testfall für eine leise Wohnung?",
+    "opts": [
+      "Gefühl des Maklers",
+      "Schallmessung mit Grenzwerten tags und nachts",
+      "Ein Foto des Fensters",
+      "Nur die Postleitzahl"
+    ],
+    "correct": 1,
+    "exp": "Die Folien nennen konkrete dB(A)-Grenzwerte."
+  },
+  {
+    "q": "Was soll die CONNECT-IT-Übung leisten?",
+    "opts": [
+      "Einen Fragenkatalog zu ungenauen Shop-Anforderungen erstellen",
+      "Ein fertiges Warenwirtschaftssystem kaufen",
+      "Nur Farben definieren",
+      "Eine Klausur anmelden"
+    ],
+    "correct": 0,
+    "exp": "Die Übung verlangt Fragen zur Präzisierung der Anforderungen."
+  },
+  {
+    "q": "Was ist eine Stelle?",
+    "opts": [
+      "Ein Bündel von Teilaufgaben in der Organisation",
+      "Ein CSS-Befehl",
+      "Ein Datenbankindex",
+      "Eine Foliennummer"
+    ],
+    "correct": 0,
+    "exp": "Stellen bündeln Teilaufgaben."
+  },
+  {
+    "q": "Was bedeutet große Kontrollspanne?",
+    "opts": [
+      "Flache Hierarchie",
+      "Steile Hierarchie",
+      "Keine Organisation",
+      "Nur Stabsstelle"
+    ],
+    "correct": 0,
+    "exp": "Viele direkt unterstellte Mitarbeitende bedeuten eine flachere Hierarchie."
+  },
+  {
+    "q": "Was ist der Service Desk?",
+    "opts": [
+      "First Line of Defense für Kommunikation mit IT-Service-Anwendern",
+      "Ein Grafikprogramm",
+      "Ein Datenmodell",
+      "Ein Kaufvertrag"
+    ],
+    "correct": 0,
+    "exp": "Der Service Desk ist die erste Anlaufstelle."
+  },
+  {
+    "q": "Was ist Known Error?",
+    "opts": [
+      "Problemursache wurde erkannt",
+      "Ticket wurde gelöscht",
+      "Service ist automatisch perfekt",
+      "Eine Tabellenformel"
+    ],
+    "correct": 0,
+    "exp": "Known Error bedeutet erkannte Ursache mit möglichem Workaround."
+  },
+  {
+    "q": "Was schützt Release Management?",
+    "opts": [
+      "Produktivumgebung und Servicequalität",
+      "Nur den Bildschirm",
+      "Nur das Lastenheft",
+      "Nur die Kantine"
+    ],
+    "correct": 0,
+    "exp": "Release Management schützt Produktivumgebung und Qualität durch kontrollierte Releases."
   }
 ];
 // ═══════════════════════════════════════════════
