@@ -1,0 +1,4614 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Wirtschaftsinformatik I</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#07080b;
+--s1:#0d0f15;
+--s2:#131720;
+--s3:#1a1f2e;
+--s4:#222840;
+--border:#1e2535;
+--border2:#2a3350;
+--teal:#4dd9c0;
+--violet:#9b87f5;
+--orange:#f59e4d;
+--green:#4ade80;
+--pink:#f472b6;
+--sky:#38bdf8;
+--red:#f87171;
+--warn:#fbbf24;
+--text:#eef2f9;
+--dim:#8899bb;
+--muted:#3d4f6e;
+--r:14px;
+--r2:20px;
+--tint-teal:rgba(77,217,192,0.08);
+--tint-teal-b:rgba(77,217,192,0.22);
+--tint-violet:rgba(155,135,245,0.08);
+--tint-violet-b:rgba(155,135,245,0.22);
+--tint-warn:rgba(251,191,36,0.07);
+--tint-warn-b:rgba(251,191,36,0.22);
+--tint-sky:rgba(56,189,248,0.07);
+--tint-sky-b:rgba(56,189,248,0.22);
+--tint-orange:rgba(245,158,77,0.07);
+--tint-orange-b:rgba(245,158,77,0.22);
+--tint-green:rgba(74,222,128,0.10);
+--tint-green-b:rgba(74,222,128,0.25);
+--tint-red:rgba(248,113,113,0.09);
+--tint-red-b:rgba(248,113,113,0.25);
+}
+
+html.light{
+--bg:#f0f2f5;
+--s1:#ffffff;
+--s2:#e8ecf2;
+--s3:#dde2eb;
+--s4:#d0d6e2;
+--border:#c8cdd9;
+--border2:#b8bfce;
+--teal:#0d9488;
+--violet:#7c3aed;
+--orange:#d97706;
+--green:#16a34a;
+--pink:#db2777;
+--sky:#0284c7;
+--red:#dc2626;
+--warn:#d97706;
+--text:#0f172a;
+--dim:#334155;
+--muted:#94a3b8;
+--tint-teal:rgba(13,148,136,0.09);
+--tint-teal-b:rgba(13,148,136,0.28);
+--tint-violet:rgba(124,58,237,0.09);
+--tint-violet-b:rgba(124,58,237,0.28);
+--tint-warn:rgba(217,119,6,0.09);
+--tint-warn-b:rgba(217,119,6,0.30);
+--tint-sky:rgba(2,132,199,0.09);
+--tint-sky-b:rgba(2,132,199,0.28);
+--tint-orange:rgba(217,119,6,0.09);
+--tint-orange-b:rgba(217,119,6,0.28);
+--tint-green:rgba(22,163,74,0.10);
+--tint-green-b:rgba(22,163,74,0.28);
+--tint-red:rgba(220,38,38,0.09);
+--tint-red-b:rgba(220,38,38,0.28);
+}
+
+html.light #topbar    { background:#ffffff; }
+html.light #bnav      { background:#ffffff; }
+html.light .lv-topbar { background:#ffffff; }
+html.light .lv-footer { background:#f0f2f5; }
+html.light .hero-card { background:linear-gradient(135deg,#e4e9f4,#d8dff0); }
+html.light .kurs-header { background:#e8ecf2; }
+html.light .btn.p     { color:#ffffff; }
+
+.theme-btn{
+width:34px; height:34px; border-radius:10px;
+border:1px solid var(--border);
+background:var(--s2); cursor:pointer;
+display:flex; align-items:center; justify-content:center;
+font-size:1rem; flex-shrink:0;
+}
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+-webkit-tap-highlight-color:transparent;
+transition:background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease;
+}
+.fc{ transition:transform 0.5s cubic-bezier(.4,0,.2,1); }
+html{font-size:20px}
+html,body{
+height:100%;
+height:100dvh;
+overflow:hidden;
+font-family:'DM Sans',sans-serif;
+background:var(--bg);
+color:var(--text);
+display:flex;
+flex-direction:column;
+}
+body::before{content:'';position:fixed;inset:0;background:var(--bg);z-index:-1}
+
+#topbar{
+display:flex;align-items:center;justify-content:space-between;
+padding:13px 18px;border-bottom:1px solid var(--border);
+background:var(--bg);
+position:relative;z-index:100;flex-shrink:0;
+padding-top:max(13px, env(safe-area-inset-top));
+padding-left:max(18px, env(safe-area-inset-left));
+padding-right:max(18px, env(safe-area-inset-right));
+}
+.logo{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:900;color:var(--teal);letter-spacing:-0.02em}
+.logo small{display:block;font-family:'DM Sans',sans-serif;font-size:0.6rem;color:var(--muted);font-weight:400;margin-top:1px}
+.pills{display:flex;gap:7px}
+.pill{background:var(--s2);border:1px solid var(--border);border-radius:999px;
+padding:4px 11px;font-size:0.7rem;font-family:'JetBrains Mono',monospace;font-weight:500}
+.pill.xp{color:var(--warn)}
+.pill.streak{color:var(--orange)}
+
+#bnav{
+display:flex;background:var(--bg);border-top:1px solid var(--border);
+flex-shrink:0;z-index:100;
+padding-bottom:env(safe-area-inset-bottom);
+}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+padding:9px 4px 7px;cursor:pointer;border:none;background:none;
+color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.58rem;font-weight:600;
+letter-spacing:0.03em;gap:3px;border-top:2px solid transparent;transition:color 0.2s}
+.nb .ni{font-size:1.15rem;line-height:1}
+.nb.active{color:var(--teal);border-top-color:var(--teal)}
+
+#content{
+flex:1;
+overflow-y:auto;
+overflow-x:hidden;
+-webkit-overflow-scrolling:touch;
+background:var(--bg);
+overscroll-behavior:contain;
+}
+.screen{display:none;min-height:100%;animation:fadeUp 0.2s ease;background:var(--bg)}
+.screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.pad{padding:18px}
+.sec-label{font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+color:var(--muted);margin-bottom:10px;font-family:'JetBrains Mono',monospace}
+.card{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:16px}
+.card+.card{margin-top:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;
+padding:11px 20px;border-radius:11px;border:1px solid var(--border);
+background:var(--s2);color:var(--text);cursor:pointer;
+font-size:0.82rem;font-weight:600;font-family:'DM Sans',sans-serif;
+transition:all 0.15s;white-space:nowrap;-webkit-appearance:none}
+.btn:active{transform:scale(0.97)}
+.btn.p{background:var(--teal);color:#07080b;border-color:var(--teal)}
+.btn.v{background:rgba(155,135,245,0.15);color:var(--violet);border-color:rgba(155,135,245,0.3)}
+.btn.g{background:rgba(74,222,128,0.1);color:var(--green);border-color:rgba(74,222,128,0.25)}
+.btn.r{background:rgba(248,113,113,0.09);color:var(--red);border-color:rgba(248,113,113,0.25)}
+.btn.o{background:rgba(245,158,77,0.1);color:var(--orange);border-color:rgba(245,158,77,0.25)}
+.formula{background:var(--bg);border:1px solid var(--border2);border-radius:9px;
+padding:10px 14px;margin:8px 0;font-family:'JetBrains Mono',monospace;
+font-size:0.8rem;color:var(--teal);overflow-x:auto;line-height:1.9;white-space:pre-wrap}
+code{font-family:'JetBrains Mono',monospace;background:var(--s3);padding:1px 6px;
+border-radius:4px;font-size:0.85em;color:var(--teal)}
+
+.hero-card{
+background:linear-gradient(135deg,var(--s2),var(--s3));
+border:1px solid var(--border2);border-radius:var(--r2);padding:20px;margin-bottom:14px;
+position:relative;overflow:hidden;
+}
+.hero-card::after{content:'';position:absolute;top:-60px;right:-60px;
+width:200px;height:200px;
+background:radial-gradient(circle,rgba(77,217,192,0.07) 0%,transparent 65%);border-radius:50%}
+.hero-greeting{font-size:0.68rem;color:var(--dim);margin-bottom:3px}
+.hero-h{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:900;line-height:1.15;margin-bottom:14px}
+.hero-h span{color:var(--teal)}
+.pbar-wrap{background:var(--bg);border-radius:999px;height:7px;overflow:hidden;margin-bottom:5px}
+.pbar{height:100%;border-radius:999px;transition:width 0.7s cubic-bezier(.4,0,.2,1)}
+.pbar.main{background:linear-gradient(90deg,var(--teal),var(--violet))}
+.pbar.teal{background:var(--teal)}
+.pbar.violet{background:var(--violet)}
+.pbar.orange{background:var(--orange)}
+.pbar.green{background:var(--green)}
+.pbar.sky{background:var(--sky)}
+.pct-label{font-size:0.68rem;color:var(--dim);font-family:'JetBrains Mono',monospace}
+
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+@media (min-width:600px) and (orientation:landscape){
+.stats-grid{grid-template-columns:repeat(4,1fr)}
+}
+.stat-box{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:13px}
+.stat-v{font-size:1.55rem;font-weight:700;font-family:'JetBrains Mono',monospace;line-height:1}
+.stat-l{font-size:0.62rem;color:var(--muted);margin-top:4px;font-weight:400}
+
+.topic-rows{display:flex;flex-direction:column;gap:9px}
+@media (min-width:600px) and (orientation:landscape){
+.topic-rows{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+}
+.trow{display:flex;align-items:center;gap:9px}
+.tdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.tname{font-size:0.76rem;flex:1;color:var(--dim);font-weight:500}
+.tbar-w{width:70px;background:var(--s3);border-radius:999px;height:4px;overflow:hidden}
+.tbar{height:100%;border-radius:999px;transition:width 0.6s}
+.tpct{font-size:0.67rem;color:var(--muted);font-family:'JetBrains Mono',monospace;min-width:28px;text-align:right}
+
+@media (min-width:600px) and (orientation:landscape){
+.hero-h{font-size:1.15rem}
+.pad{padding:14px}
+}
+
+.act-list{display:flex;flex-direction:column;gap:5px}
+.act-row{display:flex;align-items:center;gap:8px;font-size:0.76rem;color:var(--dim);
+padding:7px 10px;background:var(--s1);border-radius:9px;border:1px solid var(--border)}
+.adot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+
+.kurs-header{
+background:var(--s2);
+padding:20px 18px 16px;border-bottom:1px solid var(--border);
+}
+.kurs-header h2{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:900;margin-bottom:3px}
+.kurs-header p{font-size:0.76rem;color:var(--dim);font-weight:300;margin-bottom:10px}
+
+.mod-list{padding:14px;padding-bottom:30px}
+@media (min-width:600px) and (orientation:landscape){
+.mod-list{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+align-items:start;
+}
+.mod-list .mod-card{margin-bottom:0}
+}
+.mod-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);
+margin-bottom:10px;overflow:hidden}
+.mod-head{display:flex;align-items:center;gap:12px;padding:14px;cursor:pointer}
+.mod-num{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;
+justify-content:center;font-size:0.85rem;font-weight:700;flex-shrink:0;font-family:'JetBrains Mono',monospace}
+.mod-info{flex:1}
+.mod-title{font-size:0.88rem;font-weight:600;margin-bottom:2px}
+.mod-meta{font-size:0.67rem;color:var(--muted);font-weight:400}
+.mod-status{font-size:1rem;flex-shrink:0}
+.mod-lessons{border-top:1px solid var(--border);display:none}
+.mod-lessons.open{display:block}
+.les-item{display:flex;align-items:center;gap:10px;padding:11px 14px;
+border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.12s}
+.les-item:last-child{border:none}
+.les-item:active{background:var(--s2)}
+.les-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;
+justify-content:center;font-size:0.85rem;flex-shrink:0}
+.les-title{flex:1;font-size:0.8rem;font-weight:500;color:var(--dim)}
+.les-title.done{color:var(--muted);text-decoration:line-through}
+.les-badge{font-size:0.65rem;padding:2px 7px;border-radius:999px;font-weight:600;flex-shrink:0}
+.les-badge.new{background:rgba(77,217,192,0.12);color:var(--teal)}
+.les-badge.done-b{background:rgba(74,222,128,0.1);color:var(--green)}
+.les-badge.locked{background:var(--s3);color:var(--muted)}
+
+#lv{
+position:fixed;inset:0;background:var(--bg);z-index:200;
+display:none;flex-direction:column;
+padding-top:env(safe-area-inset-top);
+padding-bottom:env(safe-area-inset-bottom);
+padding-left:env(safe-area-inset-left);
+padding-right:env(safe-area-inset-right);
+}
+#lv.open{display:flex}
+
+.lv-topbar{
+display:flex;align-items:center;gap:10px;padding:13px 16px;
+border-bottom:1px solid var(--border);background:var(--bg);flex-shrink:0;
+}
+.lv-back{font-size:1.2rem;cursor:pointer;color:var(--dim);padding:4px 8px;border-radius:8px;
+background:var(--s2);border:1px solid var(--border)}
+.lv-info{flex:1}
+.lv-info h3{font-size:0.84rem;font-weight:600;line-height:1.2}
+.lv-info span{font-size:0.62rem;color:var(--muted)}
+.lv-prog-text{font-size:0.68rem;font-family:'JetBrains Mono',monospace;color:var(--violet);flex-shrink:0}
+.lv-pbar-wrap{height:3px;background:var(--s3);flex-shrink:0}
+.lv-pbar{height:100%;background:linear-gradient(90deg,var(--teal),var(--violet));transition:width 0.4s}
+
+.lv-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.lv-step{padding:20px 18px 120px;max-width:600px;margin:0 auto;animation:fadeUp 0.25s}
+@media (orientation:landscape){
+.lv-step{padding:16px 18px 100px;max-width:700px}
+}
+
+.st-title{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:900;line-height:1.2;
+color:var(--text);margin-bottom:10px}
+.st-subtitle{font-size:0.82rem;color:var(--dim);font-weight:300;line-height:1.6;margin-bottom:18px}
+
+.callout{border-radius:var(--r);padding:14px 16px;margin:14px 0}
+.callout.def{background:var(--tint-teal);border:1px solid var(--tint-teal-b)}
+.callout.satz{background:var(--tint-violet);border:1px solid var(--tint-violet-b)}
+.callout.warn{background:var(--tint-warn);border:1px solid var(--tint-warn-b)}
+.callout.info{background:var(--tint-sky);border:1px solid var(--tint-sky-b)}
+.callout.example{background:var(--tint-orange);border:1px solid var(--tint-orange-b)}
+.callout-label{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+font-family:'JetBrains Mono',monospace;margin-bottom:6px}
+.callout.def .callout-label{color:var(--teal)}
+.callout.satz .callout-label{color:var(--violet)}
+.callout.warn .callout-label{color:var(--warn)}
+.callout.info .callout-label{color:var(--sky)}
+.callout.example .callout-label{color:var(--orange)}
+.callout p{font-size:0.84rem;line-height:1.7;color:var(--text)}
+.callout p+p{margin-top:6px}
+.callout ul{padding-left:16px;margin-top:6px}
+.callout ul li{font-size:0.83rem;color:var(--dim);margin-bottom:5px;line-height:1.5}
+
+.prose{font-size:0.87rem;color:var(--dim);line-height:1.75;margin:10px 0}
+.prose strong{color:var(--text);font-weight:600}
+.prose em{font-style:italic;color:var(--dim)}
+
+.tt-wrap{overflow-x:auto;margin:12px 0;border-radius:var(--r);border:1px solid var(--border2)}
+table.tt{width:100%;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:0.78rem}
+table.tt th{background:var(--s3);color:var(--teal);padding:9px 12px;text-align:center;
+font-size:0.72rem;border-bottom:1px solid var(--border2)}
+table.tt td{padding:8px 12px;text-align:center;border-bottom:1px solid var(--border);color:var(--dim)}
+table.tt tr:last-child td{border-bottom:none}
+table.tt td.hi{color:var(--green);font-weight:700}
+table.tt td.lo{color:var(--red)}
+table.tt td.hl{color:var(--teal);font-weight:700}
+
+.mcq{margin:14px 0}
+.mcq-q{font-size:0.9rem;font-weight:600;margin-bottom:13px;line-height:1.45;
+font-family:'Fraunces',serif;font-style:italic;color:var(--text)}
+.mcq-opts{display:flex;flex-direction:column;gap:8px}
+.mcq-opt{
+text-align:left;padding:12px 15px;border-radius:11px;border:1px solid var(--border);
+background:var(--s2);color:var(--dim);font-size:0.83rem;font-family:'DM Sans',sans-serif;
+font-weight:500;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;gap:10px;
+}
+.mcq-opt:active:not(:disabled){transform:scale(0.985)}
+.mcq-opt .opt-letter{width:22px;height:22px;border-radius:6px;background:var(--s3);
+display:flex;align-items:center;justify-content:center;font-size:0.7rem;
+font-family:'JetBrains Mono',monospace;font-weight:700;flex-shrink:0;color:var(--muted)}
+.mcq-opt.correct{background:var(--tint-green);border-color:var(--green);color:var(--green)}
+.mcq-opt.correct .opt-letter{background:var(--tint-green);color:var(--green)}
+.mcq-opt.wrong{background:var(--tint-red);border-color:var(--red);color:var(--red)}
+.mcq-opt.wrong .opt-letter{background:var(--tint-red);color:var(--red)}
+.mcq-fb{font-size:0.8rem;padding:11px 14px;border-radius:9px;margin-top:8px;display:none;line-height:1.55}
+.mcq-fb.show{display:block}
+.mcq-fb.ok{background:var(--tint-green);color:var(--green);border:1px solid var(--tint-green-b)}
+.mcq-fb.no{background:var(--tint-red);color:var(--red);border:1px solid var(--tint-red-b)}
+
+.fillin{margin:14px 0}
+.fillin-q{font-size:0.87rem;color:var(--dim);line-height:1.6;margin-bottom:10px}
+.fillin-wrap{display:flex;gap:8px}
+.fillin-input{flex:1;background:var(--s2);border:1px solid var(--border2);border-radius:10px;
+padding:11px 14px;font-size:0.85rem;font-family:'JetBrains Mono',monospace;color:var(--text);
+outline:none;transition:border-color 0.15s}
+.fillin-input:focus{border-color:var(--violet)}
+.fillin-input.ok{border-color:var(--green);color:var(--green)}
+.fillin-input.no{border-color:var(--red)}
+.fillin-fb{margin-top:8px;font-size:0.79rem;padding:8px 12px;border-radius:8px;display:none}
+.fillin-fb.show{display:block}
+.fillin-fb.ok{background:var(--tint-green);color:var(--green)}
+.fillin-fb.no{background:var(--tint-red);color:var(--red)}
+
+.reveal-steps{margin:14px 0;display:flex;flex-direction:column;gap:8px}
+.reveal-step{background:var(--s2);border:1px solid var(--border);border-radius:var(--r);
+overflow:hidden;cursor:pointer}
+.rs-header{display:flex;align-items:center;gap:10px;padding:12px 14px}
+.rs-num{width:26px;height:26px;border-radius:7px;background:var(--s3);
+font-family:'JetBrains Mono',monospace;font-size:0.75rem;font-weight:700;
+display:flex;align-items:center;justify-content:center;color:var(--dim);flex-shrink:0}
+.rs-title{font-size:0.82rem;font-weight:600;flex:1;color:var(--dim)}
+.rs-arrow{color:var(--muted);font-size:0.85rem;transition:transform 0.2s}
+.rs-arrow.open{transform:rotate(90deg)}
+.rs-body{display:none;padding:0 14px 12px;font-size:0.82rem;color:var(--dim);line-height:1.6;border-top:1px solid var(--border)}
+.rs-body.open{display:block;animation:fadeUp 0.15s}
+.rs-num.done{background:var(--tint-green);color:var(--green)}
+
+.lesson-complete{text-align:center;padding:30px 20px}
+.lc-emoji{font-size:3rem;margin-bottom:12px}
+.lc-title{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:900;margin-bottom:6px}
+.lc-sub{font-size:0.84rem;color:var(--dim);margin-bottom:20px;font-weight:300}
+.lc-xp{font-size:1.8rem;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--warn);margin-bottom:4px}
+.lc-xp-label{font-size:0.72rem;color:var(--muted);margin-bottom:20px}
+
+.lv-footer{
+display:flex;gap:10px;padding:12px 18px;
+background:var(--bg);border-top:1px solid var(--border);
+flex-shrink:0;
+}
+.continue-hint{text-align:center;padding:8px;font-size:0.7rem;color:var(--muted);font-style:italic}
+
+/* ── RECALL (Active Recall step) ── */
+.recall-wrap{margin:14px 0}
+.recall-prompt{font-size:0.88rem;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:12px;font-family:'Fraunces',serif;font-style:italic}
+.recall-input-row{display:flex;gap:8px;margin-bottom:8px}
+.recall-input{flex:1;background:var(--s2);border:1.5px solid var(--border2);border-radius:10px;
+padding:11px 14px;font-size:0.85rem;font-family:'DM Sans',sans-serif;color:var(--text);
+outline:none;transition:border-color 0.15s}
+.recall-input:focus{border-color:var(--violet)}
+.recall-hint-btn{padding:10px 14px;border-radius:10px;border:1px solid var(--border2);
+background:var(--s2);color:var(--muted);font-size:0.75rem;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif}
+.recall-result{display:none;border-radius:var(--r);padding:13px 15px;margin-top:8px;font-size:0.83rem;line-height:1.65}
+.recall-result.show{display:block;animation:fadeUp 0.2s}
+.recall-result.ok{background:var(--tint-green);border:1px solid var(--tint-green-b);color:var(--green)}
+.recall-result.hint{background:var(--tint-sky);border:1px solid var(--tint-sky-b);color:var(--sky)}
+.recall-selfcheck{margin-top:10px;font-size:0.78rem;color:var(--dim)}
+.recall-selfcheck strong{color:var(--text)}
+.recall-btns{display:flex;gap:7px;margin-top:9px}
+.recall-label{font-size:0.58rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;
+font-family:'JetBrains Mono',monospace;color:var(--violet);margin-bottom:7px}
+
+/* ── THINK-PAUSE (elaborative pause) ── */
+.think-wrap{background:var(--tint-violet);border:1px solid var(--tint-violet-b);border-radius:var(--r);padding:15px 16px;margin:14px 0}
+.think-q{font-size:0.87rem;color:var(--text);line-height:1.6;margin-bottom:11px;font-style:italic}
+.think-ta{width:100%;background:var(--s2);border:1px solid var(--border2);border-radius:9px;
+padding:10px 13px;font-size:0.83rem;font-family:'DM Sans',sans-serif;color:var(--text);
+resize:none;outline:none;min-height:70px;transition:border-color 0.15s}
+.think-ta:focus{border-color:var(--violet)}
+.think-submit{margin-top:8px;padding:9px 16px;border-radius:9px;border:1px solid var(--tint-violet-b);
+background:rgba(155,135,245,0.12);color:var(--violet);font-size:0.8rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+.think-fb{display:none;margin-top:9px;font-size:0.8rem;color:var(--dim);line-height:1.6;
+background:var(--s2);border-radius:9px;padding:10px 13px;border:1px solid var(--border)}
+.think-fb.show{display:block;animation:fadeUp 0.2s}
+.think-label{font-size:0.58rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;
+font-family:'JetBrains Mono',monospace;color:var(--violet);margin-bottom:7px}
+
+/* ── KI ANALYSE ── */
+.ai-box{
+margin-top:10px;
+background:var(--s1);
+border:1px solid var(--border);
+border-radius:12px;
+padding:12px 14px;
+color:var(--text);
+}
+.ai-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+margin-bottom:10px;
+}
+.ai-badge{
+font-size:0.62rem;
+font-weight:700;
+letter-spacing:0.08em;
+text-transform:uppercase;
+font-family:'JetBrains Mono',monospace;
+color:var(--violet);
+}
+.ai-score{
+font-size:0.78rem;
+font-family:'JetBrains Mono',monospace;
+color:var(--teal);
+font-weight:700;
+}
+.ai-section + .ai-section{margin-top:10px}
+.ai-section strong{
+display:block;
+margin-bottom:4px;
+font-size:0.78rem;
+color:var(--text);
+}
+.ai-section p,
+.ai-section li{
+font-size:0.8rem;
+line-height:1.6;
+color:var(--dim);
+}
+.ai-section ul{padding-left:18px}
+.ai-note{
+font-size:0.72rem;
+color:var(--muted);
+margin-top:8px;
+}
+
+/* ── SPACED REVIEW banner ── */
+.sr-banner{background:linear-gradient(135deg,rgba(155,135,245,0.12),rgba(77,217,192,0.08));
+border:1px solid var(--tint-violet-b);border-radius:var(--r);padding:11px 14px;margin-bottom:12px;
+display:flex;align-items:center;gap:8px}
+.sr-badge{font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+font-family:'JetBrains Mono',monospace;color:var(--violet);background:rgba(155,135,245,0.15);
+padding:3px 8px;border-radius:999px;flex-shrink:0}
+.sr-text{font-size:0.75rem;color:var(--dim);line-height:1.4}
+
+/* ── LOCKED next button ── */
+#lvNext.locked{opacity:0.35;cursor:not-allowed;pointer-events:none}
+#lvNext.locked::after{content:' 🔒'}
+
+.fc-filters{display:flex;gap:7px;padding:13px 16px;overflow-x:auto;
+scrollbar-width:none;border-bottom:1px solid var(--border)}
+.fc-filters::-webkit-scrollbar{display:none}
+.fc-chip{flex-shrink:0;padding:5px 12px;border-radius:999px;border:1px solid var(--border);
+background:var(--s1);font-size:0.7rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.12s}
+.fc-chip.active{border-color:var(--teal);color:var(--teal);background:rgba(77,217,192,0.07)}
+#s-karten{display:none;flex-direction:column;align-items:stretch}
+#s-karten.active{display:flex}
+.fc-scene{padding:14px;display:flex;justify-content:center}
+.fc-wrap{perspective:1400px;width:100%;max-width:480px}
+@media (orientation:landscape){
+.fc-wrap{max-width:420px}
+}
+.fc{width:100%;min-height:220px;position:relative;transform-style:preserve-3d;
+transition:transform 0.5s cubic-bezier(.4,0,.2,1);cursor:pointer}
+.fc.flipped{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;
+background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);
+padding:22px;display:flex;flex-direction:column;justify-content:center;
+align-items:center;text-align:center;min-height:220px}
+.fc-back{transform:rotateY(180deg);background:var(--s2)}
+.fc-cat{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+font-family:'JetBrains Mono',monospace;color:var(--teal);margin-bottom:10px}
+.fc-q{font-family:'Fraunces',serif;font-size:1.1rem;line-height:1.4;color:var(--text);margin-bottom:8px}
+.fc-h{font-size:0.7rem;color:var(--muted);font-style:italic}
+.fc-a{font-size:0.84rem;color:var(--dim);line-height:1.7}
+.fc-tap-hint{text-align:center;font-size:0.68rem;color:var(--muted);padding:0 14px 6px;font-style:italic}
+.fc-nav{
+display:flex;align-items:center;justify-content:center;
+padding:0 14px 8px;gap:16px;
+max-width:480px;margin:0 auto;width:100%;
+}
+.fc-nav .btn{flex:0 0 auto}
+.fc-ctr{font-size:0.78rem;font-family:'JetBrains Mono',monospace;color:var(--muted);min-width:60px;text-align:center}
+.fc-rating{display:none;flex-direction:row;gap:7px;padding:0 14px 14px;
+max-width:480px;margin:0 auto;width:100%}
+.fc-rating.show{display:flex}
+@media (orientation:landscape){
+.fc-nav{max-width:420px}
+.fc-rating{max-width:420px}
+}
+
+.q-setup{padding:18px;display:flex;flex-direction:column;gap:9px}
+.q-setup h3{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:900;margin-bottom:3px}
+.q-setup p{font-size:0.78rem;color:var(--dim);margin-bottom:6px;font-weight:300}
+.q-topic-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:6px}
+.q-tbtn{padding:11px 10px;border-radius:var(--r);border:1px solid var(--border);
+background:var(--s1);font-size:0.76rem;font-weight:600;color:var(--dim);
+cursor:pointer;text-align:left;font-family:'DM Sans',sans-serif;transition:all 0.12s}
+.q-tbtn span{display:block;font-size:0.62rem;color:var(--muted);font-weight:400;margin-top:2px}
+.q-tbtn.sel{border-color:var(--violet);color:var(--violet);background:rgba(155,135,245,0.07)}
+.q-active{padding:14px;display:none}
+.q-active.show{display:block}
+.q-toprow{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+.q-pbar-w{flex:1;background:var(--s3);border-radius:999px;height:4px;overflow:hidden}
+.q-pbar{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--violet),var(--pink));transition:width 0.35s}
+.q-info{font-size:0.68rem;font-family:'JetBrains Mono',monospace;color:var(--muted)}
+.q-score-d{font-size:0.68rem;font-family:'JetBrains Mono',monospace;color:var(--violet);font-weight:700}
+.q-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);
+padding:18px;margin-bottom:10px;animation:fadeUp 0.2s}
+.q-cat{font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;
+color:var(--violet);font-family:'JetBrains Mono',monospace;margin-bottom:7px}
+.q-q{font-family:'Fraunces',serif;font-size:1rem;line-height:1.5;color:var(--text);margin-bottom:14px;font-style:italic}
+.q-opts{display:flex;flex-direction:column;gap:7px}
+.q-opt{padding:11px 14px;border-radius:10px;border:1px solid var(--border);
+background:var(--s2);color:var(--dim);font-size:0.81rem;font-family:'DM Sans',sans-serif;
+font-weight:500;cursor:pointer;text-align:left;transition:all 0.12s;display:flex;align-items:center;gap:9px}
+.q-opt .ol{width:20px;height:20px;border-radius:5px;background:var(--s3);
+font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:700;
+display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--muted)}
+.q-opt.correct{background:var(--tint-green);border-color:var(--green);color:var(--green)}
+.q-opt.correct .ol{background:var(--tint-green);color:var(--green)}
+.q-opt.wrong{background:var(--tint-red);border-color:var(--red);color:var(--red)}
+.q-fb{font-size:0.79rem;padding:10px 13px;border-radius:8px;margin-top:7px;display:none;line-height:1.55}
+.q-fb.show{display:block}
+.q-fb.ok{background:var(--tint-green);color:var(--green);border:1px solid var(--tint-green-b)}
+.q-fb.no{background:var(--tint-red);color:var(--red);border:1px solid var(--tint-red-b)}
+.q-next-wrap{display:flex;justify-content:flex-end;margin-top:7px}
+.q-result{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);
+padding:26px;text-align:center;display:none;animation:fadeUp 0.3s}
+.q-result.show{display:block}
+.qr-emoji{font-size:2.6rem;margin-bottom:9px}
+.qr-title{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:900;margin-bottom:5px}
+.qr-score{font-size:2.6rem;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--teal);margin-bottom:5px;line-height:1}
+.qr-sub{font-size:0.8rem;color:var(--dim);margin-bottom:16px;font-weight:300}
+.qr-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <div class="logo">WI<br><small>Wirtschaftsinformatik I · Uni Trier</small></div>
+  <div class="pills">
+    <span class="pill streak" id="spStreak">🔥 0</span>
+    <span class="pill xp" id="spXP">0 XP</span>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Helles/Dunkles Design">🌙</button>
+  </div>
+</div>
+
+<div id="content">
+
+<!-- DASHBOARD -->
+<div class="screen active" id="s-home">
+  <div class="pad">
+    <div class="hero-card">
+      <div class="hero-greeting">Willkommen zurück 👋</div>
+      <div class="hero-h">Wirtschaftsinformatik<br><span>I</span> meistern</div>
+      <div class="pbar-wrap"><div class="pbar main" id="overallBar" style="width:0%"></div></div>
+      <div class="pct-label" id="overallPct">0% Gesamtfortschritt</div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-box"><div class="stat-v" style="color:var(--teal)" id="dCards">0</div><div class="stat-l">Karten gelernt</div></div>
+      <div class="stat-box"><div class="stat-v" style="color:var(--violet)" id="dAcc">—</div><div class="stat-l">Quiz-Genauigkeit</div></div>
+      <div class="stat-box"><div class="stat-v" style="color:var(--warn)" id="dXP">0</div><div class="stat-l">XP verdient</div></div>
+      <div class="stat-box"><div class="stat-v" style="color:var(--green)" id="dLes">0</div><div class="stat-l">Lektionen fertig</div></div>
+    </div>
+    <div class="sec-label">Themenfortschritt</div>
+    <div class="card" style="margin-bottom:14px"><div class="topic-rows" id="topicRows"></div></div>
+    <div class="sec-label">Aktivitäten</div>
+    <div class="act-list" id="actList">
+      <div class="act-row"><div class="adot" style="background:var(--muted)"></div>Starte mit dem Kurs!</div>
+    </div>
+  </div>
+</div>
+
+<!-- KURS -->
+<div class="screen" id="s-kurs">
+  <div class="kurs-header">
+    <h2>Wirtschaftsinformatik I</h2>
+    <p>8 Module · 30 Lektionen · entlang der PDF-Unterlagen</p>
+    <div class="pbar-wrap"><div class="pbar" style="background:linear-gradient(90deg,var(--violet),var(--pink))" id="courseBar"></div></div>
+  </div>
+  <div class="mod-list" id="modList"></div>
+</div>
+
+<!-- KARTEIKARTEN -->
+<div class="screen" id="s-karten">
+  <div class="fc-filters" id="fcFilters"></div>
+  <div class="fc-scene">
+    <div class="fc-wrap">
+      <div class="fc" id="fc" onclick="flipCard()">
+        <div class="fc-face fc-front">
+          <div class="fc-cat" id="fcCat">—</div>
+          <div class="fc-q" id="fcQ">Wähle eine Kategorie</div>
+          <div class="fc-h" id="fcH"></div>
+        </div>
+        <div class="fc-face fc-back">
+          <div class="fc-cat" id="fcCatB">Antwort</div>
+          <div class="fc-a" id="fcA"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="fc-tap-hint">Karte antippen zum Umdrehen</p>
+  <div class="fc-nav">
+    <button class="btn" onclick="fcPrev()">←</button>
+    <span class="fc-ctr" id="fcCtr">0/0</span>
+    <button class="btn" onclick="fcNext()">→</button>
+  </div>
+  <div class="fc-rating" id="fcRating">
+    <button class="btn r" style="flex:1" onclick="fcRate(0)">😕 Nochmal</button>
+    <button class="btn o" style="flex:1" onclick="fcRate(1)">🤔 Knapp</button>
+    <button class="btn g" style="flex:1" onclick="fcRate(2)">✅ Gewusst</button>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="screen" id="s-quiz">
+  <div class="q-setup" id="qSetup">
+    <h3>Quiz</h3>
+    <p>Teste dein Wissen mit 10 zufälligen Fragen.</p>
+    <div class="q-topic-grid" id="qTopicGrid"></div>
+    <button class="btn p" style="width:100%" onclick="startQuiz()">Quiz starten →</button>
+  </div>
+  <div class="q-active" id="qActive">
+    <div class="q-toprow">
+      <span class="q-score-d" id="qScoreD">0/0</span>
+      <div class="q-pbar-w"><div class="q-pbar" id="qPbar" style="width:0%"></div></div>
+      <span class="q-info" id="qInfo">1/10</span>
+    </div>
+    <div id="qContainer"></div>
+    <div class="q-result" id="qResult">
+      <div class="qr-emoji" id="qrEmoji">🎉</div>
+      <div class="qr-title" id="qrTitle">Fertig!</div>
+      <div class="qr-score" id="qrScore">0/0</div>
+      <div class="qr-sub" id="qrSub"></div>
+      <div class="qr-btns">
+        <button class="btn p" onclick="restartQuiz()">🔄 Nochmal</button>
+        <button class="btn" onclick="showScreen('s-karten')">🃏 Karten</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- #content -->
+
+<div id="bnav">
+  <button class="nb active" onclick="showScreen('s-home')"><span class="ni">📊</span>Home</button>
+  <button class="nb" onclick="showScreen('s-kurs')"><span class="ni">📚</span>Kurs</button>
+  <button class="nb" onclick="showScreen('s-karten')"><span class="ni">🃏</span>Karten</button>
+  <button class="nb" onclick="showScreen('s-quiz')"><span class="ni">⚡</span>Quiz</button>
+</div>
+
+<!-- LESSON VIEWER -->
+<div id="lv">
+  <div class="lv-topbar">
+    <div class="lv-back" onclick="closeLesson()">←</div>
+    <div class="lv-info"><h3 id="lvTitle">—</h3><span id="lvMod">—</span></div>
+    <span class="lv-prog-text" id="lvProg">1/5</span>
+  </div>
+  <div class="lv-pbar-wrap"><div class="lv-pbar" id="lvPbar" style="width:0%"></div></div>
+  <div class="lv-body" id="lvBody"></div>
+  <div class="lv-footer">
+    <button class="btn" id="lvPrev" onclick="lvNav(-1)">←</button>
+    <button class="btn p" id="lvNext" onclick="lvNav(1)" style="flex:1">Weiter →</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// TOPICS
+// ═══════════════════════════════════════════════
+const TOPICS=[
+  {
+    "id": "wi_intro",
+    "name": "Einordnung & Gliederung",
+    "color": "#4dd9c0"
+  },
+  {
+    "id": "tech",
+    "name": "Technische Grundlagen",
+    "color": "#9b87f5"
+  },
+  {
+    "id": "netze1",
+    "name": "Netze & OSI",
+    "color": "#f59e4d"
+  },
+  {
+    "id": "web",
+    "name": "Internet, WWW & Web",
+    "color": "#fbbf24"
+  },
+  {
+    "id": "html_css",
+    "name": "HTML, CSS & Übung 1",
+    "color": "#4ade80"
+  },
+  {
+    "id": "ki1",
+    "name": "KI-Grundlagen",
+    "color": "#38bdf8"
+  },
+  {
+    "id": "ki2",
+    "name": "Generative KI & LLMs",
+    "color": "#f472b6"
+  },
+  {
+    "id": "os_cloud",
+    "name": "Betriebssysteme & Cloud",
+    "color": "#f87171"
+  },
+  {
+    "id": "office_text",
+    "name": "Text & Grafik",
+    "color": "#a78bfa"
+  },
+  {
+    "id": "multimedia",
+    "name": "Video & Präsentation",
+    "color": "#fb923c"
+  },
+  {
+    "id": "spreadsheet",
+    "name": "Tabellenkalkulation",
+    "color": "#34d399"
+  },
+  {
+    "id": "datenbanken",
+    "name": "Datenbanken",
+    "color": "#60a5fa"
+  },
+  {
+    "id": "dv_systeme",
+    "name": "Betriebliche DV-Systeme",
+    "color": "#e879f9"
+  },
+  {
+    "id": "operative",
+    "name": "Operative & Führungssysteme",
+    "color": "#06b6d4"
+  }
+];
+
+// ═══════════════════════════════════════════════
+// MODULES & LESSONS
+// ═══════════════════════════════════════════════
+const MODULES=[
+  {
+    "id": "m_intro",
+    "title": "Einführung in die Wirtschaftsinformatik",
+    "color": "#4dd9c0",
+    "icon": "🧭",
+    "desc": "Einordnung, Berufsbedeutung und Kursstruktur",
+    "lessons": [
+      {
+        "id": "l_intro_1",
+        "title": "Was ist Wirtschaftsinformatik?",
+        "icon": "🧭",
+        "topic": "wi_intro",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🧭",
+            "title": "Was ist Wirtschaftsinformatik?",
+            "sub": "WI verbindet betriebswirtschaftliche Aufgaben mit informatischen und technischen Lösungen."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Definition",
+            "html": "<p>Wirtschaftsinformatik liegt an der Schnittstelle zwischen <strong>Betriebswirtschaftslehre</strong> und <strong>Informatik</strong>. Sie betrachtet Informations- und Kommunikationssysteme in Unternehmen sowie deren Gestaltung, Nutzung und Wirkung.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "BWL-Sicht",
+                "body": "Welche Aufgaben, Prozesse und Ziele hat ein Unternehmen?",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Informatik-Sicht",
+                "body": "Welche Daten, Algorithmen, Software und technischen Infrastrukturen unterstützen diese Aufgaben?",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Mensch-Aufgabe-Technik",
+                "body": "Wirtschaftsinformatik verbindet Menschen, Aufgaben und Systeme: Benutzbarkeit, Funktionalität und wirtschaftlicher Nutzen müssen zusammenpassen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welche Aussage beschreibt Wirtschaftsinformatik am besten?",
+            "opts": [
+              "Nur Programmierung",
+              "Schnittstelle von BWL, Informatik und Technik zur Gestaltung betrieblicher Informationssysteme",
+              "Nur Buchhaltung mit Excel",
+              "Nur Hardwarekunde"
+            ],
+            "correct": 1,
+            "exp": "WI verbindet betriebswirtschaftliche Aufgaben mit informatischen Lösungen."
+          }
+        ]
+      },
+      {
+        "id": "l_intro_2",
+        "title": "Warum ist WI beruflich wichtig?",
+        "icon": "💼",
+        "topic": "wi_intro",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "💼",
+            "title": "Warum ist WI wichtig?",
+            "sub": "Digitale Kompetenzen sind in praktisch allen Berufen relevant."
+          },
+          {
+            "type": "prose",
+            "html": "Die Folien betonen die berufliche Bedeutung von WI: Unternehmen arbeiten mit Informationssystemen, Datenbanken, Business Intelligence, KI, Projektmanagement und technischen Grundlagen. Wer digitale Systeme versteht, kann sie besser nutzen, bewerten und mitgestalten."
+          },
+          {
+            "type": "callout",
+            "kind": "satz",
+            "label": "Merksatz",
+            "html": "<p>Nicht mit dem Computer umgehen zu können, bringt in Zukunft ähnliche Nachteile wie Analphabetismus in früheren Generationen.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Humanisierung der Arbeit",
+                "body": "IT kann Arbeit erleichtern und Routineaufgaben unterstützen.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Datenbasierte Entscheidungen",
+                "body": "Datenbanksysteme, Business Intelligence und KI helfen bei Analyse und Steuerung.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Dauerhafte Kompetenzen",
+                "body": "Projektmanagement und technologische Grundkenntnisse bleiben auch bei neuen Technologien relevant.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Warum sind WI-Kenntnisse beruflich relevant?",
+            "opts": [
+              "Weil alle Berufe Programmierer werden",
+              "Weil digitale Systeme, Daten und Prozesse in vielen Arbeitsbereichen zentral sind",
+              "Weil Papier abgeschafft wurde",
+              "Weil nur Klausuren digital sind"
+            ],
+            "correct": 1,
+            "exp": "WI-Kompetenz hilft, Systeme zu verstehen, zu nutzen und zu gestalten."
+          }
+        ]
+      },
+      {
+        "id": "l_intro_3",
+        "title": "Gliederung des Kurses",
+        "icon": "📚",
+        "topic": "wi_intro",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "📚",
+            "title": "Gliederung des Kurses",
+            "sub": "Die Lernapp folgt den Themen der PDF-Folien und Übungen."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Teil I: Grundlagen",
+                "body": "Einordnung der WI, technische Grundlagen, Netze/Internet, Betriebssysteme/Cloud, Office- und Medienwerkzeuge, Tabellenkalkulation, Datenbanken, betriebliche DV-Systeme.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Teil II: Methoden",
+                "body": "KI-Methoden, generative KI, LLMs und ausgewählte praktische Übungen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Übungen",
+                "body": "Online-Übungen zu HTML/CSS, KI-Tool-Nutzung, Textverarbeitung und Tabellenkalkulation sind klausurrelevant.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "callout",
+            "kind": "warn",
+            "label": "Wichtig",
+            "html": "<p>Die Übungen sind nicht nur Praxisanhang, sondern gehören laut Folien zum klausurrelevanten Stoff.</p>"
+          },
+          {
+            "type": "mcq",
+            "q": "Welche Aussage zu den Übungen ist laut Kurs richtig?",
+            "opts": [
+              "Sie sind freiwillig und irrelevant",
+              "Sie sind online, praxisorientiert und klausurrelevant",
+              "Sie ersetzen die Vorlesung vollständig",
+              "Sie behandeln nur Theorie"
+            ],
+            "correct": 1,
+            "exp": "Die Übungen vertiefen ausgewählte Themen praktisch und sind klausurrelevant."
+          },
+          {
+            "type": "complete",
+            "title": "✅ Einführung abgeschlossen",
+            "sub": "Einordnung, Nutzen und Aufbau der Wirtschaftsinformatik verstanden."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m_tech",
+    "title": "Technische Grundlagen",
+    "color": "#9b87f5",
+    "icon": "💻",
+    "desc": "Rechnerklassen, Architektur, EVA, Leistung, Datenrepräsentation und Speicher",
+    "lessons": [
+      {
+        "id": "l_tech_1",
+        "title": "Warum technische Grundlagen?",
+        "icon": "💻",
+        "topic": "tech",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "💻",
+            "title": "Warum technische Grundlagen?",
+            "sub": "Informationssysteme beruhen auf Hard- und Software."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Kernidee",
+            "html": "<p>Wer Informationssysteme verstehen, nutzen und gestalten möchte, muss wissen, wie Informationen als <strong>Daten repräsentiert, gespeichert, gefunden und verarbeitet</strong> werden.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Informationsgesellschaft",
+                "body": "Daten werden für Unternehmen und Gesellschaft immer wichtiger.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Hard- und Software",
+                "body": "Zugriff auf Informationen erfordert technische Systeme.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Gestaltungskompetenz",
+                "body": "Technisches Grundverständnis hilft, Systeme zu bewerten und sinnvoll einzusetzen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was liefern technische Grundlagen laut Folien?",
+            "opts": [
+              "Nur Gerätepreise",
+              "Verständnis, wie Informationen als Daten repräsentiert, gespeichert, gefunden und verarbeitet werden",
+              "Nur Tastaturkürzel",
+              "Nur Programmierbefehle"
+            ],
+            "correct": 1,
+            "exp": "Das ist die zentrale Begründung der technischen Grundlagen."
+          }
+        ]
+      },
+      {
+        "id": "l_tech_2",
+        "title": "Rechnerklassen & Rechenzentren",
+        "icon": "🖥️",
+        "topic": "tech",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🖥️",
+            "title": "Rechnerklassen",
+            "sub": "Von Smartphone bis Cloud-Rechenzentrum."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Mikrorechner",
+                "body": "Smartphone, Tablet, Notebook und Desktop sind typische Endgeräte.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Server",
+                "body": "Server stellen Dienste für viele Nutzer bereit.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Cloud/Rechenzentrum",
+                "body": "Cloud-Dienste wie Suchmaschinen, Social Media oder Onlinehandel laufen in großen Rechenzentren.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Auslegung",
+                "body": "Rechenzentren sind auf Mehrbenutzerbetrieb, Massendatenverarbeitung, rechenintensive Anwendungen und hohe Verfügbarkeit ausgerichtet.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Wofür sind große Rechenzentren typischerweise ausgelegt?",
+            "opts": [
+              "Nur Einzelbenutzerbetrieb",
+              "Mehrbenutzerbetrieb, Massendatenverarbeitung, rechenintensive Anwendungen und hohe Verfügbarkeit",
+              "Nur Textverarbeitung",
+              "Nur lokale Spiele"
+            ],
+            "correct": 1,
+            "exp": "Diese Anforderungen werden in den Folien explizit genannt."
+          }
+        ]
+      },
+      {
+        "id": "l_tech_3",
+        "title": "Von-Neumann-Architektur",
+        "icon": "🧠",
+        "topic": "tech",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🧠",
+            "title": "Von-Neumann-Architektur",
+            "sub": "Das klassische Architekturprinzip moderner Rechner."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Computerarchitektur",
+            "html": "<p>Computerarchitektur beschreibt den Zusammenbau, das Zusammenspiel und die Arbeitsweise der Komponenten eines Rechners.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Speicherprogramm-Konzept",
+                "body": "Programme und Daten liegen im Speicher; Änderungen erfolgen über Daten und Programme statt über neue Verdrahtung.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Sequentielle Ausführung",
+                "body": "Anweisungen werden grundsätzlich nacheinander ausgeführt.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Sprungbefehle",
+                "body": "Bedingte Sprünge können die Reihenfolge verändern.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Komponenten",
+                "body": "Prozessor mit Steuerwerk und Rechenwerk, Speicher sowie Ein-/Ausgabeschnittstellen arbeiten zusammen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was ist ein Merkmal der Von-Neumann-Architektur?",
+            "opts": [
+              "Programme werden durch Umstecken von Kabeln geändert",
+              "Programme und Daten liegen im Speicher und Befehle werden grundsätzlich nacheinander ausgeführt",
+              "Sie benötigt keinen Prozessor",
+              "Sie gilt nur für Smartphones"
+            ],
+            "correct": 1,
+            "exp": "Speicherprogramm und sequentielle Befehlsausführung sind zentrale Merkmale."
+          }
+        ]
+      },
+      {
+        "id": "l_tech_4",
+        "title": "EVA-Prinzip & Daten",
+        "icon": "⌨️",
+        "topic": "tech",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "⌨️",
+            "title": "EVA-Prinzip",
+            "sub": "Computer arbeiten grundsätzlich nach Eingabe, Verarbeitung, Ausgabe – ergänzt um Speicherung."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Eingabe",
+                "body": "Daten gelangen über Geräte oder Schnittstellen in das System.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Verarbeitung",
+                "body": "Der Prozessor verarbeitet Daten anhand von Programmen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Ausgabe",
+                "body": "Ergebnisse werden angezeigt, gedruckt, übertragen oder weiterverarbeitet.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Speicherung",
+                "body": "Daten können flüchtig im Arbeitsspeicher oder dauerhaft auf Speichermedien liegen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "callout",
+            "kind": "info",
+            "label": "Leistungsbegriff",
+            "html": "<p>Rechenleistung kann z.B. in Gleitkommaoperationen pro Sekunde beschrieben werden: Wie viele Additionen oder Multiplikationen pro Sekunde möglich sind.</p>"
+          },
+          {
+            "type": "mcq",
+            "q": "Wofür steht EVA?",
+            "opts": [
+              "Elektronische Verwaltung aller Daten",
+              "Eingabe, Verarbeitung, Ausgabe",
+              "Excel, Video, Audio",
+              "Erstellen, Verkaufen, Archivieren"
+            ],
+            "correct": 1,
+            "exp": "EVA ist das Grundprinzip der Datenverarbeitung."
+          },
+          {
+            "type": "complete",
+            "title": "✅ Technische Grundlagen abgeschlossen",
+            "sub": "Rechnerklassen, Architektur, EVA und Speicherprinzipien sitzen."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m_netze",
+    "title": "Netze, Internet & Web",
+    "color": "#f59e4d",
+    "icon": "🌐",
+    "desc": "Vernetzung, Schichtenarchitektur, Internet, WWW, HTML/CSS und Übung 1",
+    "lessons": [
+      {
+        "id": "l_net_1",
+        "title": "Warum Rechner vernetzt werden",
+        "icon": "🔌",
+        "topic": "netze1",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🔌",
+            "title": "Warum werden Rechner vernetzt?",
+            "sub": "Netzwerke ermöglichen Kommunikation zwischen IT-Systemen."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Kommunikation",
+            "html": "<p>Kommunikation bedeutet den Austausch von Informationen. Weil Sprache, Text, Bild und Video digital als Daten abbildbar sind, ist Datenübertragung das umfassendste Kommunikationskonzept.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Sprachkommunikation",
+                "body": "Face-to-Face oder Telefon.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Textkommunikation",
+                "body": "Brief, Fax, E-Mail oder Chat.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Bildkommunikation",
+                "body": "Fernsehen oder Videokonferenz.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Datenkommunikation",
+                "body": "Grundlage, wenn alle Inhalte als digitale Daten übertragen werden.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Warum ist Datenübertragung so grundlegend?",
+            "opts": [
+              "Weil nur Zahlen übertragen werden können",
+              "Weil viele Kommunikationsarten digital als Daten abbildbar sind",
+              "Weil Sprache analog bleiben muss",
+              "Weil Bilder nicht digitalisierbar sind"
+            ],
+            "correct": 1,
+            "exp": "Ist die Datenübertragung gesichert, können datenbasierte Kommunikationsarten realisiert werden."
+          }
+        ]
+      },
+      {
+        "id": "l_net_2",
+        "title": "Schichtenarchitektur & OSI",
+        "icon": "🧱",
+        "topic": "netze1",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🧱",
+            "title": "Schichtenarchitektur",
+            "sub": "Komplexe Kommunikation wird in Schichten gegliedert."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Schichtenarchitektur",
+            "html": "<p>Ein Strukturierungsprinzip, bei dem Funktionen eines Systems konzeptionell auf Schichten verteilt werden. Höhere Schichten nutzen Dienste niedrigerer Schichten.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Application",
+                "body": "Anwendungsklassen wie E-Mail, Onlinebuchung oder Datenbankzugriff.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Presentation",
+                "body": "Bedeutung und Darstellung der Daten, z.B. Zeichencodierung.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Session",
+                "body": "Sitzungen und Kommunikationsbeziehungen, z.B. FTP, HTTP, SMTP.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Transport",
+                "body": "Ende-zu-Ende-Übertragungssicherung, z.B. TCP.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Network",
+                "body": "Weg der Datenpakete über Netze, z.B. IP, Router.",
+                "done": false
+              },
+              {
+                "num": "6",
+                "title": "Datalink",
+                "body": "Sicherung auf Teilstrecken, z.B. Switches/Bridges.",
+                "done": false
+              },
+              {
+                "num": "7",
+                "title": "Physical",
+                "body": "Übertragung von Bits über Kabel, Funk oder Lichtleiter.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welche Schicht regelt im OSI-Modell den Weg von Datenpaketen über Netze?",
+            "opts": [
+              "Physical Layer",
+              "Network Layer",
+              "Presentation Layer",
+              "Application Layer"
+            ],
+            "correct": 1,
+            "exp": "Der Network Layer nutzt u.a. IP und Router."
+          }
+        ]
+      },
+      {
+        "id": "l_web_1",
+        "title": "World Wide Web",
+        "icon": "🕸️",
+        "topic": "web",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🕸️",
+            "title": "World Wide Web",
+            "sub": "Der wichtigste Dienst des Internets."
+          },
+          {
+            "type": "prose",
+            "html": "Das WWW entstand ab 1989 am CERN; die erste Seite ging 1991 online. Ziel war ein hypertextbasiertes System, das Forschungsdaten plattformunabhängig erschließbar macht."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Client/Server & Hypertext",
+            "html": "<p>Das WWW basiert auf einer Client/Server-Architektur: Browser fordern Dokumente an, Webserver liefern sie aus. Hypertext verknüpft Dokumente über Links.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "HTML",
+                "body": "Dokumentenformat zur Beschreibung von Hypertext.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "HTTP",
+                "body": "Übertragungsprotokoll des WWW.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "URL",
+                "body": "Adresse eines Dokuments mit Zugriffsmethode, Rechnernamen, Verzeichnis- und Dateinamen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welche Kombination beschreibt die technischen Standards des WWW?",
+            "opts": [
+              "SQL, ERP, CRM",
+              "HTML, HTTP und URL",
+              "TCP, RAM und CPU",
+              "PDF, Word und Excel"
+            ],
+            "correct": 1,
+            "exp": "HTML beschreibt Dokumente, HTTP überträgt sie, URLs adressieren sie."
+          }
+        ]
+      },
+      {
+        "id": "l_web_2",
+        "title": "Browser, Webserver & lokaler Server",
+        "icon": "🖧",
+        "topic": "web",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🖧",
+            "title": "Browser und Webserver",
+            "sub": "Clients betrachten Dokumente, Server liefern sie aus."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Browser",
+                "body": "Client-Programme zum Betrachten von Hypertext-Dokumenten; sie müssen neue Standards wie HTML5/CSS3 unterstützen.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Webserver",
+                "body": "Dienste auf Rechnern, die Dokumente bei Anforderung an Clients weiterleiten.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Lokale Entwicklung",
+                "body": "Mit Werkzeugen wie XAMPP können Seiten lokal unter localhost getestet werden.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Ablauf",
+                "body": "Browser ruft URL auf, Adresse wird ermittelt, Anfrage geht an Server, Server liest HTML-Seite und sendet sie via HTTP zurück.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welche Rolle hat ein Browser im WWW?",
+            "opts": [
+              "Er speichert alle Internetseiten dauerhaft",
+              "Er ist ein Client zum Betrachten von Hypertext-Dokumenten",
+              "Er ersetzt den Webserver",
+              "Er ist nur ein Betriebssystem"
+            ],
+            "correct": 1,
+            "exp": "Browser sind Clients des WWW."
+          }
+        ]
+      },
+      {
+        "id": "l_html_1",
+        "title": "HTML, CSS & Übung 1",
+        "icon": "🧩",
+        "topic": "html_css",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🧩",
+            "title": "HTML, CSS und Übung 1",
+            "sub": "Struktur, Darstellung und erste Website für CONNECT-IT."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "HTML",
+            "html": "<p>HTML ist eine Auszeichnungssprache zur Beschreibung von Dokumentstruktur: Überschriften, Absätze, Listen, Tabellen, Links und eingebundene Medien.</p>"
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "CSS",
+            "html": "<p>CSS beschreibt Gestaltung und Layout, z.B. Abstände, Rahmen, Farben und Positionierung.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "DIV-Elemente",
+                "body": "Zur Aufteilung einer Seite in Bereiche.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Impressum",
+                "body": "Übung 1 verlangt eine Startseite mit Link auf eine Impressumsseite.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Gestaltung",
+                "body": "Artikelbereiche sollen mit padding, border und margin gestaltet werden.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Trennung von Inhalt und Darstellung",
+                "body": "Gestaltungsanweisungen sollen über CSS realisiert werden.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was war ein Ziel von Übungsblatt 1?",
+            "opts": [
+              "Eine Datenbank normalisieren",
+              "Eine Webshop-Startseite mit Impressumslink und CSS-Struktur gestalten",
+              "Eine Bilanz in Excel erstellen",
+              "Eine KI prompten"
+            ],
+            "correct": 1,
+            "exp": "Übung 1 behandelt HTML/CSS an einer CONNECT-IT-Webseite."
+          },
+          {
+            "type": "complete",
+            "title": "✅ Netze & Web abgeschlossen",
+            "sub": "Netzkommunikation, OSI, WWW, HTML/CSS und Übung 1 wiederholt."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m_ki",
+    "title": "Künstliche Intelligenz",
+    "color": "#38bdf8",
+    "icon": "🤖",
+    "desc": "KI-Methoden, Machine Learning, Deep Learning, Image Generation, LLMs und Übung 2",
+    "lessons": [
+      {
+        "id": "l_ki_1",
+        "title": "Paradigmenwechsel durch KI",
+        "icon": "🤖",
+        "topic": "ki1",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🤖",
+            "title": "KI als Paradigmenwechsel",
+            "sub": "KI-Systeme lernen aus Daten und Feedback."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "KI-Nutzung",
+            "html": "<p>Statt ausschließlich feste Befehle zu codieren, werden Systeme mit Daten trainiert. Sie können wahrnehmen, lernen, verstehen und handeln.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Eingaben",
+                "body": "Audio, Video, digitale Daten, IoT-Signale oder Touch-Eingaben.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Methoden",
+                "body": "Machine Learning, Deep Learning, Logik, Statistik und Regeln.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Ausgaben",
+                "body": "Programme steuern, Befehle ausführen, Trigger auslösen, Texte übersetzen, Bilder erzeugen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was kennzeichnet den KI-Paradigmenwechsel?",
+            "opts": [
+              "Nur schnellere Tastaturen",
+              "Systeme werden mit Daten trainiert und lernen aus Feedback",
+              "Alle Programme werden gelöscht",
+              "KI benötigt keine Daten"
+            ],
+            "correct": 1,
+            "exp": "Die Folie zeigt Lernen, Kodieren & Trainieren sowie Feedback als Kern."
+          }
+        ]
+      },
+      {
+        "id": "l_ki_2",
+        "title": "Teilgebiete und Methoden der KI",
+        "icon": "🧠",
+        "topic": "ki1",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🧠",
+            "title": "Teilgebiete der KI",
+            "sub": "KI umfasst viele Methoden und Anwendungsfelder."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Machine Learning",
+                "body": "Systeme lernen Muster aus Daten.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Deep Learning",
+                "body": "Lernen mit neuronalen Netzen und vielen Schichten.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "NLP",
+                "body": "Natural Language Processing für Sprache und Text.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Bild- und Texterkennung",
+                "body": "Erkennung von Mustern in Bildern, Gesichtern, Sprache und Dokumenten.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Robotik und Experten­systeme",
+                "body": "Handeln in der physischen Welt bzw. regelbasiertes Expertenwissen.",
+                "done": false
+              },
+              {
+                "num": "6",
+                "title": "Predictive Analysis",
+                "body": "Vorhersagen aus Daten.",
+                "done": false
+              },
+              {
+                "num": "7",
+                "title": "Reinforcement Learning",
+                "body": "Lernen durch Belohnung/Feedback.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welches Teilgebiet beschäftigt sich mit natürlicher Sprache?",
+            "opts": [
+              "Datalink Layer",
+              "Natural Language Processing",
+              "Tabellenformatierung",
+              "Primärschlüssel"
+            ],
+            "correct": 1,
+            "exp": "NLP verarbeitet natürliche Sprache und Texte."
+          }
+        ]
+      },
+      {
+        "id": "l_ki_3",
+        "title": "Image Generation",
+        "icon": "🎨",
+        "topic": "ki2",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🎨",
+            "title": "Image Generation",
+            "sub": "Generative Modelle erzeugen neue Bilder."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Image Generation",
+            "html": "<p>Image Generation erstellt neue Bilder mithilfe von Deep-Learning-Algorithmen. Textbasierter Input kann in ein Pixelraster umgewandelt werden; der Input wird interpretiert und visuell umgesetzt.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Trainingsdaten",
+                "body": "Fotos, Filme, Kunst, Illustrationen, Zeichnungen oder 3D-Modelle.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "GAN und VAE",
+                "body": "Generative Algorithmen erkennen Muster in Trainingsdaten und erzeugen neue Bilder mit ähnlichen Mustern.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Supervised Learning",
+                "body": "Gelabelte Daten enthalten richtige Lösungen.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Reinforcement Learning",
+                "body": "Feedback setzt bzw. verändert Gewichtungen und verbessert Verhalten.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welche Modelle werden in den Folien zur Image Generation genannt?",
+            "opts": [
+              "ERP und CRM",
+              "GAN und VAE",
+              "HTTP und URL",
+              "CSV und SQL"
+            ],
+            "correct": 1,
+            "exp": "GAN und Variational Autoencoder werden als generative Deep-Learning-Algorithmen genannt."
+          }
+        ]
+      },
+      {
+        "id": "l_ki_4",
+        "title": "LLMs und Übung 2",
+        "icon": "💬",
+        "topic": "ki2",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "💬",
+            "title": "LLMs in Studium und KMU",
+            "sub": "Chancen, Risiken und saubere Dokumentation."
+          },
+          {
+            "type": "prose",
+            "html": "Übungsblatt 2 fordert zwei Best-Practice-Dokumente zur Nutzung von Large Language Models: einmal für wissenschaftliches Arbeiten/Studium und einmal für kleine oder mittelständische Unternehmen."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Chancen im Studium",
+                "body": "Ideenfindung, Strukturierung, Erklärungen, Sprachverbesserung – aber nicht unkritisch übernehmen.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Risiken im Studium",
+                "body": "Halluzinationen, fehlende Quellen, Plagiatsrisiken, unklare Eigenleistung.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Chancen im KMU",
+                "body": "Workflow-Unterstützung, Textentwürfe, Kundensupport, Wissensmanagement.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Risiken im KMU",
+                "body": "Datenschutz, Geschäftsgeheimnisse, Fehler, Bias und fehlende Nachvollziehbarkeit.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Pflicht in der Übung",
+                "body": "Prompts als Quellen angeben, Unstimmigkeiten dokumentieren und Quellen des Outputs prüfen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was verlangt Übungsblatt 2 bei KI-unterstützten Dokumenten?",
+            "opts": [
+              "Keine Quellen nennen",
+              "Prompts als Quellen hinzufügen, Unstimmigkeiten dokumentieren und Quellen prüfen",
+              "Nur Bilder erzeugen",
+              "Nur eine Seite mit HTML erstellen"
+            ],
+            "correct": 1,
+            "exp": "Die Übung betont Transparenz und Prüfung von LLM-Ausgaben."
+          },
+          {
+            "type": "complete",
+            "title": "✅ KI abgeschlossen",
+            "sub": "KI-Grundlagen, generative KI, LLM-Chancen und Risiken wiederholt."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m_os",
+    "title": "Betriebssysteme, Cloud & Kommunikation",
+    "color": "#f87171",
+    "icon": "☁️",
+    "desc": "OS-Begriff, Aufgaben, Cloud-Dienste und Kommunikationssoftware",
+    "lessons": [
+      {
+        "id": "l_os_1",
+        "title": "Warum Betriebssysteme?",
+        "icon": "⚙️",
+        "topic": "os_cloud",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "⚙️",
+            "title": "Warum Betriebssysteme und Clouds?",
+            "sub": "Ohne Betriebssystem ist ein Computer nicht einsetzbar."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Betriebssystem",
+            "html": "<p>Ein Betriebssystem ist eine Sammlung von Programmen, die Hardware benutzerfreundlich, effizient und sicher steuert und kontrolliert.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Softwarebasis",
+                "body": "Die Wahl des Betriebssystems bestimmt nutzbare Software und beeinflusst Produktivität.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Speicherverwaltung",
+                "body": "Das OS verwaltet Speicher und integriert externe Dienste wie Cloud-Systeme.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Sicherheit",
+                "body": "Das OS schützt vor externen Bedrohungen und Zugriffen.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Virtuelle Maschine",
+                "body": "Benutzerfreundlichkeit entsteht, weil komplexe Hardwaredetails abgeschirmt werden.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was ist ein Betriebssystem laut Folien?",
+            "opts": [
+              "Eine einzelne App",
+              "Eine Sammlung von Programmen zur benutzerfreundlichen, effizienten und sicheren Steuerung der Hardware",
+              "Nur ein Cloudspeicher",
+              "Nur ein Textprogramm"
+            ],
+            "correct": 1,
+            "exp": "Das ist die Definition aus den Folien."
+          }
+        ]
+      },
+      {
+        "id": "l_os_2",
+        "title": "Betriebsmittel & Aufgaben",
+        "icon": "🧰",
+        "topic": "os_cloud",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🧰",
+            "title": "Aufgaben des Betriebssystems",
+            "sub": "Betriebsmittel verwalten, Nutzung ermöglichen, Sicherheit gewährleisten."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Prozesse",
+                "body": "Programme werden geladen, ausgeführt und koordiniert.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Speicher",
+                "body": "Arbeitsspeicher und externe Speicher werden verwaltet.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Dateisystem",
+                "body": "Daten werden organisiert, gespeichert und gefunden.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Ein-/Ausgabe",
+                "body": "Geräte und Schnittstellen werden angesprochen.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Benutzer und Rechte",
+                "body": "Zugriffsschutz schützt System und Daten.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welche Aufgabe gehört typischerweise zum Betriebssystem?",
+            "opts": [
+              "Preisstrategie festlegen",
+              "Speicher, Prozesse, Dateien und Geräte verwalten",
+              "Bilanz erstellen",
+              "Produktdesign malen"
+            ],
+            "correct": 1,
+            "exp": "Betriebssysteme verwalten zentrale technische Ressourcen."
+          }
+        ]
+      },
+      {
+        "id": "l_cloud_1",
+        "title": "Cloud-Systeme",
+        "icon": "☁️",
+        "topic": "os_cloud",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "☁️",
+            "title": "Cloud-Systeme",
+            "sub": "Externe Dienste werden über Netze und Rechenzentren bereitgestellt."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Cloud",
+            "html": "<p>Cloud-Systeme stellen Speicher-, Rechen- oder Softwaredienste über das Netzwerk bereit. Für Nutzer wirkt die Leistung wie ein externer, flexibel nutzbarer Dienst.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Integration",
+                "body": "Das Betriebssystem ist häufig Integrationspunkt für Cloud-Dienste.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Vorteile",
+                "body": "Skalierbarkeit, ortsunabhängiger Zugriff, gemeinsame Bearbeitung und Ausfallsicherheit.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Risiken",
+                "body": "Abhängigkeit vom Anbieter, Datenschutz, Netzzugang und Kostenkontrolle.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Kommunikationssoftware",
+                "body": "E-Mail, Chat, Videokonferenzen und Kollaborationstools unterstützen verteilte Arbeit.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welches Risiko kann Cloud-Nutzung haben?",
+            "opts": [
+              "Keine Daten mehr",
+              "Abhängigkeit vom Anbieter und Datenschutzfragen",
+              "Unmöglichkeit gemeinsamer Arbeit",
+              "Keine Skalierbarkeit"
+            ],
+            "correct": 1,
+            "exp": "Cloud-Dienste bieten Vorteile, bringen aber Abhängigkeiten und Datenschutzfragen mit sich."
+          },
+          {
+            "type": "complete",
+            "title": "✅ Betriebssysteme & Cloud abgeschlossen",
+            "sub": "OS-Aufgaben, Cloud-Prinzipien und Kommunikation verstanden."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m_office",
+    "title": "Office, Text, Grafik & Multimedia",
+    "color": "#a78bfa",
+    "icon": "📝",
+    "desc": "Textverarbeitung, Grafik, Video, Animation, Präsentation und Übung 3",
+    "lessons": [
+      {
+        "id": "l_text_1",
+        "title": "Text- und Grafiksoftware",
+        "icon": "📝",
+        "topic": "office_text",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "📝",
+            "title": "Text- & Grafiksoftware",
+            "sub": "Produktion multimedialer Inhalte ist eine Schlüsselqualifikation."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Textverarbeitung",
+            "html": "<p>Ein professionelles Textverarbeitungssystem ist Software zur Bearbeitung großer Texte. Beispiele sind Word, OpenOffice Writer, Google Docs und LaTeX.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Warum wichtig?",
+                "body": "Texte, Bilder und Videos sind allgegenwärtig; neben Konsum zählt auch Produktion.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Wissenschaftliche Texte",
+                "body": "Studierende müssen wissenschaftliche Texte, Illustrationen und Präsentationen erstellen können.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Werkzeugwahl",
+                "body": "Das beste System ist das, das der Anwender beherrscht.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welche Aussage zu Textverarbeitungssystemen steht sinngemäß in den Folien?",
+            "opts": [
+              "Nur Word ist leistungsfähig",
+              "Große Systeme sind ähnlich leistungsfähig und unterscheiden sich vor allem in Bedienung und Benutzerführung",
+              "LaTeX ist nur Grafiksoftware",
+              "Google Docs kann keine Texte bearbeiten"
+            ],
+            "correct": 1,
+            "exp": "Die Folien betonen ähnliche Leistungsfähigkeit und unterschiedliche Bedienung."
+          }
+        ]
+      },
+      {
+        "id": "l_text_2",
+        "title": "Wissenschaftliches Dokument & Übung 3",
+        "icon": "📄",
+        "topic": "office_text",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "📄",
+            "title": "Übung 3: Textverarbeitung",
+            "sub": "Ein Leitfaden für wissenschaftliche Arbeiten soll professionell strukturiert werden."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Deckblatt",
+                "body": "Titel in geeigneter Schriftgröße zentriert.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Verzeichnisse",
+                "body": "Inhaltsverzeichnis und Abbildungsverzeichnis erstellen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Seitennummerierung",
+                "body": "Römische und arabische Nummerierung unterscheiden.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Abbildungen",
+                "body": "Nummerierung, Untertitel und Rahmen einfügen.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Fußnoten und Verweise",
+                "body": "Fußnoten, Quellenangaben, Abschnitts- und Abbildungsverweise einbauen.",
+                "done": false
+              },
+              {
+                "num": "6",
+                "title": "Literaturverzeichnis",
+                "body": "Geeignet formatieren; Aufzählungen und Seitenumbrüche korrekt einsetzen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was gehört zu Übungsblatt 3?",
+            "opts": [
+              "Primärschlüssel definieren",
+              "Deckblatt, Inhaltsverzeichnis, Abbildungsverzeichnis, Fußnoten, Verweise und Literaturverzeichnis erstellen",
+              "Bilder mit GANs erzeugen",
+              "Server konfigurieren"
+            ],
+            "correct": 1,
+            "exp": "Übung 3 trainiert professionelle Textverarbeitung."
+          }
+        ]
+      },
+      {
+        "id": "l_graphic_1",
+        "title": "Grafiksoftware und Dateiformate",
+        "icon": "🎨",
+        "topic": "office_text",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🎨",
+            "title": "Grafiksoftware",
+            "sub": "Grafiken unterstützen Dokumente, Präsentationen und Kommunikation."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Rastergrafik",
+                "body": "Bilder aus Pixeln; gut für Fotos, abhängig von Auflösung.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Vektorgrafik",
+                "body": "Objekte aus Linien/Formen; skalierbar und geeignet für Logos/Diagramme.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Bildbearbeitung",
+                "body": "Zuschneiden, Retusche, Farb- und Kontrastanpassung.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Grafik in Dokumenten",
+                "body": "Bilder sollten passend eingebunden, beschriftet und referenziert werden.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was ist ein Vorteil von Vektorgrafiken?",
+            "opts": [
+              "Sie bestehen immer aus Fotos",
+              "Sie sind ohne Qualitätsverlust skalierbar",
+              "Sie können nie gedruckt werden",
+              "Sie funktionieren nur in Datenbanken"
+            ],
+            "correct": 1,
+            "exp": "Vektorgrafiken beschreiben Formen mathematisch und sind daher skalierbar."
+          }
+        ]
+      },
+      {
+        "id": "l_video_1",
+        "title": "Video, Animation und Präsentation",
+        "icon": "🎬",
+        "topic": "multimedia",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🎬",
+            "title": "Video, Animation und Präsentation",
+            "sub": "Medienwerkzeuge unterstützen Gestaltung und Vorträge."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Videoschnittprogramme",
+            "html": "<p>Software zur digitalen Bearbeitung, Veränderung und zum Schneiden von Audio- und Videomaterial. Sie bietet Spuren für Bild, Ton, Musik und Untertitel.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Videoschnitt",
+                "body": "Schneiden, schärfen, farblich anpassen, Effekte und Übergänge nutzen.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Beispiele",
+                "body": "Adobe Premiere, Lightworks, Windows Movie Maker, DaVinci Resolve.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Animationsprogramme",
+                "body": "Erzeugen bewegter Bilder und Animationen.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Präsentationsprogramme",
+                "body": "Unterstützen Vorträge durch Folien, Visualisierungen und Struktur.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Wofür sind Präsentationsprogramme gedacht?",
+            "opts": [
+              "Nur Datenbankabfragen",
+              "Unterstützung von Vorträgen",
+              "Nur Serverbetrieb",
+              "Nur Videokompression"
+            ],
+            "correct": 1,
+            "exp": "Die Folien beschreiben Präsentationsprogramme als Unterstützung für Vorträge."
+          },
+          {
+            "type": "complete",
+            "title": "✅ Office & Multimedia abgeschlossen",
+            "sub": "Text, Grafik, wissenschaftliche Dokumente, Video und Präsentation wiederholt."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m_data",
+    "title": "Tabellenkalkulation & Datenbanken",
+    "color": "#34d399",
+    "icon": "📊",
+    "desc": "Modelle, Excel-Grundlagen, Diagramme, Übung 4 und Datenbankmodellierung",
+    "lessons": [
+      {
+        "id": "l_tab_1",
+        "title": "Warum Tabellenkalkulation und Datenbanken?",
+        "icon": "📊",
+        "topic": "spreadsheet",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "📊",
+            "title": "Tabellenkalkulation und Datenbanken",
+            "sub": "Betriebswirtschaftliche Zusammenhänge brauchen Speicherung und Analyse großer Datenmengen."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Rolle der Werkzeuge",
+            "html": "<p>Datenbanken speichern Daten und bilden die Basis vieler betriebswirtschaftlicher Systeme. Tabellenkalkulationen dienen dazu, Daten zu analysieren und aufzubereiten.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Anwendungsfelder",
+                "body": "Buchhaltung, Logistik und E-Commerce benötigen große Datenmengen.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Excel",
+                "body": "Microsoft Excel wird als sehr häufig eingesetzte Unternehmenssoftware hervorgehoben.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "EVA",
+                "body": "Tabellenkalkulationen arbeiten bei Modellrechnungen nach Eingabe, Verarbeitung und Ausgabe.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welche Rolle haben Datenbanken in betriebswirtschaftlichen Systemen?",
+            "opts": [
+              "Nur Diagramme zeichnen",
+              "Speicherung von Daten als Basis vieler Systeme",
+              "Nur Texte formatieren",
+              "Nur Videodateien schneiden"
+            ],
+            "correct": 1,
+            "exp": "Datenbanken speichern strukturierte Unternehmensdaten."
+          }
+        ]
+      },
+      {
+        "id": "l_tab_2",
+        "title": "Modelle und Modellbildung",
+        "icon": "🧮",
+        "topic": "spreadsheet",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🧮",
+            "title": "Modelle und Modellbildung",
+            "sub": "Modelle sind beschränkte Abbilder der Wirklichkeit."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Modell",
+            "html": "<p>Ein Modell bildet die Wirklichkeit vereinfacht ab und abstrahiert von der Realität, weil diese meist zu komplex ist.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Betriebswirtschaftliches Modell",
+                "body": "Vereinfachtes Abbild von Zusammenhängen innerhalb oder zwischen Unternehmen und Konsumenten.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Beschreibungsmodell",
+                "body": "Ordnet Sachverhalte und Beziehungen, z.B. Konten, Bilanz, GuV, Tagesumsatz.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Erklärungsmodell",
+                "body": "Enthält Gesetzmäßigkeiten und Hypothesen zur Erklärung beobachteter Sachverhalte.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Prognosemodell",
+                "body": "Formuliert Erklärungen in Voraussagen und berücksichtigt zukünftige Ereignisse.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Entscheidungsmodell",
+                "body": "Hilft, optimale Handlungsmöglichkeiten zu bestimmen, z.B. Optimierung oder Simulation.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was ist ein Modell?",
+            "opts": [
+              "Die Realität vollständig ohne Vereinfachung",
+              "Ein beschränktes, abstrahierendes Abbild der Wirklichkeit",
+              "Nur eine Excel-Datei",
+              "Nur ein Foto"
+            ],
+            "correct": 1,
+            "exp": "Modelle vereinfachen komplexe Realität."
+          }
+        ]
+      },
+      {
+        "id": "l_tab_3",
+        "title": "Tabellen, Zellen, Formeln und Diagramme",
+        "icon": "📈",
+        "topic": "spreadsheet",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "📈",
+            "title": "Tabellenkalkulation",
+            "sub": "Zellen, Formeln, Bezüge und Diagramme."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Zellen",
+                "body": "Tabellen bestehen aus Spalten und Zeilen; Kreuzpunkte heißen Zellen.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Adressen",
+                "body": "Zellen werden über Adressen wie A1 oder B11 angesprochen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Berechnungen",
+                "body": "Formeln verarbeiten Werte; Bezüge können relativ oder absolut sein.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "VBA",
+                "body": "Visual Basic for Applications erweitert Automatisierungsmöglichkeiten.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Diagramme",
+                "body": "Kreis-, Balken-, Flächen- und Liniendiagramme bereiten Daten grafisch auf.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Wie werden Zellen in Tabellenkalkulationen typischerweise angesprochen?",
+            "opts": [
+              "Über ihre Farbe",
+              "Über Adressen wie A1 oder B11",
+              "Nur über Namen von Personen",
+              "Nur über SQL"
+            ],
+            "correct": 1,
+            "exp": "Zelladressen kombinieren Spaltenbuchstaben und Zeilennummern."
+          }
+        ]
+      },
+      {
+        "id": "l_tab_4",
+        "title": "Übung 4: Umsatz- und Erlösrechnung",
+        "icon": "💶",
+        "topic": "spreadsheet",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "💶",
+            "title": "Übung 4",
+            "sub": "Umsatz- und Erlösrechnung für CONNECT-IT."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Kennzahlen",
+                "body": "Variable Gesamtkosten, Umsatz, Deckungsbeitrag, Fixkostenzuordnung, Gewinn und Summen berechnen.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Bezüge",
+                "body": "Absolute und relative Zellbezüge korrekt einsetzen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Formatierung",
+                "body": "Eurobeträge mit zwei Nachkommastellen formatieren.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Bedingte Formatierung",
+                "body": "Leere/Nullwerte gelb, negative Zahlen rot darstellen.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Diagramme",
+                "body": "Kreisdiagramm zum Umsatzanteil pro Produkt und weiteres Diagramm zu Kostenanteilen erstellen.",
+                "done": false
+              },
+              {
+                "num": "6",
+                "title": "Analyse",
+                "body": "Hinweise zu verlusterzeugenden Produkten ableiten.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was ist der Deckungsbeitrag in Übung 4?",
+            "opts": [
+              "Umsatz plus Fixkosten",
+              "Differenz aus Umsatz und variablen Gesamtkosten",
+              "Nur ein Diagrammtyp",
+              "Der Gesamtumsatz"
+            ],
+            "correct": 1,
+            "exp": "Der Deckungsbeitrag ergibt sich aus Umsatz minus variable Gesamtkosten."
+          }
+        ]
+      },
+      {
+        "id": "l_db_1",
+        "title": "Datenbanken: logische und technische Sicht",
+        "icon": "🗄️",
+        "topic": "datenbanken",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🗄️",
+            "title": "Was ist eine Datenbank?",
+            "sub": "Eine strukturierte Sammlung von Daten."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "Datenbank",
+            "html": "<p>Eine Datenbank ist eine strukturierte Sammlung von Daten; logisch kann man sie mit einem elektronischen Zettelkasten vergleichen.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "CRUD",
+                "body": "Create: Daten hinzufügen; Read: lesen; Update: ändern; Delete: löschen.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Verknüpfen",
+                "body": "Datensätze können miteinander verknüpft werden.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Technische Sicht",
+                "body": "Eine Datenbank ist ein integriertes Ganzes aus Tabellen, Indizes, Abfragen usw.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "DBMS",
+                "body": "Ein Datenbankmanagementsystem umfasst Programme zum Aufbau, zur Nutzung und Verwaltung von Datenbanken.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Wofür steht CRUD?",
+            "opts": [
+              "Create, Read, Update, Delete",
+              "Cloud, Router, URL, Database",
+              "Copy, Run, Upload, Download",
+              "Calculate, Report, Use, Draw"
+            ],
+            "correct": 0,
+            "exp": "CRUD bezeichnet Grundoperationen einer Datenbank."
+          }
+        ]
+      },
+      {
+        "id": "l_db_2",
+        "title": "Relationales Modell und Normalisierung",
+        "icon": "🔑",
+        "topic": "datenbanken",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🔑",
+            "title": "Relationale Datenbanken",
+            "sub": "Tabellen, Attribute, Datensätze und Beziehungen."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Tabelle",
+                "body": "Beschreibt eine Klasse gleichartiger Objekte, z.B. Personen.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Spalten/Attribute",
+                "body": "Definieren Eigenschaften der Objekte und haben feste Datentypen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Zeilen/Datensätze",
+                "body": "Speichern konkrete Ausprägungen, z.B. einzelne Personen.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Primärschlüssel",
+                "body": "Spalte oder Spaltenkombination ohne Redundanz zur eindeutigen Identifikation.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Beziehungen",
+                "body": "Tabellen werden über gemeinsame Schlüsselfelder verbunden.",
+                "done": false
+              },
+              {
+                "num": "6",
+                "title": "Normalisierung",
+                "body": "Daten werden auf Tabellen verteilt, um Redundanzen zu vermeiden und Auswertungen zu ermöglichen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Warum normalisiert man Datenbanken?",
+            "opts": [
+              "Um mehr Redundanzen zu erzeugen",
+              "Um Daten sinnvoll auf Tabellen zu verteilen und Redundanzen zu vermeiden",
+              "Um Tabellen zu löschen",
+              "Um Videos einzubetten"
+            ],
+            "correct": 1,
+            "exp": "Normalisierung verbessert Struktur und Auswertbarkeit."
+          },
+          {
+            "type": "complete",
+            "title": "✅ Tabellenkalkulation & Datenbanken abgeschlossen",
+            "sub": "Modelle, Excel, Übung 4 und Datenbankgrundlagen wiederholt."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m_dv",
+    "title": "Betriebswirtschaftliche DV-Systeme",
+    "color": "#e879f9",
+    "icon": "🏢",
+    "desc": "Systemanalyse, reale/formale Systeme, Unternehmen als Systeme und DV-Systeme",
+    "lessons": [
+      {
+        "id": "l_sys_1",
+        "title": "Systemanalyse und Systemgestaltung",
+        "icon": "🏢",
+        "topic": "dv_systeme",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🏢",
+            "title": "Systeme und Systemanalyse",
+            "sub": "Unternehmen und Informationssysteme lassen sich als Systeme betrachten."
+          },
+          {
+            "type": "callout",
+            "kind": "def",
+            "label": "System",
+            "html": "<p>Ein System ist eine abgegrenzte Menge von Komponenten, die untereinander in festgelegten Beziehungen stehen, als Ganzes eine Einheit bilden und von ihrer Umwelt abgrenzbar sind.</p>"
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Emergenz",
+                "body": "Das Ganze ist mehr als die Summe der Teile.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Außensicht/Wirkungsanalyse",
+                "body": "Interaktion des Systems mit seiner Umwelt.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Innensicht/Strukturanalyse",
+                "body": "Komponenten und Beziehungen im System.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Abstraktion",
+                "body": "Hierarchische Zerlegung komplexer Systeme in Subsysteme.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was bedeutet System-Emergenz?",
+            "opts": [
+              "Das System hat keine Komponenten",
+              "Das Ganze ist mehr als die Summe der Teile",
+              "Nur die Umwelt zählt",
+              "Systeme sind immer technisch"
+            ],
+            "correct": 1,
+            "exp": "Emergenz beschreibt zusätzliche Eigenschaften des Gesamtsystems."
+          }
+        ]
+      },
+      {
+        "id": "l_sys_2",
+        "title": "Reale und formale Systeme",
+        "icon": "📐",
+        "topic": "dv_systeme",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "📐",
+            "title": "Reale und formale Systeme",
+            "sub": "Materielle Ausschnitte der Welt und abstrakte Modelle."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Reales System",
+                "body": "Teilausschnitt der realen Welt; Komponenten sind materiell; Beziehungen tauschen Materie, Energie oder Information aus.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Formales System",
+                "body": "Aufgebaut aus abstrakten mathematischen Begriffen oder Algorithmen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Modellfunktion",
+                "body": "Formale Systeme dienen häufig als Modell realer Systeme.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Zweck",
+                "body": "Sie helfen, komplexe Probleme zu lösen oder Systeme zu entwerfen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was ist ein formales System?",
+            "opts": [
+              "Immer eine Maschine aus Metall",
+              "Ein abstraktes Modell aus mathematischen Begriffen oder Algorithmen",
+              "Nur ein Lager",
+              "Nur ein Büroprozess"
+            ],
+            "correct": 1,
+            "exp": "Formale Systeme modellieren reale Systeme abstrakt."
+          }
+        ]
+      },
+      {
+        "id": "l_sys_3",
+        "title": "Unternehmen als Systeme",
+        "icon": "🔄",
+        "topic": "dv_systeme",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🔄",
+            "title": "Unternehmen als offene Systeme",
+            "sub": "Unternehmen sind von einer Umwelt abgegrenzt und interagieren mit ihr."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Input",
+                "body": "Ressourcen, Informationen, Güter oder Anforderungen gelangen aus der Umwelt in das Unternehmen.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Transformation",
+                "body": "Produktion, Handel oder Dienstleistung verwandeln Input in Output.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Output",
+                "body": "Produkte, Waren, Dienstleistungen oder Informationen gehen an Absatzmärkte und Umwelt.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Information",
+                "body": "Informationsflüsse verbinden Komponenten und Umwelt.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Subsysteme",
+                "body": "Beschaffung, Produktion, Absatz, Verwaltung und IT lassen sich als Teilsysteme betrachten.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welche Sicht beschreibt Komponenten und Beziehungen innerhalb eines Systems?",
+            "opts": [
+              "Außensicht",
+              "Innensicht bzw. Strukturanalyse",
+              "Wetterbericht",
+              "Bilanzanalyse"
+            ],
+            "correct": 1,
+            "exp": "Die Innensicht analysiert Aufbau und Beziehungen des Systems."
+          }
+        ]
+      },
+      {
+        "id": "l_dv_1",
+        "title": "Betriebswirtschaftliche DV-Systeme",
+        "icon": "🧾",
+        "topic": "dv_systeme",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🧾",
+            "title": "Betriebswirtschaftliche DV-Systeme",
+            "sub": "Informationssysteme unterstützen betriebliche Aufgaben."
+          },
+          {
+            "type": "prose",
+            "html": "Betriebswirtschaftliche DV-Systeme bilden Datenstrukturen, Masken, Reports und Prozesse ab. Sie unterstützen betriebliche Leistungserstellung, Verwaltung, Auswertung und Kommunikation."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Datenstrukturen",
+                "body": "Welche Objekte und Attribute werden gespeichert?",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Masken und Reports",
+                "body": "Wie werden Daten eingegeben und ausgegeben?",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Prozesse",
+                "body": "Welche Arbeitsabläufe werden abgebildet?",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Corporate Identity",
+                "body": "Einheitliches Auftreten und Gestaltungsvorgaben können berücksichtigt werden.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Länderspezifische Einstellungen",
+                "body": "Sprache, Währung, Steuern oder rechtliche Anforderungen werden angepasst.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was kann bei betriebswirtschaftlichen DV-Systemen konfiguriert werden?",
+            "opts": [
+              "Nur Bildschirmhelligkeit",
+              "Datenstrukturen, Masken, Reports und betriebliche Prozesse",
+              "Nur Videoschnittspuren",
+              "Nur Primärschlüssel ohne Prozesse"
+            ],
+            "correct": 1,
+            "exp": "Die Folien nennen genau diese Aspekte."
+          },
+          {
+            "type": "complete",
+            "title": "✅ DV-Systeme abgeschlossen",
+            "sub": "Systemdenken und betriebswirtschaftliche DV-Systeme verstanden."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m_ops",
+    "title": "Operative und Führungssysteme",
+    "color": "#06b6d4",
+    "icon": "📌",
+    "desc": "Operative Systeme, Führungssysteme, Querschnittssysteme und Beispiel Handelsprozess",
+    "lessons": [
+      {
+        "id": "l_op_1",
+        "title": "Betriebliche Systeme im Überblick",
+        "icon": "📌",
+        "topic": "operative",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "📌",
+            "title": "Betriebliche Systeme im Überblick",
+            "sub": "Operative Systeme, Führungssysteme und Querschnittssysteme."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Operative Systeme",
+                "body": "Administrations- und Dispositionssysteme; klassische Abrechnung von Massendaten, Finanzbuchhaltung, Monats-/Jahresabschluss, Lohn- und Gehaltsabrechnung, Bestandsverwaltung.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Führungssysteme",
+                "body": "Aggregieren Daten aus operativen Systemen und liefern Führungsinformationen für Planung und Entscheidung.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Querschnittssysteme",
+                "body": "Verbinden verschiedene Dispositionssysteme; Beispiele sind Büro-, Multimedia- oder Workflow-Systeme, oft in Intranets/Extranets.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was leisten Führungssysteme?",
+            "opts": [
+              "Sie erfassen nur Lohnabrechnung",
+              "Sie aggregieren operative Daten und unterstützen Planung und Entscheidung",
+              "Sie schneiden Videos",
+              "Sie löschen Bestände"
+            ],
+            "correct": 1,
+            "exp": "Führungssysteme liefern verdichtete Informationen für Managemententscheidungen."
+          }
+        ]
+      },
+      {
+        "id": "l_op_2",
+        "title": "Struktur betrieblicher Anwendungssysteme",
+        "icon": "🌳",
+        "topic": "operative",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🌳",
+            "title": "Struktur betrieblicher Systeme",
+            "sub": "Anwendungssysteme lassen sich hierarchisch ordnen."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Anwendungssysteme",
+                "body": "Oberbegriff für betriebliche Systeme.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Operative Systeme",
+                "body": "Branchenneutral oder branchenspezifisch, z.B. Handel.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Führungssysteme",
+                "body": "Führungsinformationssysteme und Planungssysteme.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Querschnittssysteme",
+                "body": "Bürosysteme sowie Intranet/Extranet.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welche Gruppe gehört zu den Querschnittssystemen?",
+            "opts": [
+              "Nur Handelssysteme",
+              "Bürosysteme und Intranet/Extranet",
+              "Nur Führungsinformationssysteme",
+              "Nur Lagerbuchhaltung"
+            ],
+            "correct": 1,
+            "exp": "Die Folien ordnen Bürosysteme und Intranet/Extranet den Querschnittssystemen zu."
+          }
+        ]
+      },
+      {
+        "id": "l_op_3",
+        "title": "Beispiel: Handelsprozess",
+        "icon": "🛒",
+        "topic": "operative",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "🛒",
+            "title": "Beispiel Handelsprozess",
+            "sub": "Vom Angebot bis zur Finanzbuchhaltung."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Kunde finden/anlegen",
+                "body": "Kundendaten werden erfasst oder ausgewählt.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Verfügbarkeit prüfen",
+                "body": "Warenbestände werden geprüft.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Konditionen festlegen",
+                "body": "Preise, Rabatte oder Lieferbedingungen werden definiert.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Angebot erstellen",
+                "body": "Angebot wird erstellt und versendet.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Kundenauftrag abwarten",
+                "body": "Auftragseingang wird verarbeitet.",
+                "done": false
+              },
+              {
+                "num": "6",
+                "title": "Rechnung und Einkauf",
+                "body": "Rechnung erstellen und gegebenenfalls Einkauf anstoßen.",
+                "done": false
+              },
+              {
+                "num": "7",
+                "title": "Zahlung prüfen",
+                "body": "Zahlungseingang kontrollieren.",
+                "done": false
+              },
+              {
+                "num": "8",
+                "title": "Lieferung durchführen",
+                "body": "Ware wird ausgeliefert.",
+                "done": false
+              },
+              {
+                "num": "9",
+                "title": "Finanzbuchhaltung",
+                "body": "Buchungen durchführen oder Daten weitergeben.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Welcher Schritt gehört zum dargestellten Handelsprozess?",
+            "opts": [
+              "Videoübergänge setzen",
+              "Verfügbarkeit der Waren prüfen",
+              "Primärschlüssel normalisieren",
+              "Bildpixel erzeugen"
+            ],
+            "correct": 1,
+            "exp": "Die Warenverfügbarkeit wird vor Angebot/Auftragsabwicklung geprüft."
+          }
+        ]
+      },
+      {
+        "id": "l_op_4",
+        "title": "Büro- und Workflow-Systeme heute",
+        "icon": "📨",
+        "topic": "operative",
+        "steps": [
+          {
+            "type": "title",
+            "icon": "📨",
+            "title": "Büro- und Workflow-Systeme",
+            "sub": "Früher, heute und zukünftig mit KI."
+          },
+          {
+            "type": "reveal-steps",
+            "steps": [
+              {
+                "num": "1",
+                "title": "Post und E-Mail",
+                "body": "Eingangspost und E-Mails bearbeiten.",
+                "done": false
+              },
+              {
+                "num": "2",
+                "title": "Dokumente",
+                "body": "Briefe, Berichte und Protokolle entwerfen, schreiben, korrigieren und verteilen.",
+                "done": false
+              },
+              {
+                "num": "3",
+                "title": "Akten/Dokumentenmanagement",
+                "body": "Dokumente bearbeiten, registrieren, ablegen, suchen, archivieren oder vernichten.",
+                "done": false
+              },
+              {
+                "num": "4",
+                "title": "Termine und Ressourcen",
+                "body": "Termine, Räume und Ressourcen planen, koordinieren und verwalten.",
+                "done": false
+              },
+              {
+                "num": "5",
+                "title": "Kontaktdaten",
+                "body": "Anschriften und Telefonnummern notieren und aktualisieren.",
+                "done": false
+              },
+              {
+                "num": "6",
+                "title": "KI-Perspektive",
+                "body": "KI kann künftig Routineaufgaben, Textentwürfe, Suche und Zusammenfassung unterstützen.",
+                "done": false
+              }
+            ]
+          },
+          {
+            "type": "mcq",
+            "q": "Was ist ein typisches Einsatzfeld von Bürosystemen?",
+            "opts": [
+              "Ausschließlich Maschinensteuerung",
+              "Dokumente, Termine, Ressourcen und Kommunikation verwalten",
+              "Nur Primärschlüssel setzen",
+              "Nur Bildgenerierung"
+            ],
+            "correct": 1,
+            "exp": "Bürosysteme unterstützen Bürokommunikation, Dokumente und Organisation."
+          },
+          {
+            "type": "complete",
+            "title": "✅ Operative & Führungssysteme abgeschlossen",
+            "sub": "Systemarten, Struktur und Handelsprozess sitzen."
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// ═══════════════════════════════════════════════
+// FLASHCARDS
+// ═══════════════════════════════════════════════
+const CARDS=[
+  {
+    "t": "wi_intro",
+    "q": "Was verbindet Wirtschaftsinformatik?",
+    "a": "Betriebswirtschaftliche Aufgaben mit Informatik, Technik und Informationssystemen."
+  },
+  {
+    "t": "wi_intro",
+    "q": "Warum sind Übungen relevant?",
+    "a": "Sie sind online, praxisorientiert und klausurrelevant."
+  },
+  {
+    "t": "tech",
+    "q": "Was bedeutet EVA?",
+    "a": "Eingabe, Verarbeitung, Ausgabe; ergänzt durch Speicherung."
+  },
+  {
+    "t": "tech",
+    "q": "Wofür stehen Rechenzentren?",
+    "a": "Mehrbenutzerbetrieb, Massendatenverarbeitung, rechenintensive Anwendungen und hohe Verfügbarkeit."
+  },
+  {
+    "t": "tech",
+    "q": "Was ist die Von-Neumann-Idee?",
+    "a": "Programme und Daten liegen im Speicher; Befehle werden grundsätzlich sequenziell ausgeführt."
+  },
+  {
+    "t": "netze1",
+    "q": "Warum ist Datenkommunikation zentral?",
+    "a": "Weil Sprache, Text, Bild und Video digital als Daten abbildbar sind."
+  },
+  {
+    "t": "netze1",
+    "q": "Welche OSI-Schicht nutzt IP?",
+    "a": "Der Network Layer."
+  },
+  {
+    "t": "web",
+    "q": "Welche drei Standards prägen das WWW?",
+    "a": "HTML als Dokumentformat, HTTP als Übertragungsprotokoll, URL als Adressierung."
+  },
+  {
+    "t": "web",
+    "q": "Was macht ein Webserver?",
+    "a": "Er liefert angeforderte Dokumente an Clients aus."
+  },
+  {
+    "t": "html_css",
+    "q": "Was ist HTML?",
+    "a": "Eine Auszeichnungssprache zur Strukturierung von Hypertext-Dokumenten."
+  },
+  {
+    "t": "html_css",
+    "q": "Was fordert Übung 1?",
+    "a": "Eine CONNECT-IT-Webseite mit Impressumslink, DIV-Struktur und CSS-Gestaltung."
+  },
+  {
+    "t": "ki1",
+    "q": "Was unterscheidet KI vom klassischen Programmieren?",
+    "a": "KI-Systeme lernen aus Daten und Feedback statt nur feste Regeln auszuführen."
+  },
+  {
+    "t": "ki1",
+    "q": "Was ist NLP?",
+    "a": "Natural Language Processing: Verarbeitung natürlicher Sprache und Texte."
+  },
+  {
+    "t": "ki2",
+    "q": "Was ist Image Generation?",
+    "a": "Erzeugung neuer Bilder mit Deep-Learning-Modellen aus z.B. Textinput."
+  },
+  {
+    "t": "ki2",
+    "q": "Welche Pflicht gibt es bei LLM-Dokumenten in Übung 2?",
+    "a": "Prompts als Quellen angeben, Unstimmigkeiten dokumentieren und Quellen prüfen."
+  },
+  {
+    "t": "os_cloud",
+    "q": "Was ist ein Betriebssystem?",
+    "a": "Programme zur benutzerfreundlichen, effizienten und sicheren Steuerung der Hardware."
+  },
+  {
+    "t": "os_cloud",
+    "q": "Was ist ein Cloud-Risiko?",
+    "a": "Anbieterabhängigkeit, Datenschutz, Netzzugang und Kostenkontrolle."
+  },
+  {
+    "t": "office_text",
+    "q": "Was ist ein Textverarbeitungssystem?",
+    "a": "Software zur Bearbeitung großer Texte, z.B. Word, Writer, Docs oder LaTeX."
+  },
+  {
+    "t": "office_text",
+    "q": "Was gehört zu Übung 3?",
+    "a": "Deckblatt, Verzeichnisse, Seitenzahlen, Abbildungen, Fußnoten, Verweise und Literaturverzeichnis."
+  },
+  {
+    "t": "multimedia",
+    "q": "Was bieten Videoschnittprogramme?",
+    "a": "Spuren für Bild, Ton, Musik, Untertitel sowie Schnitt, Effekte und Übergänge."
+  },
+  {
+    "t": "multimedia",
+    "q": "Wozu dienen Präsentationsprogramme?",
+    "a": "Zur Unterstützung von Vorträgen."
+  },
+  {
+    "t": "spreadsheet",
+    "q": "Was ist ein Modell?",
+    "a": "Ein beschränktes, abstrahierendes Abbild der Wirklichkeit."
+  },
+  {
+    "t": "spreadsheet",
+    "q": "Was ist der Deckungsbeitrag?",
+    "a": "Umsatz minus variable Gesamtkosten."
+  },
+  {
+    "t": "spreadsheet",
+    "q": "Wie werden Zellen adressiert?",
+    "a": "Mit Adressen wie A1 oder B11."
+  },
+  {
+    "t": "datenbanken",
+    "q": "Was ist CRUD?",
+    "a": "Create, Read, Update, Delete: Grundoperationen einer Datenbank."
+  },
+  {
+    "t": "datenbanken",
+    "q": "Was ist ein Primärschlüssel?",
+    "a": "Ein eindeutiges Attribut oder eine Attributkombination ohne Redundanzen."
+  },
+  {
+    "t": "dv_systeme",
+    "q": "Was ist ein System?",
+    "a": "Eine abgegrenzte Menge von Komponenten mit Beziehungen, die als Ganzes eine Einheit bildet."
+  },
+  {
+    "t": "dv_systeme",
+    "q": "Was ist ein formales System?",
+    "a": "Ein abstraktes Modell aus mathematischen Begriffen oder Algorithmen."
+  },
+  {
+    "t": "operative",
+    "q": "Was sind operative Systeme?",
+    "a": "Administrations- und Dispositionssysteme für Massendaten, Bestände und Abrechnung."
+  },
+  {
+    "t": "operative",
+    "q": "Was leisten Führungssysteme?",
+    "a": "Sie aggregieren operative Daten und unterstützen Planung und Entscheidung."
+  },
+  {
+    "t": "operative",
+    "q": "Was sind Querschnittssysteme?",
+    "a": "Systeme, die Dispositionssysteme verbinden, z.B. Büro-, Multimedia- oder Workflow-Systeme."
+  }
+];
+
+// ═══════════════════════════════════════════════
+// QUIZ
+// ═══════════════════════════════════════════════
+const QUIZ=[
+  {
+    "t": "wi_intro",
+    "q": "Welche Disziplinen verbindet WI besonders?",
+    "o": [
+      "Sport und Kunst",
+      "BWL und Informatik",
+      "Medizin und Recht",
+      "Chemie und Musik"
+    ],
+    "c": 1,
+    "e": "WI liegt an der Schnittstelle von BWL und Informatik."
+  },
+  {
+    "t": "tech",
+    "q": "Was beschreibt Computerarchitektur?",
+    "o": [
+      "Nur den Preis",
+      "Zusammenbau, Zusammenspiel und Arbeitsweise der Rechnerkomponenten",
+      "Nur die Bildschirmgröße",
+      "Nur die Marke"
+    ],
+    "c": 1,
+    "e": "Architektur beschreibt Prinzipien und Zusammenspiel der Komponenten."
+  },
+  {
+    "t": "tech",
+    "q": "Was ist flüchtiger Speicher?",
+    "o": [
+      "Speicher, der beim Ausschalten seine Inhalte verliert",
+      "Eine DVD",
+      "Ein gedrucktes Dokument",
+      "Ein Serverraum"
+    ],
+    "c": 0,
+    "e": "Arbeitsspeicher ist typischerweise flüchtig."
+  },
+  {
+    "t": "netze1",
+    "q": "Welche Schicht überträgt Bits über Kabel/Funk/Lichtleiter?",
+    "o": [
+      "Application",
+      "Physical",
+      "Presentation",
+      "Session"
+    ],
+    "c": 1,
+    "e": "Physical Layer beschreibt die Bitübertragung über Medien."
+  },
+  {
+    "t": "web",
+    "q": "Wann ging die erste WWW-Seite online?",
+    "o": [
+      "1971",
+      "1991",
+      "2005",
+      "2019"
+    ],
+    "c": 1,
+    "e": "Die Folien nennen August 1991."
+  },
+  {
+    "t": "html_css",
+    "q": "Wofür nutzt man CSS?",
+    "o": [
+      "Struktur des Dokuments",
+      "Gestaltung und Layout",
+      "Datenbankabfragen",
+      "Betriebssystemverwaltung"
+    ],
+    "c": 1,
+    "e": "CSS beschreibt Darstellung und Layout."
+  },
+  {
+    "t": "ki1",
+    "q": "Was ist Machine Learning?",
+    "o": [
+      "Manuelles Schreiben aller Antworten",
+      "Lernen von Mustern aus Daten",
+      "Ein Webprotokoll",
+      "Eine Tabellenadresse"
+    ],
+    "c": 1,
+    "e": "Machine Learning lernt aus Daten."
+  },
+  {
+    "t": "ki2",
+    "q": "Was ist ein Risiko von LLMs?",
+    "o": [
+      "Sie können nie Texte erzeugen",
+      "Halluzinationen, Datenschutzprobleme und fehlende Quellen",
+      "Sie funktionieren nur offline",
+      "Sie brauchen keine Prüfung"
+    ],
+    "c": 1,
+    "e": "LLM-Ausgaben müssen geprüft werden."
+  },
+  {
+    "t": "os_cloud",
+    "q": "Warum schützt ein Betriebssystem?",
+    "o": [
+      "Es verhindert jeden Stromverbrauch",
+      "Es kontrolliert Zugriffe und schützt vor Bedrohungen",
+      "Es ersetzt Passwörter vollständig",
+      "Es ist nur ein Monitor"
+    ],
+    "c": 1,
+    "e": "Sicherheit und Zugriffsschutz sind OS-Aufgaben."
+  },
+  {
+    "t": "office_text",
+    "q": "Welche Aussage zur Werkzeugwahl gilt?",
+    "o": [
+      "Immer nur ein Tool ist richtig",
+      "Das beste System ist das, das der Anwender beherrscht",
+      "Textprogramme sind irrelevant",
+      "LaTeX ist ein Videoschnittprogramm"
+    ],
+    "c": 1,
+    "e": "So formulieren es die Folien sinngemäß."
+  },
+  {
+    "t": "multimedia",
+    "q": "Welche Software gehört zu Videoschnitt?",
+    "o": [
+      "DaVinci Resolve",
+      "MySQL",
+      "Router",
+      "HTTP"
+    ],
+    "c": 0,
+    "e": "DaVinci Resolve wird als Beispiel genannt."
+  },
+  {
+    "t": "spreadsheet",
+    "q": "Was ist eine Zelle?",
+    "o": [
+      "Ein Kreuzpunkt aus Zeile und Spalte",
+      "Ein Webserver",
+      "Ein Primärschlüssel",
+      "Eine OSI-Schicht"
+    ],
+    "c": 0,
+    "e": "Tabellen bestehen aus Zeilen und Spalten; Kreuzpunkte heißen Zellen."
+  },
+  {
+    "t": "spreadsheet",
+    "q": "Was verlangt die bedingte Formatierung in Übung 4?",
+    "o": [
+      "Alles blau",
+      "Leere/Nullwerte gelb, negative Zahlen rot",
+      "Nur Überschriften fett",
+      "Keine Formatierung"
+    ],
+    "c": 1,
+    "e": "Diese Farben sind in Übung 4 gefordert."
+  },
+  {
+    "t": "datenbanken",
+    "q": "Was macht ein DBMS?",
+    "o": [
+      "Es schneidet Videos",
+      "Es ermöglicht Aufbau, Nutzung und Verwaltung von Datenbanken",
+      "Es ist eine Präsentationsfolie",
+      "Es ist ein Betriebssystemkern"
+    ],
+    "c": 1,
+    "e": "DBMS steht für Datenbankmanagementsystem."
+  },
+  {
+    "t": "datenbanken",
+    "q": "Wie entstehen Beziehungen im relationalen Modell?",
+    "o": [
+      "Über gemeinsame Schlüsselfelder",
+      "Über Farben",
+      "Über Foliennummern",
+      "Über Videos"
+    ],
+    "c": 0,
+    "e": "Relationen werden über Schlüsselfelder gebildet."
+  },
+  {
+    "t": "dv_systeme",
+    "q": "Was betrachtet die Außensicht?",
+    "o": [
+      "Nur interne Komponenten",
+      "Interaktion des Systems mit der Umwelt",
+      "Nur Tabellenzellen",
+      "Nur Texte"
+    ],
+    "c": 1,
+    "e": "Außensicht entspricht Wirkungsanalyse."
+  },
+  {
+    "t": "operative",
+    "q": "Was ist ein Beispiel für operative Systeme?",
+    "o": [
+      "Lohn- und Gehaltsabrechnung",
+      "Image Generation",
+      "Vektorgrafik",
+      "OSI Presentation Layer"
+    ],
+    "c": 0,
+    "e": "Operative Systeme verarbeiten z.B. Abrechnungsmassendaten."
+  },
+  {
+    "t": "operative",
+    "q": "Welche Systeme liefern Führungsinformationen?",
+    "o": [
+      "Führungssysteme",
+      "Nur Browser",
+      "Nur Switches",
+      "Nur Textverarbeitung"
+    ],
+    "c": 0,
+    "e": "Führungssysteme aggregieren operative Daten."
+  }
+];
+
+// ═══════════════════════════════════════════════
+// SPACED REPETITION POOL
+// Questions from across all topics, drawn randomly
+// for end-of-lesson review
+// ═══════════════════════════════════════════════
+const SR_POOL=[
+  {
+    "q": "Welche Disziplinen verbindet WI besonders?",
+    "opts": [
+      "Sport und Kunst",
+      "BWL und Informatik",
+      "Medizin und Recht",
+      "Chemie und Musik"
+    ],
+    "correct": 1,
+    "exp": "WI liegt an der Schnittstelle von BWL und Informatik."
+  },
+  {
+    "q": "Was beschreibt Computerarchitektur?",
+    "opts": [
+      "Nur den Preis",
+      "Zusammenbau, Zusammenspiel und Arbeitsweise der Rechnerkomponenten",
+      "Nur die Bildschirmgröße",
+      "Nur die Marke"
+    ],
+    "correct": 1,
+    "exp": "Architektur beschreibt Prinzipien und Zusammenspiel der Komponenten."
+  },
+  {
+    "q": "Was ist flüchtiger Speicher?",
+    "opts": [
+      "Speicher, der beim Ausschalten seine Inhalte verliert",
+      "Eine DVD",
+      "Ein gedrucktes Dokument",
+      "Ein Serverraum"
+    ],
+    "correct": 0,
+    "exp": "Arbeitsspeicher ist typischerweise flüchtig."
+  },
+  {
+    "q": "Welche Schicht überträgt Bits über Kabel/Funk/Lichtleiter?",
+    "opts": [
+      "Application",
+      "Physical",
+      "Presentation",
+      "Session"
+    ],
+    "correct": 1,
+    "exp": "Physical Layer beschreibt die Bitübertragung über Medien."
+  },
+  {
+    "q": "Wann ging die erste WWW-Seite online?",
+    "opts": [
+      "1971",
+      "1991",
+      "2005",
+      "2019"
+    ],
+    "correct": 1,
+    "exp": "Die Folien nennen August 1991."
+  },
+  {
+    "q": "Wofür nutzt man CSS?",
+    "opts": [
+      "Struktur des Dokuments",
+      "Gestaltung und Layout",
+      "Datenbankabfragen",
+      "Betriebssystemverwaltung"
+    ],
+    "correct": 1,
+    "exp": "CSS beschreibt Darstellung und Layout."
+  },
+  {
+    "q": "Was ist Machine Learning?",
+    "opts": [
+      "Manuelles Schreiben aller Antworten",
+      "Lernen von Mustern aus Daten",
+      "Ein Webprotokoll",
+      "Eine Tabellenadresse"
+    ],
+    "correct": 1,
+    "exp": "Machine Learning lernt aus Daten."
+  },
+  {
+    "q": "Was ist ein Risiko von LLMs?",
+    "opts": [
+      "Sie können nie Texte erzeugen",
+      "Halluzinationen, Datenschutzprobleme und fehlende Quellen",
+      "Sie funktionieren nur offline",
+      "Sie brauchen keine Prüfung"
+    ],
+    "correct": 1,
+    "exp": "LLM-Ausgaben müssen geprüft werden."
+  },
+  {
+    "q": "Warum schützt ein Betriebssystem?",
+    "opts": [
+      "Es verhindert jeden Stromverbrauch",
+      "Es kontrolliert Zugriffe und schützt vor Bedrohungen",
+      "Es ersetzt Passwörter vollständig",
+      "Es ist nur ein Monitor"
+    ],
+    "correct": 1,
+    "exp": "Sicherheit und Zugriffsschutz sind OS-Aufgaben."
+  },
+  {
+    "q": "Welche Aussage zur Werkzeugwahl gilt?",
+    "opts": [
+      "Immer nur ein Tool ist richtig",
+      "Das beste System ist das, das der Anwender beherrscht",
+      "Textprogramme sind irrelevant",
+      "LaTeX ist ein Videoschnittprogramm"
+    ],
+    "correct": 1,
+    "exp": "So formulieren es die Folien sinngemäß."
+  },
+  {
+    "q": "Welche Software gehört zu Videoschnitt?",
+    "opts": [
+      "DaVinci Resolve",
+      "MySQL",
+      "Router",
+      "HTTP"
+    ],
+    "correct": 0,
+    "exp": "DaVinci Resolve wird als Beispiel genannt."
+  },
+  {
+    "q": "Was ist eine Zelle?",
+    "opts": [
+      "Ein Kreuzpunkt aus Zeile und Spalte",
+      "Ein Webserver",
+      "Ein Primärschlüssel",
+      "Eine OSI-Schicht"
+    ],
+    "correct": 0,
+    "exp": "Tabellen bestehen aus Zeilen und Spalten; Kreuzpunkte heißen Zellen."
+  },
+  {
+    "q": "Was verlangt die bedingte Formatierung in Übung 4?",
+    "opts": [
+      "Alles blau",
+      "Leere/Nullwerte gelb, negative Zahlen rot",
+      "Nur Überschriften fett",
+      "Keine Formatierung"
+    ],
+    "correct": 1,
+    "exp": "Diese Farben sind in Übung 4 gefordert."
+  },
+  {
+    "q": "Was macht ein DBMS?",
+    "opts": [
+      "Es schneidet Videos",
+      "Es ermöglicht Aufbau, Nutzung und Verwaltung von Datenbanken",
+      "Es ist eine Präsentationsfolie",
+      "Es ist ein Betriebssystemkern"
+    ],
+    "correct": 1,
+    "exp": "DBMS steht für Datenbankmanagementsystem."
+  },
+  {
+    "q": "Wie entstehen Beziehungen im relationalen Modell?",
+    "opts": [
+      "Über gemeinsame Schlüsselfelder",
+      "Über Farben",
+      "Über Foliennummern",
+      "Über Videos"
+    ],
+    "correct": 0,
+    "exp": "Relationen werden über Schlüsselfelder gebildet."
+  },
+  {
+    "q": "Was betrachtet die Außensicht?",
+    "opts": [
+      "Nur interne Komponenten",
+      "Interaktion des Systems mit der Umwelt",
+      "Nur Tabellenzellen",
+      "Nur Texte"
+    ],
+    "correct": 1,
+    "exp": "Außensicht entspricht Wirkungsanalyse."
+  },
+  {
+    "q": "Was ist ein Beispiel für operative Systeme?",
+    "opts": [
+      "Lohn- und Gehaltsabrechnung",
+      "Image Generation",
+      "Vektorgrafik",
+      "OSI Presentation Layer"
+    ],
+    "correct": 0,
+    "exp": "Operative Systeme verarbeiten z.B. Abrechnungsmassendaten."
+  },
+  {
+    "q": "Welche Systeme liefern Führungsinformationen?",
+    "opts": [
+      "Führungssysteme",
+      "Nur Browser",
+      "Nur Switches",
+      "Nur Textverarbeitung"
+    ],
+    "correct": 0,
+    "exp": "Führungssysteme aggregieren operative Daten."
+  }
+];
+// ═══════════════════════════════════════════════
+// STEP ENRICHMENT — runs once at init
+// Automatically inserts recall + think steps after
+// callout/prose, and SR questions before complete
+// ═══════════════════════════════════════════════
+function enrichModules(){
+  // For each lesson with at least one callout/def, convert the FIRST
+  // callout.def to a recall step, and add a think step after the 2nd prose.
+  // Also inject 2 SR questions before any 'complete' step.
+  MODULES.forEach(m=>{
+    m.lessons.forEach(lesson=>{
+      const enriched=[];
+      let recallInserted=0;
+      let thinkInserted=0;
+      let hasComplete=false;
+      lesson.steps.forEach((s,i)=>{
+        enriched.push(s);
+        // After first def callout → insert recall
+        if(s.type==='callout' && s.kind==='def' && recallInserted===0){
+          const answer=stripHtml(s.html);
+          if(answer.length>20){
+            enriched.push({
+              type:'recall',
+              q:`Kannst du die Definition von „${s.label}" in eigenen Worten erklären?`,
+              answer:answer,
+              aiIdeal:answer,
+              aiPoints:[s.label||lesson.title,'eigene Worte','korrekte Kernaussage']
+            });
+            recallInserted++;
+          }
+        }
+        // After second prose → insert think pause (once per lesson)
+        if(s.type==='prose' && thinkInserted===0 && i>=2){
+          const thinkQ=genThinkQ(lesson.topic,lesson.title);
+          if(thinkQ){
+            enriched.push({
+              type:'think',
+              q:thinkQ.q,
+              hint:thinkQ.hint,
+              aiIdeal:thinkQ.hint||'Begründe deine Antwort mit einem fachlichen Zusammenhang aus der Lektion.',
+              aiPoints:[lesson.title,'fachliche Begründung','klarer Zusammenhang']
+            });
+            thinkInserted++;
+          }
+        }
+        if(s.type==='complete') hasComplete=true;
+      });
+      // Inject 2 spaced review questions before complete step
+      if(hasComplete){
+        const completeIdx=enriched.findIndex(s=>s.type==='complete');
+        const picked=SR_POOL.sort(()=>Math.random()-0.5).slice(0,2)
+          .map(q=>({...q,type:'sr-mcq'}));
+        enriched.splice(completeIdx,0,...picked);
+      }
+      lesson.steps=enriched;
+    });
+  });
+}
+
+function stripHtml(html){
+  return html.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim().slice(0,200);
+}
+
+const THINK_QS={
+  produktion1:[
+    {q:'Stell dir vor du leitest eine Bäckerei. Welche Produktionsart würdest du für ein Standardbrötchen wählen – und warum?',hint:'Tipp: Denke an Stückzahl und Standardisierungsgrad.'},
+    {q:'Warum kann „hohe Flexibilität" und „niedrige Kosten" als Produktionsziel im Widerspruch stehen?',hint:'Tipp: Was kostet Flexibilität? Was erfordert Kostensenkung?'},
+  ],
+  produktion2:[
+    {q:'Warum könnte ein Unternehmen TROTZ höherer Kosten lieber selbst produzieren statt einzukaufen?',hint:'Tipp: Denke an Know-how, Abhängigkeiten und Qualitätskontrolle.'},
+    {q:'Was könnten typische Verschwendungsquellen in einem Supermarkt sein?',hint:'Tipp: Wende die 7 Verschwendungsarten von Lean auf den Einzelhandel an.'},
+  ],
+  logistik1:[
+    {q:'Warum ist ein zu hoher Lagerbestand ein Problem – obwohl mehr Vorrat doch Sicherheit schafft?',hint:'Tipp: Was passiert mit gebundenem Kapital? Was kann veralten?'},
+  ],
+  logistik2:[
+    {q:'Erkläre den Bullwhip-Effekt anhand eines Beispiels aus dem Alltag.',hint:'Tipp: Stell dir eine Lieferkette von Toilettenpapier während einer Krise vor.'},
+  ],
+  nachhaltigkeit_soz:[
+    {q:'Warum sollte ein Unternehmen nicht nur auf seine eigene Produktion schauen, sondern auch auf die Bedingungen bei seinen Lieferanten?',hint:'Tipp: Reputation, rechtliche Verantwortung, Lieferkettensorgfaltspflichten.'},
+  ],
+  nachhaltigkeit_oek:[
+    {q:'Nenne ein Produkt, das du täglich nutzt, und überlege: Wo in seiner Herstellung entstehen ökologische Probleme?',hint:'Tipp: Denke an Rohstoffe, Transport, Energie, Entsorgung.'},
+  ],
+  digitalisierung:[
+    {q:'Ein kleines Handwerksunternehmen zögert bei der Digitalisierung. Welche Chancen verpasst es, welche Risiken hat es aber auch, die großen Firmen nicht haben?',hint:'Tipp: Ressourcen, Datenhoheit, persönliche Kundenbeziehungen.'},
+  ],
+  ziele_strategie:[
+    {q:'Apple und Aldi sind beide sehr erfolgreich. Welche Wettbewerbsstrategie verfolgt welches Unternehmen – und warum kann man nicht beides gleichzeitig sein?',hint:'Tipp: Stuck in the middle – was bedeutet das für ROI und Positionierung?'},
+    {q:'Was wäre ein Beispiel für eine Geschäftsmodellinnovation in einer Branche, die du kennst? Welche Elemente wurden „rekombiniert"?',hint:'Tipp: Denke an Streaming vs. DVD-Verleih, oder Car-Sharing vs. Autokauf.'},
+    {q:'Ein Unternehmen möchte sowohl Kostenführer als auch Differenzierer sein. Was sagt Porter dazu – und in welcher Situation könnte es trotzdem funktionieren?',hint:'Tipp: Fokus-/Nischenstrategie als Ausweg aus dem Dilemma.'},
+  ],
+  marketing1:[
+    {q:'Warum reicht es nicht, einfach das beste Produkt zu haben? Was zeigt das Konzept von Bedürfnis → Bedarf → Nachfrage?',hint:'Tipp: Kaufkraft und Marktwahrnehmung spielen eine Rolle.'},
+  ],
+  marketing2:[
+    {q:'Ein Luxusauto wird bei einem Discounter verkauft. Was passiert mit der Positionierung? Welches der 4 Ps ist verletzt?',hint:'Tipp: Wie wirkt Distributionspolitik auf die Markenwahrnehmung?'},
+  ],
+  innovation1:[
+    {q:'Warum scheitern viele gute Erfindungen daran, Innovationen zu werden?',hint:'Tipp: Marktpassung, Ressourcen, Timing, Diffusion.'},
+  ],
+  innovation2:[
+    {q:'Was könnte schiefgehen, wenn ein Unternehmen den Stage-Gate-Ansatz zu streng anwendet?',hint:'Tipp: Kreativität, Risikobereitschaft, schnelle Märkte.'},
+  ],
+  bmc:[
+    {q:'Warum kann ein Unternehmen nicht einfach alle neun Bausteine des BMC gleichzeitig optimieren?',hint:'Tipp: Denke an Zielkonflikte – z.B. maximale Kundennähe vs. Kostenminimierung.'},
+    {q:'Überlege: Welchen Wertbeitrag bietet deine Lieblingsmarke? Welches Kundensegment spricht sie an?',hint:'Tipp: Nenne mindestens zwei Elemente des Wertbeitrags (Neuheit, Design, Marke, Preis…).'},
+  ],
+  persona_vpc:[
+    {q:'Warum reicht es nicht, nur die demografischen Merkmale einer Kundengruppe zu kennen?',hint:'Tipp: Was verraten Verhaltens- und psychografische Merkmale, was Alter/Einkommen nicht zeigen?'},
+    {q:'Ein Startup entwickelt eine App für ältere Nutzer. Welche „Pains" könnten diese Zielgruppe besonders belasten?',hint:'Tipp: Denke an technische Unsicherheit, Angst vor Fehlbedienung, Datenschutzbedenken.'},
+  ],
+};
+
+function genThinkQ(topic,title){
+  const pool=THINK_QS[topic];
+  if(!pool||!pool.length)return null;
+  return pool[Math.floor(Math.random()*pool.length)];
+}
+let S={xp:0,streak:0,cardsLearned:[],activities:[],quizCorrect:0,quizTotal:0,lessonsDone:[]};
+
+function save(){try{localStorage.setItem('wi_v1',JSON.stringify(S));}catch(e){}}
+function load(){
+  try{
+    const r=localStorage.getItem('wi_v1');
+    if(!r)return;
+    const d=JSON.parse(r);
+    Object.assign(S,d);
+    S.cardsLearned=d.cardsLearned||[];
+    S.activities=d.activities||[];
+    S.lessonsDone=d.lessonsDone||[];
+  }catch(e){}
+}
+function addXP(n){S.xp+=n;document.getElementById('spXP').textContent=S.xp+' XP';save();}
+function addAct(text,color='#4dd9c0'){
+  S.activities.push({text,color});
+  if(S.activities.length>50)S.activities.shift();
+}
+
+// ═══════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const map=['s-home','s-kurs','s-karten','s-quiz'];
+  const i=map.indexOf(id);
+  if(i>=0)document.querySelectorAll('.nb')[i].classList.add('active');
+  document.getElementById('content').scrollTop=0;
+  if(id==='s-home')renderHome();
+}
+
+// ═══════════════════════════════════════════════
+// HOME
+// ═══════════════════════════════════════════════
+function renderHome(){
+  document.getElementById('spXP').textContent=S.xp+' XP';
+  document.getElementById('spStreak').textContent='🔥 '+S.streak;
+  const totalLes=MODULES.reduce((a,m)=>a+m.lessons.length,0);
+  const doneLes=S.lessonsDone.length;
+  const learned=S.cardsLearned.length;
+  const ov=Math.round((learned/CARDS.length*0.4+doneLes/totalLes*0.6)*100);
+  document.getElementById('overallBar').style.width=ov+'%';
+  document.getElementById('overallPct').textContent=ov+'% Gesamtfortschritt';
+  document.getElementById('dCards').textContent=learned;
+  document.getElementById('dXP').textContent=S.xp;
+  document.getElementById('dLes').textContent=doneLes;
+  if(S.quizTotal>0)document.getElementById('dAcc').textContent=Math.round(S.quizCorrect/S.quizTotal*100)+'%';
+  const tr=document.getElementById('topicRows');
+  tr.innerHTML=TOPICS.map(t=>{
+    const tot=CARDS.filter(c=>c.t===t.id).length;
+    const don=CARDS.filter((c,i)=>c.t===t.id&&S.cardsLearned.includes(i)).length;
+    const p=tot>0?Math.round(don/tot*100):0;
+    return `<div class="trow"><div class="tdot" style="background:${t.color}"></div>
+      <div class="tname">${t.name}</div>
+      <div class="tbar-w"><div class="tbar" style="width:${p}%;background:${t.color}"></div></div>
+      <div class="tpct">${p}%</div></div>`;
+  }).join('');
+  const al=document.getElementById('actList');
+  if(!S.activities.length){al.innerHTML='<div class="act-row"><div class="adot" style="background:var(--muted)"></div>Starte mit dem Kurs!</div>';return;}
+  al.innerHTML=S.activities.slice(-6).reverse().map(a=>`<div class="act-row"><div class="adot" style="background:${a.color}"></div>${a.text}</div>`).join('');
+}
+
+// ═══════════════════════════════════════════════
+// COURSE
+// ═══════════════════════════════════════════════
+function renderModules(){
+  const totalLes=MODULES.reduce((a,m)=>a+m.lessons.length,0);
+  const p=totalLes>0?Math.round(S.lessonsDone.length/totalLes*100):0;
+  document.getElementById('courseBar').style.width=p+'%';
+  const ml=document.getElementById('modList');
+  ml.innerHTML=MODULES.map((m,mi)=>{
+    const allDone=m.lessons.every(l=>S.lessonsDone.includes(l.id));
+    const doneCnt=m.lessons.filter(l=>S.lessonsDone.includes(l.id)).length;
+    const st=allDone?'✅':doneCnt>0?'🔄':'⬜';
+    const les=m.lessons.map((l,li)=>{
+      const done=S.lessonsDone.includes(l.id);
+      const isNext=!done&&(li===0||S.lessonsDone.includes(m.lessons[li-1]?.id));
+      let badge=done?'<span class="les-badge done-b">✓ done</span>':
+                isNext?'<span class="les-badge new">Starten</span>':
+                '<span class="les-badge">›</span>';
+      return `<div class="les-item" onclick="openLesson('${m.id}','${l.id}')">
+        <div class="les-icon" style="background:${m.color}18;color:${m.color}">${l.icon}</div>
+        <div class="les-title ${done?'done':''}">${l.title}</div>
+        ${badge}</div>`;
+    }).join('');
+    return `<div class="mod-card">
+      <div class="mod-head" onclick="toggleMod(${mi})">
+        <div class="mod-num" style="background:${m.color}18;color:${m.color}">${m.icon}</div>
+        <div class="mod-info"><div class="mod-title">${m.title}</div>
+          <div class="mod-meta">${doneCnt}/${m.lessons.length} · ${m.desc}</div></div>
+        <div class="mod-status">${st}</div>
+      </div>
+      <div class="mod-lessons" id="ml_${mi}">${les}</div>
+    </div>`;
+  }).join('');
+  MODULES.forEach((m,mi)=>{
+    if(m.lessons.some(l=>!S.lessonsDone.includes(l.id))){
+      document.getElementById('ml_'+mi)?.classList.add('open');
+      return;
+    }
+  });
+}
+
+function toggleMod(i){document.getElementById('ml_'+i)?.classList.toggle('open');}
+
+// ═══════════════════════════════════════════════
+// LESSON VIEWER
+// ═══════════════════════════════════════════════
+let CL=null,CS=0,CM=null;
+let lvInteracted=false;
+
+function openLesson(modId,lesId){
+  CM=MODULES.find(m=>m.id===modId);
+  CL=CM.lessons.find(l=>l.id===lesId);
+  CS=0;lvInteracted=false;
+  document.getElementById('lvTitle').textContent=CL.title;
+  document.getElementById('lvMod').textContent=CM.title;
+  renderStep();
+  document.getElementById('lv').classList.add('open');
+}
+
+function closeLesson(){
+  document.getElementById('lv').classList.remove('open');
+  renderModules();
+}
+
+function renderStep(){
+  const steps=CL.steps;
+  const total=steps.length;
+  const pct=((CS+1)/total)*100;
+  document.getElementById('lvPbar').style.width=pct+'%';
+  document.getElementById('lvProg').textContent=(CS+1)+'/'+total;
+  document.getElementById('lvPrev').style.visibility=CS===0?'hidden':'visible';
+  const isLast=CS===total-1;
+  document.getElementById('lvNext').textContent=isLast?'✅ Abschließen':'Weiter →';
+  document.getElementById('lvBody').innerHTML=`<div class="lv-step">${buildStep(steps[CS])}</div>`;
+  document.getElementById('lvBody').scrollTop=0;
+  lvInteracted=false;
+  // Lock "Weiter" for steps that require interaction
+  const lockTypes=['recall','think','mcq','fillin','sr-mcq'];
+  if(lockTypes.includes(steps[CS].type)){
+    lockNext();
+  } else {
+    unlockNext();
+  }
+}
+
+function esc(s){return s?s.replace(/'/g,"&#39;").replace(/"/g,"&quot;"):''}
+function escHtml(s){
+  return String(s??'')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;');
+}
+
+const AI_ENDPOINT='https://lernapp-leistungsprozesse.jdjdujejdhfhdzsj.workers.dev/api/analyse';
+
+async function callAIAnalysis(step,userAnswer){
+  const payload={
+    frage:step.q||'',
+    musterloesung:step.aiIdeal||step.answer||step.hint||'',
+    erwartetePunkte:step.aiPoints||[],
+    userAntwort:userAnswer||''
+  };
+
+  const res=await fetch(AI_ENDPOINT,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  });
+
+  let data;
+  try{
+    data=await res.json();
+  }catch(e){
+    throw new Error('Ungültige Server-Antwort');
+  }
+
+  if(!res.ok){
+    throw new Error(data?.error||'KI-Analyse fehlgeschlagen');
+  }
+
+  return data;
+}
+
+function renderAIBlock(data){
+  const richtige=(data.richtige_punkte||[])
+    .map(x=>`<li>${escHtml(x)}</li>`).join('');
+  const fehlende=(data.fehlende_punkte||[])
+    .map(x=>`<li>${escHtml(x)}</li>`).join('');
+  const falsche=(data.falsche_punkte||[])
+    .map(x=>`<li>${escHtml(x)}</li>`).join('');
+
+  return `
+    <div class="ai-box">
+      <div class="ai-head">
+        <span class="ai-badge">KI-Analyse</span>
+        <span class="ai-score">${Number.isFinite(data.score)?data.score:0}/100</span>
+      </div>
+
+      <div class="ai-section">
+        <strong>Feedback</strong>
+        <p>${escHtml(data.kurzes_feedback||'Keine Rückmeldung erhalten.')}</p>
+      </div>
+
+      ${richtige?`
+      <div class="ai-section">
+        <strong>Richtig erkannt</strong>
+        <ul>${richtige}</ul>
+      </div>`:''}
+
+      ${fehlende?`
+      <div class="ai-section">
+        <strong>Fehlende Punkte</strong>
+        <ul>${fehlende}</ul>
+      </div>`:''}
+
+      ${falsche?`
+      <div class="ai-section">
+        <strong>Ungenaue oder falsche Punkte</strong>
+        <ul>${falsche}</ul>
+      </div>`:''}
+
+      ${(data.verbesserte_musterantwort||'')?`
+      <div class="ai-section">
+        <strong>Verbesserte Musterantwort</strong>
+        <p>${escHtml(data.verbesserte_musterantwort)}</p>
+      </div>`:''}
+
+      <div class="ai-note">Die KI liefert eine Hilfseinschätzung, keine offizielle Musterbewertung.</div>
+    </div>
+  `;
+}
+
+function buildStep(s){
+  switch(s.type){
+    case 'title': return `
+      <div style="margin-bottom:20px;font-size:2.5rem">${s.icon||''}</div>
+      <div class="st-title">${s.title}</div>
+      <div class="st-subtitle">${s.sub}</div>
+      <div class="continue-hint">Tippe „Weiter" um zu beginnen</div>`;
+
+    case 'prose': return `<p class="prose">${s.html}</p>`;
+
+    case 'callout': return `
+      <div class="callout ${s.kind}">
+        <div class="callout-label">${s.label}</div>
+        ${s.html}
+      </div>`;
+
+    case 'reveal-steps': return `
+      <div class="reveal-steps">
+        ${s.steps.map((st,i)=>`
+          <div class="reveal-step" id="rs_${i}" onclick="toggleReveal(${i})">
+            <div class="rs-header">
+              <div class="rs-num" id="rsn_${i}">${st.num}</div>
+              <div class="rs-title">${st.title}</div>
+              <div class="rs-arrow" id="rsa_${i}">›</div>
+            </div>
+            <div class="rs-body" id="rsb_${i}">${st.body}</div>
+          </div>`).join('')}
+      </div>`;
+
+    case 'mcq': return `
+      <div class="mcq">
+        <div class="mcq-q">${s.q}</div>
+        <div class="mcq-opts">
+          ${s.opts.map((o,i)=>`
+            <button class="mcq-opt" id="mopt_${i}" onclick="answerMCQ(${i},${s.correct},'${esc(s.exp)}')">
+              <span class="opt-letter">${'ABCD'[i]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="mcq-fb" id="mcqfb"></div>
+      </div>`;
+
+    case 'fillin': return `
+      <div class="fillin">
+        <div class="fillin-q">${s.q}</div>
+        <div class="fillin-wrap">
+          <input class="fillin-input" id="fii" placeholder="Antwort eingeben…" 
+            onkeydown="if(event.key==='Enter')checkFillin('${esc(s.answer)}','${esc(s.exp)}')">
+          <button class="btn p" onclick="checkFillin('${esc(s.answer)}','${esc(s.exp)}')">✓</button>
+        </div>
+        <div class="fillin-fb" id="fifb"></div>
+        <div style="margin-top:6px;font-size:0.7rem;color:var(--muted)">Hinweis: ${s.hint}</div>
+      </div>`;
+
+    case 'complete': return `
+      <div class="lesson-complete">
+        <div class="lc-emoji">🎓</div>
+        <div class="lc-title">${s.title}</div>
+        <div class="lc-sub">${s.sub}</div>
+        <div class="lc-xp">+20 XP</div>
+        <div class="lc-xp-label">verdient!</div>
+      </div>`;
+
+    /* ── ACTIVE RECALL ─────────────────────────────
+       Shows prompt, user types guess, then sees answer.
+       "Weiter" locked until user either submits or reveals. */
+    case 'recall': return `
+      <div class="recall-wrap" id="recallWrap">
+        <div class="recall-label">💬 Active Recall</div>
+        <div class="recall-prompt">${s.q}</div>
+        <div class="recall-input-row">
+          <input class="recall-input" id="rcl_inp" placeholder="Deine Antwort…"
+            onkeydown="if(event.key==='Enter')submitRecall()">
+          <button class="recall-hint-btn" onclick="revealRecall()">Zeigen →</button>
+        </div>
+        <button class="btn p" style="width:100%;margin-bottom:4px" onclick="submitRecall()">Antwort prüfen ✓</button>
+        <div class="recall-result" id="rcl_res"></div>
+      </div>`;
+
+    /* ── THINK PAUSE ────────────────────────────────
+       Elaborative interrogation: open text, no right/wrong.
+       Unlocks "Weiter" after submitting. */
+    case 'think': return `
+      <div class="think-wrap">
+        <div class="think-label">🤔 Denk kurz nach</div>
+        <div class="think-q">${s.q}</div>
+        <textarea class="think-ta" id="think_ta" placeholder="Schreib deine Gedanken…"></textarea>
+        <button class="think-submit" onclick="submitThink()">Weiter denken →</button>
+        <div class="think-fb" id="think_fb">${s.hint||''}</div>
+      </div>`;
+
+    /* ── SPACED REVIEW ──────────────────────────────
+       Injected dynamically at end of lesson. Wrapper only. */
+    case 'sr-mcq': return `
+      <div>
+        <div class="sr-banner">
+          <span class="sr-badge">🔁 Wiederholung</span>
+          <span class="sr-text">Diese Frage stammt aus einer früheren Lektion – teste ob du es noch weißt!</span>
+        </div>
+        <div class="mcq">
+          <div class="mcq-q">${s.q}</div>
+          <div class="mcq-opts">
+            ${s.opts.map((o,i)=>`
+              <button class="mcq-opt" id="mopt_${i}" onclick="answerMCQ(${i},${s.correct},'${esc(s.exp)}')">
+                <span class="opt-letter">${'ABCD'[i]}</span>${o}
+              </button>`).join('')}
+          </div>
+          <div class="mcq-fb" id="mcqfb"></div>
+        </div>
+      </div>`;
+
+    default: return `<p class="prose">${JSON.stringify(s)}</p>`;
+  }
+}
+
+function toggleReveal(i){
+  const body=document.getElementById('rsb_'+i);
+  const arrow=document.getElementById('rsa_'+i);
+  const num=document.getElementById('rsn_'+i);
+  const open=body.classList.toggle('open');
+  arrow.classList.toggle('open',open);
+  if(open)num.classList.add('done');
+  lvInteracted=true;
+  unlockNext();
+}
+
+// ── ACTIVE RECALL ────────────────────────────────
+async function submitRecall(){
+  const inp=document.getElementById('rcl_inp');
+  const res=document.getElementById('rcl_res');
+  if(!inp||!res)return;
+  const val=inp.value.trim();
+  const s=CL.steps[CS];
+
+  if(!val){
+    res.className='recall-result hint show';
+    res.innerHTML='Bitte gib erst eine Antwort ein.';
+    return;
+  }
+
+  inp.disabled=true;
+  const submitBtn=document.querySelector('#recallWrap .btn.p');
+  if(submitBtn) submitBtn.disabled=true;
+  res.className='recall-result hint show';
+  res.innerHTML='KI prüft deine Antwort…';
+
+  try{
+    const data=await callAIAnalysis(s,val);
+    res.className='recall-result ok show';
+    res.innerHTML=renderAIBlock(data);
+    addXP(8);
+    lvInteracted=true;
+    unlockNext();
+    save();
+  }catch(err){
+    inp.disabled=false;
+    if(submitBtn) submitBtn.disabled=false;
+    res.className='recall-result hint show';
+    res.innerHTML=`Die KI-Analyse konnte nicht geladen werden.<br><small>${escHtml(err.message)}</small>`;
+  }
+}
+
+function revealRecall(){
+  const inp=document.getElementById('rcl_inp');
+  const res=document.getElementById('rcl_res');
+  if(!inp||!res)return;
+  inp.disabled=true;
+  const s=CL.steps[CS];
+  const submitBtn=document.querySelector('#recallWrap .btn.p');
+  if(submitBtn) submitBtn.disabled=true;
+  res.innerHTML=`
+    <div style="margin-bottom:8px"><strong>📖 Musterlösung:</strong></div>
+    <div style="line-height:1.65;margin-bottom:10px">${escHtml(s.aiIdeal||s.answer||s.hint||'Keine Musterlösung hinterlegt.')}</div>
+    <div class="recall-selfcheck"><strong>Wusstest du es?</strong></div>
+    <div class="recall-btns">
+      <button class="btn r" style="flex:1" onclick="rateRecall(0)">😕 Nein</button>
+      <button class="btn o" style="flex:1" onclick="rateRecall(1)">🤔 Teilweise</button>
+      <button class="btn g" style="flex:1" onclick="rateRecall(2)">✅ Ja!</button>
+    </div>`;
+  res.className='recall-result hint show';
+}
+
+function rateRecall(r){
+  if(r===2)addXP(8);
+  else if(r===1)addXP(4);
+  else addXP(1);
+  // disable rating buttons
+  document.querySelectorAll('.recall-btns .btn').forEach(b=>b.disabled=true);
+  lvInteracted=true;
+  unlockNext();
+  save();
+}
+
+// ── THINK PAUSE ──────────────────────────────────
+async function submitThink(){
+  const ta=document.getElementById('think_ta');
+  const fb=document.getElementById('think_fb');
+  if(!ta||!fb)return;
+  const val=ta.value.trim();
+  if(val.length<3){ta.focus();return;}
+  ta.disabled=true;
+  const btn=document.querySelector('.think-submit');
+  if(btn) btn.disabled=true;
+  fb.classList.add('show');
+  fb.innerHTML='KI analysiert deine Überlegung…';
+
+  try{
+    const s=CL.steps[CS];
+    const data=await callAIAnalysis(s,val);
+    fb.innerHTML=renderAIBlock(data);
+    addXP(5);
+    lvInteracted=true;
+    unlockNext();
+    save();
+  }catch(err){
+    ta.disabled=false;
+    if(btn) btn.disabled=false;
+    fb.innerHTML=`Die KI-Analyse konnte nicht geladen werden.<br><small>${escHtml(err.message)}</small>`;
+  }
+}
+
+// ── NEXT BUTTON LOCK ─────────────────────────────
+function unlockNext(){
+  document.getElementById('lvNext').classList.remove('locked');
+}
+
+function lockNext(){
+  document.getElementById('lvNext').classList.add('locked');
+}
+
+function answerMCQ(idx,correct,exp){
+  const opts=document.querySelectorAll('.mcq-opt');
+  if(opts[0].disabled)return;
+  opts.forEach(o=>o.disabled=true);
+  opts[correct].classList.add('correct');
+  const fb=document.getElementById('mcqfb');
+  if(idx===correct){
+    addXP(10);
+    fb.textContent='✅ Richtig! '+exp;
+    fb.className='mcq-fb ok show';
+  } else {
+    opts[idx].classList.add('wrong');
+    fb.textContent='❌ Falsch. '+exp;
+    fb.className='mcq-fb no show';
+    addXP(2);
+  }
+  lvInteracted=true;unlockNext();save();
+}
+
+function checkFillin(answer,exp){
+  const inp=document.getElementById('fii');
+  const fb=document.getElementById('fifb');
+  const val=inp.value.trim().toLowerCase();
+  if(val===answer.toLowerCase()||val===answer){
+    inp.classList.add('ok');
+    fb.textContent='✅ Korrekt! '+exp;
+    fb.className='fillin-fb ok show';
+    addXP(5);
+  } else {
+    fb.textContent=`❌ Nicht ganz. Richtig: ${answer}. ${exp}`;
+    fb.className='fillin-fb no show';
+  }
+  inp.disabled=true;
+  lvInteracted=true;unlockNext();save();
+}
+
+function lvNav(dir){
+  const steps=CL.steps;
+  const newIdx=CS+dir;
+  if(newIdx<0)return;
+  if(newIdx>=steps.length){
+    if(!S.lessonsDone.includes(CL.id)){
+      S.lessonsDone.push(CL.id);
+      addXP(20);
+      addAct(`Lektion: "${CL.title}"`,CM.color);
+      save();
+    }
+    closeLesson();
+    return;
+  }
+  CS=newIdx;
+  renderStep();
+}
+
+// ═══════════════════════════════════════════════
+// FLASHCARDS
+// ═══════════════════════════════════════════════
+let fcCards=[],fcIdx=0;
+
+function initFC(){
+  const f=document.getElementById('fcFilters');
+  let h=`<div class="fc-chip active" onclick="fcFilter('all',this)">Alle (${CARDS.length})</div>`;
+  TOPICS.forEach(t=>{
+    const n=CARDS.filter(c=>c.t===t.id).length;
+    if(n>0)h+=`<div class="fc-chip" onclick="fcFilter('${t.id}',this)">${t.name} (${n})</div>`;
+  });
+  f.innerHTML=h;
+  fcFilter('all',f.querySelector('.fc-chip'));
+}
+
+function fcFilter(topic,btn){
+  document.querySelectorAll('.fc-chip').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  fcCards=topic==='all'?CARDS.map((c,i)=>({...c,oi:i})):CARDS.map((c,i)=>({...c,oi:i})).filter(c=>c.t===topic);
+  fcIdx=0;fcRender();
+  document.getElementById('fc').classList.remove('flipped');
+  document.getElementById('fcRating').classList.remove('show');
+}
+
+function fcRender(){
+  document.getElementById('fc').classList.remove('flipped');
+  document.getElementById('fcRating').classList.remove('show');
+  if(!fcCards.length){document.getElementById('fcQ').textContent='Keine Karten';document.getElementById('fcCtr').textContent='0/0';return;}
+  const c=fcCards[fcIdx];
+  const t=TOPICS.find(x=>x.id===c.t);
+  ['fcCat','fcCatB'].forEach(id=>document.getElementById(id).textContent=t?.name||c.t);
+  document.getElementById('fcQ').textContent=c.q;
+  document.getElementById('fcH').textContent=c.h?'💡 '+c.h:'';
+  document.getElementById('fcA').innerHTML=c.a;
+  document.getElementById('fcCtr').textContent=(fcIdx+1)+'/'+fcCards.length;
+}
+
+function flipCard(){
+  document.getElementById('fc').classList.toggle('flipped');
+  if(document.getElementById('fc').classList.contains('flipped'))
+    document.getElementById('fcRating').classList.add('show');
+}
+function fcPrev(){fcIdx=fcIdx>0?fcIdx-1:fcCards.length-1;fcRender();}
+function fcNext(){fcIdx=fcIdx<fcCards.length-1?fcIdx+1:0;fcRender();}
+
+function fcRate(r){
+  if(!fcCards.length)return;
+  const c=fcCards[fcIdx];
+  if(r===2&&!S.cardsLearned.includes(c.oi)){S.cardsLearned.push(c.oi);addXP(5);addAct(`Karte: "${c.q.slice(0,35)}…"`);}
+  else if(r===1)addXP(2);
+  save();setTimeout(fcNext,220);
+}
+
+// ═══════════════════════════════════════════════
+// QUIZ
+// ═══════════════════════════════════════════════
+let qQs=[],qIdx=0,qScore=0,qTopic='all';
+
+function initQSetup(){
+  const g=document.getElementById('qTopicGrid');
+  let h=`<div class="q-tbtn sel" onclick="qSelTopic('all',this)">🎲 Alle<span>${QUIZ.length} Fragen</span></div>`;
+  TOPICS.forEach(t=>{
+    const n=QUIZ.filter(q=>q.t===t.id).length;
+    if(n>0)h+=`<div class="q-tbtn" onclick="qSelTopic('${t.id}',this)">${t.name}<span>${n} Fragen</span></div>`;
+  });
+  g.innerHTML=h;
+}
+
+function qSelTopic(t,btn){
+  document.querySelectorAll('.q-tbtn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');qTopic=t;
+}
+
+function startQuiz(){
+  let pool=qTopic==='all'?QUIZ:QUIZ.filter(q=>q.t===qTopic);
+  qQs=pool.sort(()=>Math.random()-0.5).slice(0,Math.min(10,pool.length));
+  qIdx=0;qScore=0;
+  document.getElementById('qSetup').style.display='none';
+  document.getElementById('qActive').classList.add('show');
+  document.getElementById('qResult').classList.remove('show');
+  renderQ();
+}
+
+function renderQ(){
+  const con=document.getElementById('qContainer');
+  if(qIdx>=qQs.length){showQResult();return;}
+  const q=qQs[qIdx];
+  const t=TOPICS.find(x=>x.id===q.t);
+  document.getElementById('qPbar').style.width=(qIdx/qQs.length*100)+'%';
+  document.getElementById('qInfo').textContent=(qIdx+1)+'/'+qQs.length;
+  document.getElementById('qScoreD').textContent=qScore+'/'+qIdx;
+  const opts=q.o.map((o,i)=>`<button class="q-opt" onclick="ansQ(${i})">
+    <span class="ol">${'ABCD'[i]}</span>${o}</button>`).join('');
+  con.innerHTML=`<div class="q-card">
+    <div class="q-cat">${t?.name||q.t}</div>
+    <div class="q-q">${q.q}</div>
+    <div class="q-opts">${opts}</div>
+    <div class="q-fb" id="qfb"></div>
+  </div>
+  <div class="q-next-wrap"><button class="btn" id="qnb" style="display:none" onclick="qNext()">Weiter →</button></div>`;
+}
+
+function ansQ(idx){
+  const opts=document.querySelectorAll('.q-opt');
+  if(opts[0].disabled)return;
+  opts.forEach(o=>o.disabled=true);
+  const q=qQs[qIdx];
+  opts[q.c].classList.add('correct');
+  const fb=document.getElementById('qfb');
+  if(idx===q.c){
+    qScore++;S.quizCorrect++;addXP(10);
+    fb.textContent='✅ Richtig! '+q.e;fb.className='q-fb ok show';
+    addAct(`Quiz korrekt: "${q.q.slice(0,35)}…"`, '#4ade80');
+  } else {
+    opts[idx].classList.add('wrong');
+    fb.textContent='❌ '+q.e;fb.className='q-fb no show';addXP(2);
+    addAct(`Quiz falsch: "${q.q.slice(0,35)}…"`, '#f87171');
+  }
+  S.quizTotal++;
+  document.getElementById('qnb').style.display='flex';
+  save();
+}
+
+function qNext(){qIdx++;renderQ();}
+
+function showQResult(){
+  document.getElementById('qContainer').innerHTML='';
+  document.getElementById('qPbar').style.width='100%';
+  const pct=qQs.length?Math.round(qScore/qQs.length*100):0;
+  let emoji,title,sub;
+  if(pct>=90){emoji='🏆';title='Hervorragend!';sub='Top-Leistung!';}
+  else if(pct>=70){emoji='🎉';title='Gut gemacht!';sub='Noch etwas üben!';}
+  else if(pct>=50){emoji='📚';title='Weiter üben!';sub='Kurs & Karten helfen.';}
+  else{emoji='💪';title='Nicht aufgeben!';sub='Starte mit dem Kurs.';}
+  document.getElementById('qrEmoji').textContent=emoji;
+  document.getElementById('qrTitle').textContent=title;
+  document.getElementById('qrScore').textContent=qScore+'/'+qQs.length;
+  document.getElementById('qrSub').textContent=sub;
+  document.getElementById('qResult').classList.add('show');
+  addXP(qScore*5);addAct(`Quiz: ${qScore}/${qQs.length} (${pct}%)`,pct>=70?'#4ade80':'#fbbf24');
+  save();renderHome();
+}
+
+function restartQuiz(){
+  document.getElementById('qResult').classList.remove('show');
+  document.getElementById('qSetup').style.display='';
+  document.getElementById('qActive').classList.remove('show');
+  initQSetup();
+}
+
+// ═══════════════════════════════════════════════
+// THEME TOGGLE
+// ═══════════════════════════════════════════════
+function toggleTheme(){
+  const isLight = document.documentElement.classList.toggle('light');
+  document.getElementById('themeBtn').textContent = isLight ? '☀️' : '🌙';
+  try{ localStorage.setItem('wi_theme', isLight ? 'light' : 'dark'); }catch(e){}
+}
+
+function loadTheme(){
+  try{
+    const saved = localStorage.getItem('wi_theme');
+    if(saved === 'light'){
+      document.documentElement.classList.add('light');
+      document.getElementById('themeBtn').textContent = '☀️';
+    } else {
+      document.documentElement.classList.remove('light');
+      document.getElementById('themeBtn').textContent = '🌙';
+    }
+  }catch(e){}
+}
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+load();
+loadTheme();
+enrichModules(); // inject active recall, think, spaced review
+renderHome();
+renderModules();
+initFC();
+initQSetup();
+</script>
+
+</body>
+</html>
